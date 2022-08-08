@@ -1,0 +1,23 @@
+[data-reach-tab-list] {
+  background: transparent;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+[data-reach-tab-list]::-webkit-scrollbar {
+  display: none;
+}
+
+[data-reach-tab][data-selected] {
+  border-bottom: 2px solid #4263eb;
+  color: black;
+}
+
+[data-reach-tab] {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+[data-reach-tab]:focus,
+[data-reach-tab-panel]:focus {
+  outline: 0;
+}

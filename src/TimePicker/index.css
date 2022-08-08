@@ -1,0 +1,148 @@
+.time-picker .MuiInputAdornment-root .MuiButtonBase-root {
+  border-radius: 3px;
+  background: #eceffd;
+  padding: 6px;
+  transition: background 0.2s;
+}
+
+.time-picker .MuiInputAdornment-root .MuiButtonBase-root:focus {
+  outline: none;
+}
+
+.time-picker .MuiInputAdornment-root .MuiButtonBase-root:hover {
+  background: #dfe4fc;
+}
+
+.time-picker .MuiInputBase-input {
+  padding: 14px 0 14px 16px;
+  width: 6em;
+  display: flex;
+}
+
+.MuiDialog-root .MuiToolbar-root {
+  background: none;
+  border-bottom: 1px solid #dde2e5;
+}
+
+.MuiDialog-root .MuiPickersToolbarText-toolbarTxt {
+  color: #495057;
+}
+
+.MuiPickersTimePickerToolbar-hourMinuteLabel button {
+  outline: none;
+}
+
+.MuiPickersTimePickerToolbar-hourMinuteLabel .MuiTypography-root {
+  background: #eef0f2;
+  color: #495057;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 24px;
+  padding: 8px;
+}
+
+.MuiPickersTimePickerToolbar-hourMinuteLabel
+  .MuiPickersToolbarText-toolbarBtnSelected {
+  background: #4263eb;
+  color: #fff;
+}
+
+.MuiPickersTimePickerToolbar-hourMinuteLabel
+  .MuiPickersTimePickerToolbar-separator {
+  background: none;
+  color: #495057;
+}
+
+.MuiPickersClock-container .MuiPickersClock-clock {
+  background: none;
+}
+
+.MuiPickersClock-clock::before {
+  content: "";
+  position: absolute;
+  top: 40px;
+  bottom: 40px;
+  left: 40px;
+  right: 40px;
+  background: #f8f9fa;
+  border-radius: 50%;
+}
+
+.MuiDialog-root .MuiPickersBasePicker-pickerView {
+  min-width: 400px;
+}
+
+.MuiPickersClock-container .MuiPickersClockNumber-clockNumber {
+  font-weight: bold;
+  font-size: 16px;
+  color: #495057;
+}
+
+.MuiPickersClock-container
+  .MuiPickersClockNumber-clockNumber.MuiPickersClockNumber-clockNumberSelected {
+  color: #fff;
+}
+
+.MuiToolbar-root.MuiPickersToolbar-toolbar {
+  justify-content: space-between;
+  padding: 0 32px;
+}
+
+.MuiToolbar-root .MuiPickersTimePickerToolbar-ampmSelection {
+  margin-right: 0;
+}
+
+.MuiDialogActions-root.MuiDialogActions-spacing {
+  justify-content: space-between;
+  padding: 24px;
+  background: #f8f9fa;
+  border-top: 1px solid #dde2e5;
+}
+
+.MuiDialog-root .MuiDialogActions-root .MuiButton-root {
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 8px 16px;
+}
+
+.MuiDialog-root .MuiDialogActions-root .MuiButton-root:first-child {
+  background: #fff;
+  border: 1px solid #acb5bd;
+  color: #495057;
+  text-transform: none;
+}
+
+.MuiDialog-root .MuiDialogActions-root .MuiButton-root:last-child {
+  background: #7048e8;
+  color: #fff;
+}
+
+.MuiDialog-root .MuiPickersTimePickerToolbar-ampmSelection {
+  flex-direction: row;
+}
+
+.MuiPickersTimePickerToolbar-ampmSelection .MuiButton-root {
+  outline: none;
+  overflow: hidden;
+}
+
+.MuiPickersTimePickerToolbar-ampmSelection .MuiButton-root:first-child {
+  border-radius: 4px 0 0 4px;
+}
+
+.MuiPickersTimePickerToolbar-ampmSelection .MuiButton-root:last-child {
+  border-radius: 0 4px 4px 0;
+}
+
+.MuiPickersTimePickerToolbar-ampmSelection
+  .MuiPickersTimePickerToolbar-ampmLabel {
+  padding: 6px 8px;
+  background: #eef0f2;
+  font-weight: bold;
+}
+
+.MuiPickersTimePickerToolbar-ampmSelection
+  .MuiPickersToolbarText-toolbarBtnSelected {
+  background: #4263eb;
+  color: #fff;
+}

@@ -1,0 +1,58 @@
+[data-reach-combobox-input][aria-label="combobox-input"] {
+  width: 100%;
+  outline: none;
+  background-color: white;
+  border-radius: 4px;
+  border: solid 1px #dde2e5;
+  color: #212429;
+  cursor: pointer;
+  height: 48px;
+  outline: none;
+  padding: 0 16px;
+  width: 100%;
+  font-size: 16px;
+}
+
+[data-reach-combobox-button][aria-label="combobox-button"][aria-expanded] {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom: none;
+}
+
+[data-reach-combobox-popover][aria-label="combobox-popover"] {
+  background-color: white;
+  outline: none;
+  border: 1px solid #dde2e5;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  padding-top: 0;
+  box-shadow: 0 1px 4px 0 rgba(35, 66, 192, 0.1);
+}
+
+[data-reach-combobox-popover][aria-label="combobox-popover"]:focus-within {
+  outline: none;
+  box-shadow: none;
+}
+
+[data-reach-combobox-option][aria-label="combobox-option"] {
+  background-color: white;
+  color: #212429;
+  font-weight: normal;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+[data-reach-combobox-option][aria-label="combobox-option"][aria-selected] {
+  color: #212429;
+  font-weight: normal;
+  background-color: #f8f9fa;
+  outline: none;
+}
+
+[data-reach-combobox-option][aria-label="combobox-option"][data-current] {
+  display: none;
+}
+
+[data-reach-combobox-option][aria-label="combobox-default"] {
+  display: none;
+}

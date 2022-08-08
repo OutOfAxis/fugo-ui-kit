@@ -1,0 +1,3 @@
+[data-reach-disclosure-button][data-state="collapsed"] svg {
+  transform: rotate(270deg);
+}

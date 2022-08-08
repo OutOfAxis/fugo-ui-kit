@@ -1,0 +1,23 @@
+.table {
+  border-spacing: 0 8px;
+  margin-top: -8px;
+  margin-bottom: -8px;
+}
+
+.row:hover .select,
+.row.alwaysShowSelect .select,
+.row.alwaysShowSelect:hover .select {
+  visibility: visible;
+}
+
+.row .select {
+  visibility: hidden;
+}
+
+.row .selectable {
+  @apply border-gray-200;
+}
+
+.row:hover .selectable {
+  @apply border-gray-500;
+}

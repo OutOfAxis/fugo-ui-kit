@@ -1,0 +1,18 @@
+.slider[data-reach-slider-input][data-orientation="horizontal"] {
+  height: 2px;
+}
+
+.slider [data-reach-slider-track] {
+  background-color: #dde2e5;
+}
+
+.slider [data-reach-slider-range],
+.slider [data-reach-slider-handle] {
+  background-color: #4263eb;
+}
+
+.slider [data-reach-slider-handle] {
+  width: 8px;
+  height: 8px;
+  cursor: move;
+}
