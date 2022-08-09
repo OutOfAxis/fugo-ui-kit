@@ -1,10 +1,10 @@
 {
   "name": "@outofaxis/fugo-ui-kit",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "React components Kit for Fugo",
   "scripts": {
     "prebuild": "npm run prettier && npm run lint && npm run test",
-    "build": "tsc",
+    "build": "tsc && copy \"./src/**/*.svg\" ./lib/ && copy \"./src/**/*.css\" ./lib/",
     "preversion": "npm run build",
     "postversion": "git push && git push --tags && npm publish",
     "test": "jest",
@@ -65,6 +65,7 @@
     "@types/uuid": "^8.3.4",
     "autoprefixer": "^10.4.8",
     "chromatic": "^6.7.3",
+    "copy": "^0.3.2",
     "date-fns": "^2.29.1",
     "eslint": "^8.21.0",
     "eslint-config-react-app": "^7.0.1",
