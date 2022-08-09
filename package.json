@@ -11,8 +11,8 @@
     "lint": "eslint -c ./package.json ./src",
     "prettier": "prettier --write './src/**/*.{ts,tsx}'",
     "prepare": "husky install",
-    "storybook": "npm run build:styles && start-storybook -p 6006 -s public",
-    "build-storybook": "npm run build:styles && build-storybook -s public",
+    "storybook": "npm run build:styles && start-storybook -p 6006",
+    "build-storybook": "npm run build:styles && build-storybook",
     "chromatic": "npx chromatic --project-token=180e455a4e4b",
     "start:styles": "TAILWIND_MODE=watch postcss src/tailwind.css -o src/styles.css --watch",
     "build:styles": "postcss src/tailwind.css -o src/styles.css"
