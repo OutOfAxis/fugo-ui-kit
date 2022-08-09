@@ -1,6 +1,6 @@
 {
   "name": "@outofaxis/fugo-ui-kit",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "React components Kit for Fugo",
   "scripts": {
     "prebuild": "npm run prettier && npm run lint && npm run test",
