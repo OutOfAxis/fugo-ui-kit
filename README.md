@@ -8,6 +8,26 @@ React UI kit in Fugo style.
 
 ### Install
 
+The kit depends on a lot of external dependencies that should be provided by your project. Unfortunately, it can not be provided directly with kit dependencies because, that way, these same packages used by your project will be bundled twice.
+
+Because the kit uses "passive compilation" your project will bundle only necessary packages.
+
+#### With Yarn
+
+```shell
+yarn add @date-io/date-fns@1 @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome @material-ui/core @material-ui/pickers @outofaxis/react-google-flight-datepicker @radix-ui/react-dropdown-menu @radix-ui/react-label @radix-ui/react-select @reach/checkbox @reach/combobox @reach/dialog @reach/disclosure @reach/menu-button @reach/popover @reach/rect @reach/slider @reach/tabs @reach/tooltip date-fns i18next lodash react react-device-detect react-dom react-i18next react-router-dom tailwindcss use-debounce use-media uuid
+```
+
+```shell
+yarn add @outofaxis/fugo-ui-kit
+```
+
+#### With NPM
+
+```shell
+npm i --legacy-peer-deps -S @date-io/date-fns@1 @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome @material-ui/core @material-ui/pickers @outofaxis/react-google-flight-datepicker @radix-ui/react-dropdown-menu @radix-ui/react-label @radix-ui/react-select @reach/checkbox @reach/combobox @reach/dialog @reach/disclosure @reach/menu-button @reach/popover @reach/rect @reach/slider @reach/tabs @reach/tooltip date-fns i18next lodash react react-device-detect react-dom react-i18next react-router-dom tailwindcss use-debounce use-media uuid
+```
+
 ```shell
 npm i -S @outofaxis/fugo-ui-kit
 ```
