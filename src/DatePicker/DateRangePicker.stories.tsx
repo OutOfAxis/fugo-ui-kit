@@ -1,6 +1,5 @@
 import DateRangePicker from "./DateRangePicker";
 import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
-import { subDays, addDays } from "date-fns";
 import { useArgs } from "@storybook/client-api";
 
 const Component = DateRangePicker;
@@ -48,11 +47,11 @@ export const Base: CaseFn = (props) => {
 Base.storyName = "DateRangePicker";
 Base.args = {
   startDatePlaceholder: "Date input placeholder",
-  startDate: new Date(),
+  startDate: new Date("2022-08-10"),
   endDatePlaceholder: "End date input placeholder",
-  endDate: addDays(new Date(), 1),
-  minDate: subDays(new Date(), 20),
-  maxDate: addDays(new Date(), 20),
+  endDate: new Date("2022-08-12"),
+  minDate: new Date("2022-08-09"),
+  maxDate: new Date("2022-08-20"),
   isOpen: false,
   disabled: false,
   startWeekDay: "monday",

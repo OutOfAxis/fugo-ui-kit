@@ -1,4 +1,4 @@
-import React, {
+import {
   useState,
   forwardRef,
   LabelHTMLAttributes,
@@ -7,6 +7,7 @@ import React, {
   ChangeEvent,
   useMemo,
   useRef,
+  InputHTMLAttributes,
 } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { ReactComponent as Remove } from "./icons/remove.svg";
@@ -137,7 +138,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
 });
 
 export type InputProps = Omit<
-  React.HTMLAttributes<HTMLInputElement>,
+  InputHTMLAttributes<HTMLInputElement>,
   "onChange"
 > & {
   inputContainerRef?: Ref<HTMLDivElement>;

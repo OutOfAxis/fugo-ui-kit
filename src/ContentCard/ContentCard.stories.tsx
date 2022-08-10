@@ -82,7 +82,7 @@ export const WithDate: StoryFn<{
   );
 };
 WithDate.args = {
-  date: new Date().getTime(),
+  date: new Date("2022-08-10").getTime(),
   preview: <img src="https://placebear.com/g/200/300" alt="" />,
   name: "Bear",
 };

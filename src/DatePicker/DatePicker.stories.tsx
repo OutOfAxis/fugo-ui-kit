@@ -1,6 +1,5 @@
 import DatePicker from "./DatePicker";
 import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
-import { subDays, addDays } from "date-fns";
 import { useArgs } from "@storybook/client-api";
 
 const Component = DatePicker;
@@ -48,9 +47,9 @@ export const Base: CaseFn = (props) => {
 Base.storyName = "DatePicker";
 Base.args = {
   startDatePlaceholder: "Date input placeholder",
-  startDate: new Date(),
-  minDate: subDays(new Date(), 20),
-  maxDate: addDays(new Date(), 20),
+  startDate: new Date("2022-08-10"),
+  minDate: new Date("2022-08-09"),
+  maxDate: new Date("2022-08-20"),
   isOpen: false,
   disabled: false,
   startWeekDay: "monday",
