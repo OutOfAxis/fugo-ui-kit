@@ -5,6 +5,7 @@ import { ReactComponent as ArrowDownIcon } from "./arrow-down.svg";
 import skeletonStyles from "../SkeletonElements/thumbnail-skeleton.module.css";
 
 export const Select = ({
+  className = "",
   buttonClassName = "",
   children,
   label = "",
@@ -15,6 +16,7 @@ export const Select = ({
   isLoading = false,
   buttonChildren,
 }: {
+  className?: string;
   buttonClassName?: string;
   children: ReactNode;
   label?: string;
@@ -25,12 +27,13 @@ export const Select = ({
   isLoading?: boolean;
   buttonChildren?: ReactNode;
 }) => {
+  const Wrapper = label ? UiLabel.Root : "div";
   return (
-    <>
+    <Wrapper className={`${className} block`}>
       {label ? (
-        <UiLabel.Root className="block mb-2 text-xs font-semibold tracking-widest text-left text-gray-700 uppercase">
+        <div className="block mb-2 text-xs font-semibold tracking-widest text-left text-gray-700 uppercase">
           {label}
-        </UiLabel.Root>
+        </div>
       ) : null}
       <UiSelect.Root value={value || undefined} onValueChange={onChange}>
         <UiSelect.Trigger
@@ -48,7 +51,7 @@ export const Select = ({
         </UiSelect.Trigger>
         {children}
       </UiSelect.Root>
-    </>
+    </Wrapper>
   );
 };
 
