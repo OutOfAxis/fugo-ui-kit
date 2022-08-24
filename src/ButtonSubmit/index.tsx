@@ -38,5 +38,6 @@ const ButtonSubmit = forwardRef<
     </button>
   );
 });
+ButtonSubmit.displayName = "ButtonSubmit";
 
 export default ButtonSubmit;

@@ -21,5 +21,6 @@ const Header = ({
     </h1>
   );
 };
+Header.displayName = "Header";
 
 export default Header;

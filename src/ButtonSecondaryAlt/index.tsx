@@ -1,14 +1,11 @@
 import Button, { ButtonProps } from "../Button";
+import { forwardRef } from "react";
 
-function ButtonSecondaryAlt({
-  children,
-  disabled = false,
-  className = "",
-  ...props
-}: ButtonProps) {
-  return (
+const ButtonSecondaryAlt = forwardRef<HTMLDivElement, ButtonProps>(
+  ({ children, disabled = false, className = "", ...props }, ref) => (
     <Button
       {...props}
+      ref={ref}
       disabled={disabled}
       className={`bg-white ${
         disabled ? `text-gray-500` : `text-gray-700`
@@ -18,7 +15,8 @@ function ButtonSecondaryAlt({
     >
       {children}
     </Button>
-  );
-}
+  )
+);
+ButtonSecondaryAlt.displayName = "ButtonSecondaryAlt";
 
 export default ButtonSecondaryAlt;

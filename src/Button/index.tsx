@@ -25,10 +25,11 @@ export const ButtonLoader = () => {
     </span>
   );
 };
+ButtonLoader.displayName = "ButtonLoader";
 
 const PROCESSING_TIMEOUT = 3000;
 
-const Button = forwardRef<HTMLDivElement, ButtonProps>(
+export const Button = forwardRef<HTMLDivElement, ButtonProps>(
   (
     {
       children,
@@ -104,5 +105,6 @@ const Button = forwardRef<HTMLDivElement, ButtonProps>(
     );
   }
 );
+Button.displayName = "Button";
 
 export default Button;

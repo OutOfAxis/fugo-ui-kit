@@ -45,5 +45,6 @@ const EditableLabel = ({
     </div>
   );
 };
+EditableLabel.displayName = "EditableLabel";
 
 export default EditableLabel;

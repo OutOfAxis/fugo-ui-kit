@@ -21,3 +21,4 @@ export const FixedSideBar = ({
     </div>
   );
 };
+FixedSideBar.displayName = "FixedSideBar";

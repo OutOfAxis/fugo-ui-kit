@@ -23,6 +23,7 @@ export function Disclosure({
     </DisclosureReach>
   );
 }
+Disclosure.displayName = "Disclosure";
 
 export function DisclosureButton({ label }: { label: string }) {
   return (
@@ -34,6 +35,7 @@ export function DisclosureButton({ label }: { label: string }) {
     </DisclosureButtonReach>
   );
 }
+DisclosureButton.displayName = "DisclosureButton";
 
 export function DisclosurePanel({ children }: { children: React.ReactNode }) {
   return (
@@ -42,3 +44,4 @@ export function DisclosurePanel({ children }: { children: React.ReactNode }) {
     </DisclosurePanelReach>
   );
 }
+DisclosurePanel.displayName = "DisclosurePanel";

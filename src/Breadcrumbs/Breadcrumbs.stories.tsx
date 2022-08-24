@@ -1,4 +1,9 @@
-import Breadcrumbs from "./";
+import {
+  Breadcrumbs,
+  BreadcrumbsItemCurrent,
+  BreadcrumbsItemLink,
+  BreadcrumbsItem,
+} from "./";
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
 
 const Component = Breadcrumbs;
@@ -13,9 +18,9 @@ export const Base: Case = {
   name: Component.name,
   args: {
     children: [
-      <a href="./">Home</a>,
-      <a href="./">Library</a>,
-      <span>Data</span>,
+      <BreadcrumbsItemLink to="./">Home</BreadcrumbsItemLink>,
+      <BreadcrumbsItem>Library</BreadcrumbsItem>,
+      <BreadcrumbsItemCurrent>Data</BreadcrumbsItemCurrent>,
     ],
   },
 };

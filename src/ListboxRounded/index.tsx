@@ -46,3 +46,4 @@ export function ListboxRounded<Option extends string = string>({
     </DropdownMenu.Root>
   );
 }
+ListboxRounded.displayName = "ListboxRounded";

@@ -1,6 +1,7 @@
 import {
   ComponentProps,
   CSSProperties,
+  forwardRef,
   HTMLAttributes,
   ReactNode,
 } from "react";
@@ -17,42 +18,50 @@ export const getAspectRatioStyle = ({
   paddingBottom: `${((height / width) * 100).toFixed(2)}%`,
 });
 
-export const CardCheckbox = (props: ComponentProps<typeof Checkbox>) => {
+export const CardCheckbox = forwardRef<
+  HTMLDivElement,
+  ComponentProps<typeof Checkbox>
+>((props, ref) => {
   return (
     <Checkbox
       {...props}
+      ref={ref}
       className={`${props.className || ""} absolute top-2 left-2`}
     />
   );
-};
+});
+CardCheckbox.displayName = "CardCheckbox";
 
 export const CardName = div`font-bold text-sm truncate leading-snug`;
+CardName.displayName = "CardName";
 
-export const CardDate = ({
-  date,
-  ...props
-}: { date: number } & HTMLAttributes<HTMLDivElement>) => {
+export const CardDate = forwardRef<
+  HTMLDivElement,
+  { date: number } & HTMLAttributes<HTMLDivElement>
+>(({ date, ...props }, ref) => {
   return (
     <div
       {...props}
+      ref={ref}
       className={`${props.className || ""} text-sm text-gray-500`}
     >
       {format(date, "PP")}
     </div>
   );
-};
+});
+CardDate.displayName = "CardDate";
 
-export const ContentCard = ({
-  preview,
-  children,
-  ...props
-}: {
-  preview: ReactNode;
-  children: ReactNode;
-} & HTMLAttributes<HTMLDivElement>) => {
+export const ContentCard = forwardRef<
+  HTMLDivElement,
+  {
+    preview: ReactNode;
+    children: ReactNode;
+  } & HTMLAttributes<HTMLDivElement>
+>(({ preview, children, ...props }, ref) => {
   return (
     <RoundedCard
       {...props}
+      ref={ref}
       className={`flex flex-col cursor-pointer select-none relative ${
         props.className || ""
       }`}
@@ -61,4 +70,5 @@ export const ContentCard = ({
       <div className="p-2 bg-white">{children}</div>
     </RoundedCard>
   );
-};
+});
+ContentCard.displayName = "ContentCard";

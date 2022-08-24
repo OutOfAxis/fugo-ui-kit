@@ -27,3 +27,4 @@ export const FixedBar = ({
     </div>
   );
 };
+FixedBar.displayName = "FixedBar";

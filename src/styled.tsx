@@ -1,30 +1,31 @@
-import { ComponentType, forwardRef, HTMLAttributes } from "react";
-
-export const div = (className: TemplateStringsArray) =>
-  forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>((props, ref) => (
-    <div
-      {...props}
-      ref={ref}
-      className={`${className.join(" ")} ${props.className || ""}`}
-    />
-  ));
-
-export const span = (className: TemplateStringsArray) =>
-  forwardRef<HTMLSpanElement, HTMLAttributes<HTMLSpanElement>>((props, ref) => (
-    <span
-      {...props}
-      ref={ref}
-      className={`${className.join(" ")} ${props.className || ""}`}
-    />
-  ));
+import { ComponentProps, ElementRef, ElementType, forwardRef } from "react";
+import { Slot } from "@radix-ui/react-slot";
 
 export const styled =
-  <P extends { className?: string }>(Component: ComponentType<P>) =>
-  (className: TemplateStringsArray) =>
-    forwardRef<any, P>((props, ref) => (
-      <Component
-        {...props}
-        ref={ref}
-        className={`${props.className || ""} ${className.join(" ")}`}
-      />
-    ));
+  <C extends ElementType>(Component: C) =>
+  <ExtraProps extends {} = {}>(
+    className: TemplateStringsArray,
+    ...parts: Array<(props: ComponentProps<C> & ExtraProps) => string>
+  ) =>
+    forwardRef<
+      ElementRef<C>,
+      ComponentProps<C> & ExtraProps & { asChild?: boolean }
+    >((props, ref) => {
+      const { asChild, ...restProps } = props;
+      const ComponentToRender = asChild ? (Slot as any) : Component;
+      return (
+        <ComponentToRender
+          {...restProps}
+          ref={ref}
+          className={`
+            ${className.join(" ")}
+            ${props.className || ""}
+            ${parts.map((part) => part(props)).join(" ")}
+          `}
+        />
+      );
+    });
+
+export const div = styled("div");
+
+export const span = styled("span");

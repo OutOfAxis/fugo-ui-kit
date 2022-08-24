@@ -24,6 +24,7 @@ function ButtonDropDown({
     </Menu>
   );
 }
+ButtonDropDown.displayName = "ButtonDropDown";
 
 export { MenuItem };
 export default ButtonDropDown;

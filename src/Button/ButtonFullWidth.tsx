@@ -1,17 +1,16 @@
-import { ComponentProps } from "react";
+import { ComponentProps, forwardRef } from "react";
 import ButtonPrimary from "../ButtonPrimary";
 
-export function ButtonFullWidth({
-  children,
-  className = "",
-  ...props
-}: ComponentProps<typeof ButtonPrimary>) {
-  return (
-    <ButtonPrimary
-      {...props}
-      className={`w-full py-4 tracking-wider ${className}`}
-    >
-      {children}
-    </ButtonPrimary>
-  );
-}
+export const ButtonFullWidth = forwardRef<
+  HTMLDivElement,
+  ComponentProps<typeof ButtonPrimary>
+>(({ children, className = "", ...props }, ref) => (
+  <ButtonPrimary
+    {...props}
+    ref={ref}
+    className={`w-full py-4 tracking-wider ${className}`}
+  >
+    {children}
+  </ButtonPrimary>
+));
+ButtonFullWidth.displayName = "ButtonFullWidth";

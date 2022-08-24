@@ -14,5 +14,6 @@ function Spinner({
     <FontAwesomeIcon className={className || "mr-1"} icon={faSpinner} spin />
   );
 }
+Spinner.displayName = "Spinner";
 
 export default Spinner;

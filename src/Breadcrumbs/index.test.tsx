@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import Breadcrumbs from "./index";
+import { Breadcrumbs } from "./index";
 
 it("renders component properly", () => {
   const { getAllByText, getByText } = render(

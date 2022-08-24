@@ -107,3 +107,4 @@ export default function SwitchableDatePicker({
     </DatePicker>
   );
 }
+SwitchableDatePicker.displayName = "SwitchableDatePicker";

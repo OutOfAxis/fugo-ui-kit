@@ -7,7 +7,7 @@ import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 import DateFnsUtils from "@date-io/date-fns";
 import { isMobile } from "react-device-detect";
 import { isValid } from "date-fns";
-import Input from "../Input";
+import { InputBase, InputContainer } from "../Input";
 import { ReactComponent as TimeIcon } from "./icons/time.svg";
 import "./index.css";
 
@@ -36,13 +36,13 @@ function MobileTimePicker({ value, onChange }: Props) {
     onChange(newValue && fixEndOfDayTime(newValue));
   };
   return (
-    <Input
-      type="time"
-      value={(value && revertEndOfDayTime(value)) || ""}
-      onValueChange={handleChange}
-      className="flex"
-      cleanable={false}
-    />
+    <InputContainer>
+      <InputBase
+        type="time"
+        value={(value && revertEndOfDayTime(value)) || ""}
+        onValueChange={handleChange}
+      />
+    </InputContainer>
   );
 }
 
@@ -93,7 +93,7 @@ export default function TimePicker(props: Props) {
 }
 
 interface Props {
-  /** Time in format "13:59" */
+  /** Time in the format "13:59" */
   value: string | null | undefined;
   onChange: (value: string | null | undefined) => void;
   ampm?: boolean;

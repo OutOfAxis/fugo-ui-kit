@@ -1,14 +1,11 @@
 import Button, { ButtonProps } from "../Button";
+import { forwardRef } from "react";
 
-function ButtonSecondary({
-  children,
-  disabled = false,
-  className = "",
-  ...props
-}: ButtonProps) {
-  return (
+const ButtonSecondary = forwardRef<HTMLDivElement, ButtonProps>(
+  ({ children, disabled = false, className = "", ...props }, ref) => (
     <Button
       {...props}
+      ref={ref}
       disabled={disabled}
       className={`${
         disabled
@@ -18,7 +15,8 @@ function ButtonSecondary({
     >
       {children}
     </Button>
-  );
-}
+  )
+);
+ButtonSecondary.displayName = "ButtonSecondary";
 
 export default ButtonSecondary;

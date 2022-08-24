@@ -1,5 +1,6 @@
 import { HTMLAttributes, ReactNode } from "react";
 
+/** @deprecated use `InputHeader` and `InputDescription` instead */
 export const InputGroup = ({
   header,
   description,
@@ -16,3 +17,4 @@ export const InputGroup = ({
     {children}
   </div>
 );
+InputGroup.displayName = "InputGroup";
