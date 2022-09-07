@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactNode } from "react";
+import { forwardRef, ReactNode } from "react";
 import * as UiSelect from "@radix-ui/react-select";
 import * as UiLabel from "@radix-ui/react-label";
 import { ReactComponent as ArrowDownIcon } from "./arrow-down.svg";
@@ -72,23 +72,24 @@ export const SelectList = forwardRef<
     className?: string;
   }
 >(({ className, children, portal = true }, ref) => {
-  const PortalComponent = portal ? UiSelect.Portal : React.Fragment;
-  return (
-    <PortalComponent>
-      <UiSelect.Content
-        ref={ref}
-        className={`${className} z-in-modal bg-white border border-gray-500 rounded shadow text-gray-900`}
-      >
-        <UiSelect.ScrollUpButton className="flex items-center justify-center h-6 transform rotate-180">
-          <ArrowDownIcon className="w-3 h-3 stroke-current text-gray-700 arrowDown" />
-        </UiSelect.ScrollUpButton>
-        <UiSelect.Viewport>{children}</UiSelect.Viewport>
-        <UiSelect.ScrollDownButton className="flex items-center justify-center h-6">
-          <ArrowDownIcon className="w-3 h-3 stroke-current text-gray-700 arrowDown" />
-        </UiSelect.ScrollDownButton>
-      </UiSelect.Content>
-    </PortalComponent>
+  const content = (
+    <UiSelect.Content
+      ref={ref}
+      className={`${className} z-in-modal bg-white border border-gray-500 rounded shadow text-gray-900`}
+    >
+      <UiSelect.ScrollUpButton className="flex items-center justify-center h-6 transform rotate-180">
+        <ArrowDownIcon className="w-3 h-3 stroke-current text-gray-700 arrowDown" />
+      </UiSelect.ScrollUpButton>
+      <UiSelect.Viewport>{children}</UiSelect.Viewport>
+      <UiSelect.ScrollDownButton className="flex items-center justify-center h-6">
+        <ArrowDownIcon className="w-3 h-3 stroke-current text-gray-700 arrowDown" />
+      </UiSelect.ScrollDownButton>
+    </UiSelect.Content>
   );
+  if (portal) {
+    return <UiSelect.Portal>{content}</UiSelect.Portal>;
+  }
+  return content;
 });
 SelectList.displayName = "SelectList";
 
