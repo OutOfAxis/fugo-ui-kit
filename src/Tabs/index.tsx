@@ -1,7 +1,7 @@
 import React, { ComponentProps, forwardRef, ReactElement } from "react";
 import { Tab } from "./tab";
 
-export type TabElement = ReactElement<ComponentProps<typeof Tab>>;
+export type TabElement = ReactElement<ComponentProps<typeof Tab>> | null;
 export type TabsChildren = Array<TabElement> | TabElement;
 
 export const Tabs = forwardRef<
