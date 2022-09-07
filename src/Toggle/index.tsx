@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 
-const Toggle = forwardRef<
+export const Toggle = forwardRef<
   HTMLDivElement,
   {
     className?: string;
@@ -71,5 +71,4 @@ const Toggle = forwardRef<
     </div>
   )
 );
-
-export default Toggle;
+Toggle.displayName = "Toggle";

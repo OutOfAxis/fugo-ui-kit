@@ -1,4 +1,4 @@
-import EditableLabel from "./index";
+import { EditableLabel } from "./index";
 import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
 import { useArgs } from "@storybook/client-api";
 

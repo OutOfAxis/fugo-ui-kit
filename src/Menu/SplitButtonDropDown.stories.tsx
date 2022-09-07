@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
-import SplitButtonDropDown, { MenuItem } from "./SplitButtonDropDown";
+import { MenuItem, SplitButtonDropDown } from "./SplitButtonDropDown";
 
 const Component = SplitButtonDropDown;
 

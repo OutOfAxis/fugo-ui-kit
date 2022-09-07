@@ -1,4 +1,4 @@
-import Button from "./";
+import { Button } from "./";
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
 
 const Component = Button;

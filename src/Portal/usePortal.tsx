@@ -57,3 +57,4 @@ export const PortalProvider = ({ children }: { children: ReactNode }) => {
     </PortalContext.Provider>
   );
 };
+PortalProvider.displayName = "PortalProvider";

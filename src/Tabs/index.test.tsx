@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { fireEvent, render } from "@testing-library/react";
-import Tabs, { Tab } from "./index";
+import { Tab, Tabs } from "./index";
 
 it("should render component", () => {
   const { getByText } = render(

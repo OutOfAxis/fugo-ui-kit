@@ -9,7 +9,7 @@ import { ReactNode } from "react";
 import { useTemporaryState } from "../useTemporaryState";
 import { map } from "lodash";
 import { CardName, ContentCard } from "../ContentCard/ContentCard";
-import Spinner from "./Spinner";
+import { Spinner } from "./Spinner";
 
 const Icons = { PremiumIconSvg, PremiumIconBoxSvg };
 

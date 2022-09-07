@@ -3,7 +3,7 @@ import {
   ComponentStoryFn,
   ComponentStoryObj,
 } from "@storybook/react";
-import Input from "./index";
+import { Input } from "./index";
 import { useArgs } from "@storybook/client-api";
 import { PremiumIconSvg } from "../Icons/PremiumIcon";
 

@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
-import Tag from "./index";
+import { Tag } from "./index";
 
 const Component = Tag;
 

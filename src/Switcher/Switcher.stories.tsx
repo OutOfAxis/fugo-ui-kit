@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
-import Switcher from "./index";
+import { Switcher } from "./index";
 import { useArgs } from "@storybook/client-api";
 
 const Component = Switcher;

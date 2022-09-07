@@ -1,12 +1,13 @@
-import { HTMLAttributes, ReactNode } from "react";
+import { forwardRef, HTMLAttributes, ReactNode } from "react";
 import { ReactComponent as WarningIcon } from "./WarningIcon.svg";
 
-export const WarningMessage = ({
-  children,
-  ...props
-}: { children: ReactNode } & HTMLAttributes<HTMLDivElement>) => {
+export const WarningMessage = forwardRef<
+  HTMLDivElement,
+  { children: ReactNode } & HTMLAttributes<HTMLDivElement>
+>(({ children, ...props }, ref) => {
   return (
     <div
+      ref={ref}
       {...props}
       className={`${
         props.className || ""
@@ -16,4 +17,5 @@ export const WarningMessage = ({
       {children}
     </div>
   );
-};
+});
+WarningMessage.displayName = "WarningMessage";

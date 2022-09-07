@@ -6,7 +6,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import ButtonPrimary from "../ButtonPrimary";
+import { ButtonPrimary } from "../ButtonPrimary";
 import { InputBase, InputContainer } from "../Input";
 import { useRifm } from "rifm";
 import { useEventCallback } from "../useEventCallback";
@@ -210,7 +210,10 @@ export const NumberInput = ({
   disabled,
   noSteps = false,
   ...props
-}: ComponentProps<typeof InputBase> & {
+}: Omit<
+  ComponentProps<typeof InputBase>,
+  "value" | "onValueChange" | "step"
+> & {
   value: number;
   onValueChange: (newValue: number) => void;
   step?: number;

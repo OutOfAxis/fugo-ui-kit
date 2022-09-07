@@ -1,8 +1,8 @@
 import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
-import Modal, { ModalFooter } from "../Modal";
+import { Modal, ModalFooter } from "../Modal";
 import { ModalTabs, ModalTabList, ModalTab } from "./ModalTabs";
 import { useArgs } from "@storybook/client-api";
-import ButtonPrimary from "../ButtonPrimary";
+import { ButtonPrimary } from "../ButtonPrimary";
 import { TabPanel, TabPanels } from "@reach/tabs";
 
 const Component = Modal;

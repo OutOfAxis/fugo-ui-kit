@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
 import { InputGroup } from "./InputGroup";
-import Input from "../Input";
+import { Input } from "../Input";
 
 const Component = InputGroup;
 

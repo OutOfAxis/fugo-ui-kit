@@ -1,6 +1,6 @@
 import { ComponentStoryFn, Meta } from "@storybook/react";
 import { useSnackbar, SnackbarProvider } from "./SnackbarService";
-import ButtonPrimary from "../ButtonPrimary";
+import { ButtonPrimary } from "../ButtonPrimary";
 
 export default {
   parameters: {

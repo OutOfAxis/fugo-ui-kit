@@ -1,5 +1,5 @@
 import { render, fireEvent } from "@testing-library/react";
-import Button from "./index";
+import { Button } from "./index";
 
 it("renders without props", () => {
   const { getByText } = render(<Button>call to action</Button>);

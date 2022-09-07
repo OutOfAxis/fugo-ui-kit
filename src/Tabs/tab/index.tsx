@@ -1,16 +1,17 @@
-import { ReactNode } from "react";
+import { forwardRef, ReactNode } from "react";
 
-interface TabProps {
+export type TabProps = {
   children: ReactNode;
   className?: string;
   id: string;
   label: ReactNode;
   disabled?: boolean;
   icon?: ReactNode;
-}
+};
 
-const Tab = ({ children, className = "" }: TabProps) => (
-  <div className={`${className} flex-1 bg-gray-100`}>{children}</div>
+export const Tab = forwardRef<HTMLDivElement, TabProps>(
+  ({ children, className = "" }) => (
+    <div className={`${className} flex-1 bg-gray-100`}>{children}</div>
+  )
 );
-
-export default Tab;
+Tab.displayName = "Tab";

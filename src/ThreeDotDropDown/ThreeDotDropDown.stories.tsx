@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
-import ThreeDotDropDown, { MenuItem } from "./index";
+import { MenuItem, ThreeDotDropDown } from "./index";
 
 const Component = ThreeDotDropDown;
 

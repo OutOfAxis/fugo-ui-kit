@@ -112,6 +112,7 @@ export const NotificationProvider = ({ children }: { children: ReactNode }) => {
     </NotificationContext.Provider>
   );
 };
+NotificationProvider.displayName = "NotificationProvider";
 
 const SuccessNotificationContent = ({
   onClose,
@@ -130,6 +131,7 @@ const SuccessNotificationContent = ({
     </div>
   );
 };
+SuccessNotificationContent.displayName = "SuccessNotificationContent";
 
 const Notification = ({
   isOpen,
@@ -167,3 +169,4 @@ const Notification = ({
     </Portal>
   );
 };
+Notification.displayName = "Notification";

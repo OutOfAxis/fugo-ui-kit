@@ -1,6 +1,6 @@
-import Menu, { MenuButton, MenuList, MenuItem } from "./Menu";
+import { MenuButton, MenuList, MenuItem, Menu } from "./Menu";
 import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
-import ButtonPrimary from "../ButtonPrimary";
+import { ButtonPrimary } from "../ButtonPrimary";
 
 const Component = Menu;
 

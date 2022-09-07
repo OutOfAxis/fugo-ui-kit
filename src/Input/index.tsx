@@ -488,5 +488,3 @@ export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   cleanable?: boolean;
   icon?: ReactNode;
 };
-
-export default Input;

@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
-import TopTip from "./index";
+import { TopTip } from "./index";
 
 const Component = TopTip;
 

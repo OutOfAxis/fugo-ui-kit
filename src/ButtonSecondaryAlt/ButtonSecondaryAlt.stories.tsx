@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
-import ButtonSecondaryAlt from "./";
+import { ButtonSecondaryAlt } from "./";
 
 const Component = ButtonSecondaryAlt;
 

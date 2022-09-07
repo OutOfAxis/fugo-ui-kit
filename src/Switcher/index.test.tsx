@@ -1,5 +1,5 @@
 import { render, fireEvent } from "@testing-library/react";
-import Switcher from "./index";
+import { Switcher } from "./index";
 
 it("renders and switches", () => {
   const onChange = jest.fn();

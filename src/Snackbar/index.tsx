@@ -4,7 +4,7 @@ import { SnackbarProps } from "./types";
 import { ReactComponent as IconRemove } from "./remove.svg";
 import styles from "./index.module.css";
 
-const Snackbar = ({
+export const Snackbar = ({
   isOpen,
   message,
   onUndo,
@@ -39,5 +39,4 @@ const Snackbar = ({
     </Portal>
   );
 };
-
-export default Snackbar;
+Snackbar.displayName = "Snackbar";

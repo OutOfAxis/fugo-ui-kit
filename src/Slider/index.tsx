@@ -1,22 +1,27 @@
-import { ComponentProps, useEffect, useState } from "react";
+import { ComponentProps, forwardRef, useEffect, useState } from "react";
 import { Slider as ReachSlider } from "@reach/slider";
 import "@reach/slider/styles.css";
 import styles from "./index.module.css";
 import { useThrottledCallback } from "use-debounce";
 
-export const Slider = ({
-  className = "",
-  ...props
-}: ComponentProps<typeof ReachSlider>) => {
-  return <ReachSlider {...props} className={`${className} ${styles.slider}`} />;
-};
+export const Slider = forwardRef<
+  HTMLDivElement,
+  ComponentProps<typeof ReachSlider>
+>(({ className = "", ...props }, ref) => {
+  return (
+    <ReachSlider
+      ref={ref}
+      {...props}
+      className={`${className} ${styles.slider}`}
+    />
+  );
+});
+Slider.displayName = "Slider";
 
-export const SliderThrottled = ({
-  onChange,
-  value,
-  throttle = 150,
-  ...props
-}: ComponentProps<typeof ReachSlider> & { throttle?: number }) => {
+export const SliderThrottled = forwardRef<
+  HTMLDivElement,
+  ComponentProps<typeof ReachSlider> & { throttle?: number }
+>(({ onChange, value, throttle = 150, ...props }, ref) => {
   const [newValue, setNewValue] = useState(value);
   useEffect(() => {
     setNewValue(value);
@@ -30,22 +35,22 @@ export const SliderThrottled = ({
     setNewValue(newValue);
     handleSave(newValue, props);
   };
-  return <Slider {...props} value={newValue} onChange={handleChange} />;
-};
+  return (
+    <Slider ref={ref} {...props} value={newValue} onChange={handleChange} />
+  );
+});
+SliderThrottled.displayName = "SliderThrottled";
 
-export const SliderPercentLabeled = ({
-  label,
-  className = "",
-  value,
-  onChange,
-  disabled = false,
-}: {
-  label?: string;
-  className?: string;
-  value?: number;
-  onChange: (newValue: number) => void;
-  disabled?: boolean;
-}) => {
+export const SliderPercentLabeled = forwardRef<
+  HTMLDivElement,
+  {
+    label?: string;
+    className?: string;
+    value?: number;
+    onChange: (newValue: number) => void;
+    disabled?: boolean;
+  }
+>(({ label, className = "", value, onChange, disabled = false }, ref) => {
   return (
     <div className={className}>
       <div className="flex items-center justify-between">
@@ -58,6 +63,7 @@ export const SliderPercentLabeled = ({
       </div>
       <div className="mt-1">
         <Slider
+          ref={ref}
           value={value || 1}
           max={1}
           step={0.01}
@@ -67,27 +73,32 @@ export const SliderPercentLabeled = ({
       </div>
     </div>
   );
-};
+});
+SliderPercentLabeled.displayName = "SliderPercentLabeled";
 
-export const SliderSideValue = ({
-  className,
-  value,
-  onChange,
-  min = 0,
-  max,
-}: {
-  className?: string;
-  value?: number;
-  onChange: (newValue: number) => void;
-  min?: number;
-  max: number;
-}) => {
+export const SliderSideValue = forwardRef<
+  HTMLDivElement,
+  {
+    className?: string;
+    value?: number;
+    onChange: (newValue: number) => void;
+    min?: number;
+    max: number;
+  }
+>(({ className, value, onChange, min = 0, max }, ref) => {
   return (
     <div className={`${className} flex items-center`}>
       <div className="flex-1 pl-2">
-        <Slider value={value} onChange={onChange} min={min} max={max} />
+        <Slider
+          ref={ref}
+          value={value}
+          onChange={onChange}
+          min={min}
+          max={max}
+        />
       </div>
       <div className="pl-2 font-bold text-sm text-gray-700">{value}</div>
     </div>
   );
-};
+});
+SliderSideValue.displayName = "SliderSideValue";

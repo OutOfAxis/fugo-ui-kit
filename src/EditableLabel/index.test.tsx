@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { fireEvent, render } from "@testing-library/react";
-import EditableLabel from "./index";
+import { EditableLabel } from "./index";
 
 it("should render", () => {
   const { getByText } = render(<EditableLabel id="id" name="test" />);

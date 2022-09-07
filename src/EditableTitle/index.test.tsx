@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import EditableTitle from "./index";
+import { EditableTitle } from "./index";
 
 it("renders component properly", () => {
   const { getByDisplayValue } = render(

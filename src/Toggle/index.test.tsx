@@ -1,5 +1,5 @@
 import { render, fireEvent } from "@testing-library/react";
-import Toggle from "./index";
+import { Toggle } from "./index";
 
 it("renders without props", () => {
   const { getByText, container } = render(

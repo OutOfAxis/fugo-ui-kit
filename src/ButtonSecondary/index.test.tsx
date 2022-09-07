@@ -1,15 +1,17 @@
 import { render, fireEvent } from "@testing-library/react";
-import Button from "./index";
+import { ButtonSecondary } from "./index";
 
 it("renders without props", () => {
-  const { getByText } = render(<Button>call to action</Button>);
+  const { getByText } = render(
+    <ButtonSecondary>call to action</ButtonSecondary>
+  );
   expect(getByText("call to action")).toBeInTheDocument();
 });
 
 it("clicks", () => {
   const onClick = jest.fn();
   const { getByText } = render(
-    <Button onClick={onClick}>call to action</Button>
+    <ButtonSecondary onClick={onClick}>call to action</ButtonSecondary>
   );
   expect(getByText("call to action")).toBeInTheDocument();
   fireEvent.click(getByText("call to action"));

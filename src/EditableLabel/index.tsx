@@ -1,14 +1,13 @@
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 
-const EditableLabel = ({
-  id,
-  name,
-  onNameChange,
-}: {
-  id: string;
-  name: string;
-  onNameChange?: (id: string, value: string) => any;
-}) => {
+export const EditableLabel = forwardRef<
+  any,
+  {
+    id: string;
+    name: string;
+    onNameChange?: (id: string, value: string) => any;
+  }
+>(({ id, name, onNameChange }, ref) => {
   const [isEditMode, setIsEditingMode] = useState(false);
 
   const onBlurHandler = (event?: any) => {
@@ -21,6 +20,7 @@ const EditableLabel = ({
 
   return isEditMode && onNameChange ? (
     <input
+      ref={ref}
       autoFocus
       className={`grid font-bold text-sm text-gray-700 rounded outline-none leading-snug bg-gray-100`}
       onBlur={onBlurHandler}
@@ -30,6 +30,7 @@ const EditableLabel = ({
     />
   ) : (
     <div
+      ref={ref}
       className={`font-bold text-sm truncate hover:cursor-text leading-snug ${
         onNameChange && "cursor-text"
       }`}
@@ -44,7 +45,5 @@ const EditableLabel = ({
       {name}
     </div>
   );
-};
+});
 EditableLabel.displayName = "EditableLabel";
-
-export default EditableLabel;

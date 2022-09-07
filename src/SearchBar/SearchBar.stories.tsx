@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
-import SearchBar from "./index";
+import { SearchBar } from "./index";
 import { useArgs } from "@storybook/client-api";
 
 const Component = SearchBar;

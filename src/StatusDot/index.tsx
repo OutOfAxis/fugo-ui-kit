@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { forwardRef } from "react";
 import { useIsMobile } from "../useScreenSize";
 
 const colors = {
@@ -8,21 +8,23 @@ const colors = {
   muted: "text-gray-600",
 } as const;
 
-const StatusDot = ({
-  color,
-  label,
-}: {
-  color: keyof typeof colors;
-  label: string;
-}): ReactElement => {
+export const StatusDot = forwardRef<
+  HTMLDivElement,
+  {
+    color: keyof typeof colors;
+    label: string;
+  }
+>(({ color, label }, ref) => {
   const isMobile = useIsMobile();
 
   return (
-    <div className={`text-sm font-bold whitespace-nowrap ${colors[color]}`}>
+    <div
+      ref={ref}
+      className={`text-sm font-bold whitespace-nowrap ${colors[color]}`}
+    >
       •&nbsp;
       {!isMobile && label}
     </div>
   );
-};
-
-export default StatusDot;
+});
+StatusDot.displayName = "StatusDot";

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 import {
   MuiPickersUtilsProvider,
   KeyboardTimePicker,
@@ -31,20 +31,24 @@ const fixEndOfDayTime = (time: string) => (time === "00:00" ? "24:00" : time);
 const revertEndOfDayTime = (time: string) =>
   time === "24:00" ? "00:00" : time;
 
-function MobileTimePicker({ value, onChange }: Props) {
-  const handleChange = (newValue: string | null | undefined) => {
-    onChange(newValue && fixEndOfDayTime(newValue));
-  };
-  return (
-    <InputContainer>
-      <InputBase
-        type="time"
-        value={(value && revertEndOfDayTime(value)) || ""}
-        onValueChange={handleChange}
-      />
-    </InputContainer>
-  );
-}
+const MobileTimePicker = forwardRef<HTMLInputElement, Props>(
+  ({ value, onChange }, ref) => {
+    const handleChange = (newValue: string | null | undefined) => {
+      onChange(newValue && fixEndOfDayTime(newValue));
+    };
+    return (
+      <InputContainer>
+        <InputBase
+          ref={ref}
+          type="time"
+          value={(value && revertEndOfDayTime(value)) || ""}
+          onValueChange={handleChange}
+        />
+      </InputContainer>
+    );
+  }
+);
+MobileTimePicker.displayName = "MobileTimePicker";
 
 function getTimeString(date: Date) {
   return `${date.getHours().toString().padStart(2, "0")}:${date
@@ -53,46 +57,51 @@ function getTimeString(date: Date) {
     .padStart(2, "0")}`;
 }
 
-function DesktopTimePicker({ value, onChange, ampm = true }: Props) {
-  const [dateValue, setDateValue] = useState<Date | null | undefined>(
-    value ? new Date(`2020-01-01T${value}`) : null
-  );
-  const handleChange = (date: Date | null) => {
-    setDateValue(date);
-    if (date === null) {
-      onChange(null);
-      return;
-    }
-    if (isValid(date)) {
-      onChange(getTimeString(date));
-    }
-  };
-  return (
-    <div className="time-picker">
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <ThemeProvider theme={defaultMaterialTheme}>
-          <KeyboardTimePicker
-            inputVariant="outlined"
-            ampm={ampm}
-            mask={ampm ? "__:__ _M" : "__:__"}
-            value={dateValue}
-            onChange={handleChange}
-            keyboardIcon={<TimeIcon />}
-          />
-        </ThemeProvider>
-      </MuiPickersUtilsProvider>
-    </div>
-  );
-}
-
-export default function TimePicker(props: Props) {
-  if (isMobile) {
-    return <MobileTimePicker {...props} />;
+const DesktopTimePicker = forwardRef<any, Props>(
+  ({ value, onChange, ampm = true }, ref) => {
+    const [dateValue, setDateValue] = useState<Date | null | undefined>(
+      value ? new Date(`2020-01-01T${value}`) : null
+    );
+    const handleChange = (date: Date | null) => {
+      setDateValue(date);
+      if (date === null) {
+        onChange(null);
+        return;
+      }
+      if (isValid(date)) {
+        onChange(getTimeString(date));
+      }
+    };
+    return (
+      <div className="time-picker">
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <ThemeProvider theme={defaultMaterialTheme}>
+            <KeyboardTimePicker
+              ref={ref}
+              inputVariant="outlined"
+              ampm={ampm}
+              mask={ampm ? "__:__ _M" : "__:__"}
+              value={dateValue}
+              onChange={handleChange}
+              keyboardIcon={<TimeIcon />}
+            />
+          </ThemeProvider>
+        </MuiPickersUtilsProvider>
+      </div>
+    );
   }
-  return <DesktopTimePicker {...props} />;
-}
+);
+DesktopTimePicker.displayName = "DesktopTimePicker";
 
-interface Props {
+export const TimePicker = forwardRef<any, Props>((props, ref) => {
+  if (isMobile) {
+    return <MobileTimePicker {...props} ref={ref} />;
+  }
+  return <DesktopTimePicker {...props} ref={ref} />;
+});
+TimePicker.displayName = "TimePicker";
+
+export interface Props {
   /** Time in the format "13:59" */
   value: string | null | undefined;
   onChange: (value: string | null | undefined) => void;

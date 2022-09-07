@@ -1,4 +1,4 @@
-import SquareCheckbox from "./SquareCheckbox";
+import { SquareCheckbox } from "./SquareCheckbox";
 import {
   ComponentMeta,
   ComponentStoryFn,

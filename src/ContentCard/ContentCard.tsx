@@ -7,8 +7,8 @@ import {
 } from "react";
 import { div } from "../styled";
 import format from "date-fns/format";
-import RoundedCard from "../RoundedCard";
-import Checkbox from "../Checkbox";
+import { RoundedCard } from "../RoundedCard";
+import { Checkbox } from "../Checkbox";
 
 export const getAspectRatioStyle = ({
   width = 1920,

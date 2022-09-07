@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
-import EditableTitle from "./index";
+import { EditableTitle } from "./index";
 import { useArgs } from "@storybook/client-api";
-import Header from "../Header";
+import { Header } from "../Header";
 
 const Component = EditableTitle;
 

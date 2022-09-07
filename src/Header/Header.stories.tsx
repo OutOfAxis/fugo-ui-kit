@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
-import Header from "./index";
+import { Header } from "./index";
 
 const Component = Header;
 

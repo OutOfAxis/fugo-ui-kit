@@ -4,7 +4,7 @@ import {
   useNotification,
   useSuccessNotification,
 } from "./Notification";
-import ButtonPrimary from "../ButtonPrimary";
+import { ButtonPrimary } from "../ButtonPrimary";
 
 export default {
   parameters: {

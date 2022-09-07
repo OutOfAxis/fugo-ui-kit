@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { forwardRef, ReactNode } from "react";
 import { useIsMobile } from "../useScreenSize";
 
 const styles = {
@@ -8,28 +8,26 @@ const styles = {
   default: "bg-blue-600 text-white",
 } as const;
 
-const Tag = ({
-  children,
-  color = "default",
-  truncateable = false,
-}: {
-  children: ReactNode;
-  color?: keyof typeof styles;
-  truncateable?: boolean;
-}) => {
+export const Tag = forwardRef<
+  HTMLDivElement,
+  {
+    children: ReactNode;
+    color?: keyof typeof styles;
+    truncateable?: boolean;
+  }
+>(({ children, color = "default", truncateable = false }) => {
   const isMobile = useIsMobile();
 
   return (
     <div
       className={`uppercase py-1 font-bold rounded
-      ${truncateable ? "block truncate" : "inline-block"}
-      ${isMobile ? "text-xs px-1" : "text-xs px-2"}
-      ${styles[color]}
+        ${truncateable ? "block truncate" : "inline-block"}
+        ${isMobile ? "text-xs px-1" : "text-xs px-2"}
+        ${styles[color]}
       `}
     >
       {children}
     </div>
   );
-};
-
-export default Tag;
+});
+Tag.displayName = "Tag";

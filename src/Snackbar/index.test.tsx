@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { render, fireEvent } from "@testing-library/react";
-import Snackbar from "./index";
-import ButtonPrimary from "../ButtonPrimary";
+import { Snackbar } from "./index";
+import { ButtonPrimary } from "../ButtonPrimary";
 
 it("should display on click", () => {
   function Container() {

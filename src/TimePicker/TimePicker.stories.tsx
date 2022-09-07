@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
-import TimePicker from "./index";
+import { TimePicker } from "./index";
 import { useArgs } from "@storybook/client-api";
 
 const Component = TimePicker;

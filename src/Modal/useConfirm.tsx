@@ -1,6 +1,6 @@
 import { ReactNode, useRef, useState } from "react";
 import { usePortal } from "../Portal/usePortal";
-import Confirm from "./Confirm";
+import { Confirm } from "./Confirm";
 
 export type ConfirmModalProps = {
   title: ReactNode;

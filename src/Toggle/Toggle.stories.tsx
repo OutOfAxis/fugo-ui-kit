@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
-import Toggle from "./index";
+import { Toggle } from "./index";
 import { useArgs } from "@storybook/client-api";
 
 const Component = Toggle;

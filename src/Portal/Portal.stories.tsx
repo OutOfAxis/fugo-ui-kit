@@ -1,8 +1,8 @@
 import { usePortal, PortalProvider } from "./usePortal";
 import { ComponentStoryFn, Meta } from "@storybook/react";
-import ButtonPrimary from "../ButtonPrimary";
-import Modal, { ModalFooter } from "../Modal";
-import ButtonSecondary from "../ButtonSecondary";
+import { ButtonPrimary } from "../ButtonPrimary";
+import { Modal, ModalFooter } from "../Modal";
+import { ButtonSecondary } from "../ButtonSecondary";
 
 export default {
   decorators: [

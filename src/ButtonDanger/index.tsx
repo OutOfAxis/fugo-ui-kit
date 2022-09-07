@@ -1,4 +1,4 @@
-import Button, { ButtonProps } from "../Button";
+import { Button, ButtonProps } from "../Button";
 import { forwardRef } from "react";
 
 export const ButtonDanger = forwardRef<HTMLDivElement, ButtonProps>(
@@ -11,5 +11,3 @@ export const ButtonDanger = forwardRef<HTMLDivElement, ButtonProps>(
   )
 );
 ButtonDanger.displayName = "ButtonDanger";
-
-export default ButtonDanger;

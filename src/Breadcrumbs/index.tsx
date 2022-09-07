@@ -6,7 +6,7 @@ import {
   forwardRef,
 } from "react";
 import { styled, span } from "../styled";
-import Link from "../Link";
+import { Link } from "../Link";
 
 const BreadcrumbsContainer = styled(
   "ul"

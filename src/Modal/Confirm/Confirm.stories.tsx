@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
-import Confirm from "./index";
+import { Confirm } from "./index";
 import { useArgs } from "@storybook/client-api";
-import ButtonPrimary from "../../ButtonPrimary";
+import { ButtonPrimary } from "../../ButtonPrimary";
 
 const Component = Confirm;
 

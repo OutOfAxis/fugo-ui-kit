@@ -1,11 +1,14 @@
-import React from "react";
+import { forwardRef, ReactNode } from "react";
 
-const ModalContent = ({
-  children,
-  className = "",
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => <div className={`p-4 flex-1 sm:flex-0 ${className}`}>{children}</div>;
-
-export default ModalContent;
+export const ModalContent = forwardRef<
+  HTMLDivElement,
+  {
+    children: ReactNode;
+    className?: string;
+  }
+>(({ children, className = "" }, ref) => (
+  <div ref={ref} className={`p-4 flex-1 sm:flex-0 ${className}`}>
+    {children}
+  </div>
+));
+ModalContent.displayName = "ModalContent";

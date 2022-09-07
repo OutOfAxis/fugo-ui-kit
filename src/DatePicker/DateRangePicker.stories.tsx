@@ -1,8 +1,8 @@
-import DateRangePicker from "./DateRangePicker";
+import { RangeDatePicker } from "./DateRangePicker";
 import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
 import { useArgs } from "@storybook/client-api";
 
-const Component = DateRangePicker;
+const Component = RangeDatePicker;
 (Component as any).displayName = "DateRangePicker";
 
 type CaseFn = ComponentStoryFn<typeof Component>;

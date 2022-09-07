@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
-import StatusDot from "./index";
+import { StatusDot } from "./index";
 
 const Component = StatusDot;
 

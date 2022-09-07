@@ -1,8 +1,8 @@
-import DatePicker from "./DatePicker";
+import { SingleDatePicker } from "./DatePicker";
 import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
 import { useArgs } from "@storybook/client-api";
 
-const Component = DatePicker;
+const Component = SingleDatePicker;
 (Component as any).displayName = "DatePicker";
 
 type CaseFn = ComponentStoryFn<typeof Component>;

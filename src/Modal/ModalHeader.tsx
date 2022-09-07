@@ -1,16 +1,15 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
-const ModalHeader = ({
-  children,
-  className = "",
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => (
+export const ModalHeader = forwardRef<
+  HTMLDivElement,
+  {
+    children: React.ReactNode;
+    className?: string;
+  }
+>(({ children, className = "" }, ref) => (
   <>
     <div className={`${className} p-4`}>{children}</div>
-    <div className="border-b border-gray-200 mx-auto" />
+    <div className="border-b border-gray-200 mx-auto" ref={ref} />
   </>
-);
-
-export default ModalHeader;
+));
+ModalHeader.displayName = "ModalHeader";

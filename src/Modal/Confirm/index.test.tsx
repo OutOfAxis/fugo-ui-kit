@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { render, fireEvent } from "@testing-library/react";
-import Confirm from "./index";
-import ButtonPrimary from "../../ButtonPrimary";
-import ButtonSecondary from "../../ButtonSecondary";
+import { Confirm } from "./index";
+import { ButtonPrimary } from "../../ButtonPrimary";
+import { ButtonSecondary } from "../../ButtonSecondary";
 
 it("should toggle visibility on click", () => {
   function Container() {

@@ -6,7 +6,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import Snackbar from "./index";
+import { Snackbar } from "./index";
 import { useEventCallback } from "../useEventCallback";
 
 const TIMEOUT_DEFAULT = 7000;
@@ -68,3 +68,4 @@ export const SnackbarProvider = ({ children }: { children: ReactNode }) => {
     </SnackbarContext.Provider>
   );
 };
+SnackbarProvider.displayName = "SnackbarProvider";

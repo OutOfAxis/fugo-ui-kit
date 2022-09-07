@@ -1,4 +1,4 @@
-import Checkbox from "./";
+import { Checkbox } from "./";
 import {
   ComponentMeta,
   ComponentStoryFn,

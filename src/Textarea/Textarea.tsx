@@ -1,20 +1,18 @@
-import { ComponentProps } from "react";
+import { ComponentProps, forwardRef } from "react";
 import { TextareaAutosize } from "@material-ui/core";
 
-export const Textarea = ({
-  className,
-  containerClassName,
-  error,
-  withError,
-  ...props
-}: ComponentProps<typeof TextareaAutosize> & {
-  containerClassName?: string;
-  error?: string;
-  withError?: boolean;
-}) => {
+export const Textarea = forwardRef<
+  HTMLTextAreaElement,
+  ComponentProps<typeof TextareaAutosize> & {
+    containerClassName?: string;
+    error?: string;
+    withError?: boolean;
+  }
+>(({ className, containerClassName, error, withError, ...props }, ref) => {
   return (
     <div className={containerClassName}>
       <TextareaAutosize
+        ref={ref}
         {...props}
         className={`${className ?? ""} py-3 px-4 rounded border outline-none ${
           error
@@ -29,4 +27,5 @@ export const Textarea = ({
       ) : null}
     </div>
   );
-};
+});
+Textarea.displayName = "Textarea";

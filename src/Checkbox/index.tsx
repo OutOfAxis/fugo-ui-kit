@@ -7,7 +7,7 @@ import { CustomCheckboxContainer, CustomCheckboxInput } from "@reach/checkbox";
 import "@reach/checkbox/styles.css";
 import "./index.module.css";
 
-const Checkbox = forwardRef<HTMLDivElement, Props>(
+export const Checkbox = forwardRef<HTMLDivElement, Props>(
   (
     {
       disabled,
@@ -58,5 +58,3 @@ export interface Props {
   ActiveIcon?: React.ComponentType;
   InactiveIcon?: React.ComponentType;
 }
-
-export default Checkbox;

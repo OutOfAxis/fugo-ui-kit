@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
-import TabsSide, { Tab } from "./TabsSide";
+import { Tab, TabsSide } from "./TabsSide";
 import { useArgs } from "@storybook/client-api";
 import { PremiumIconSvg } from "../Icons/PremiumIcon";
 

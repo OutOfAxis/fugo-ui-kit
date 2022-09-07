@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
 import { Tooltip } from "./index";
-import ButtonPrimary from "../ButtonPrimary";
+import { ButtonPrimary } from "../ButtonPrimary";
 
 const Component = Tooltip;
 

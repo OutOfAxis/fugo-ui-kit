@@ -2,7 +2,7 @@ import React, { forwardRef } from "react";
 import { useBrandTheme } from "../useBrand";
 import { ButtonLoader } from "../Button";
 
-const ButtonSubmit = forwardRef<
+export const ButtonSubmit = forwardRef<
   HTMLButtonElement,
   {
     isLoading?: boolean;
@@ -39,5 +39,3 @@ const ButtonSubmit = forwardRef<
   );
 });
 ButtonSubmit.displayName = "ButtonSubmit";
-
-export default ButtonSubmit;

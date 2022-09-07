@@ -1,14 +1,9 @@
-import {
-  ComponentMeta,
-  ComponentStoryFn,
-  ComponentStoryObj,
-} from "@storybook/react";
+import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
 import { NumberInputBase, NumberInput } from "./index";
 import { useArgs } from "@storybook/client-api";
 
 const Component = NumberInputBase;
 
-type Case = ComponentStoryObj<typeof Component>;
 type CaseFn = ComponentStoryFn<typeof Component>;
 
 export default {

@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import Button, { ButtonProps } from "../Button";
+import { Button, ButtonProps } from "../Button";
 
 export const ButtonPrimary = forwardRef<HTMLDivElement, ButtonProps>(
   (props, ref) => {
@@ -31,5 +31,3 @@ export const ButtonPrimary = forwardRef<HTMLDivElement, ButtonProps>(
   }
 );
 ButtonPrimary.displayName = "ButtonPrimary";
-
-export default ButtonPrimary;

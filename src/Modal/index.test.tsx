@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { render, fireEvent } from "@testing-library/react";
-import Modal from "./index";
-import ButtonPrimary from "../ButtonPrimary";
+import { Modal } from "./index";
+import { ButtonPrimary } from "../ButtonPrimary";
 
 it("should toggle visibility on click", () => {
   function Container() {

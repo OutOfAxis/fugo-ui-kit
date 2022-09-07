@@ -1,5 +1,5 @@
 import { render, fireEvent } from "@testing-library/react";
-import SearchBar from "./index";
+import { SearchBar } from "./index";
 
 it("renders", () => {
   const { getByPlaceholderText, getByDisplayValue } = render(

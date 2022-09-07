@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
-import Tabs, { Tab } from "./index";
+import { Tab, Tabs } from "./index";
 import { useArgs } from "@storybook/client-api";
 
 const Component = Tabs;

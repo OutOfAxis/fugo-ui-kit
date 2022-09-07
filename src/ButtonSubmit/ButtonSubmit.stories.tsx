@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStoryObj, StoryFn } from "@storybook/react";
-import ButtonSubmit from "./";
+import { ButtonSubmit } from "./";
 
 const Component = ButtonSubmit;
 

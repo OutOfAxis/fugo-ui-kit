@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
-import RoundedCard from "./index";
+import { RoundedCard } from "./index";
 
 const Component = RoundedCard;
 

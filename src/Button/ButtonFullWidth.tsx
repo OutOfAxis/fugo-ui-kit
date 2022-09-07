@@ -1,5 +1,5 @@
 import { ComponentProps, forwardRef } from "react";
-import ButtonPrimary from "../ButtonPrimary";
+import { ButtonPrimary } from "../ButtonPrimary";
 
 export const ButtonFullWidth = forwardRef<
   HTMLDivElement,

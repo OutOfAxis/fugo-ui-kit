@@ -1,7 +1,7 @@
 import React, { useState, ReactNode } from "react";
-import DateRangePicker from "./DateRangePicker";
-import DatePicker from "./DatePicker";
-import SquareCheckbox from "../Checkbox/SquareCheckbox";
+import { RangeDatePicker } from "./DateRangePicker";
+import { SingleDatePicker } from "./DatePicker";
+import { SquareCheckbox } from "../Checkbox/SquareCheckbox";
 
 interface Props {
   disabled?: boolean;
@@ -25,7 +25,7 @@ interface Props {
   }) => ReactNode;
 }
 
-export default function SwitchableDatePicker({
+export const SwitchableDatePicker = ({
   disabled,
   isWeekScheduleEnabled,
   onWeekScheduleToggle,
@@ -37,7 +37,7 @@ export default function SwitchableDatePicker({
   onHasEndDateChange,
   rangeInputsRender,
   dialogTargetOffset,
-}: Props) {
+}: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleHasEndDate = () => {
     if (hasEndDate && endDate != null) {
@@ -74,7 +74,7 @@ export default function SwitchableDatePicker({
 
   if (hasEndDate) {
     return (
-      <DateRangePicker
+      <RangeDatePicker
         disabled={disabled}
         minDate={minDate}
         isOpen={isOpen}
@@ -88,11 +88,11 @@ export default function SwitchableDatePicker({
         dialogTargetOffset={dialogTargetOffset}
       >
         {rangeInputsRender}
-      </DateRangePicker>
+      </RangeDatePicker>
     );
   }
   return (
-    <DatePicker
+    <SingleDatePicker
       disabled={disabled}
       minDate={minDate}
       isOpen={isOpen}
@@ -104,7 +104,7 @@ export default function SwitchableDatePicker({
       dialogTargetOffset={dialogTargetOffset}
     >
       {rangeInputsRender}
-    </DatePicker>
+    </SingleDatePicker>
   );
-}
+};
 SwitchableDatePicker.displayName = "SwitchableDatePicker";

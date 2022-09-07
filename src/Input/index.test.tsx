@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { render, fireEvent } from "@testing-library/react";
-import Input from "./index";
+import { Input } from "./index";
 
 it("should render without props", () => {
   const { getByDisplayValue } = render(<Input value="test" />);

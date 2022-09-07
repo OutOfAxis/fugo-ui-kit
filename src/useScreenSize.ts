@@ -4,9 +4,7 @@ import useMedia from "use-media";
 export const MAX_MOBILE_SIZE = 639;
 export const MAX_TABLET_SIZE = 1023;
 
-function useScreenSize(maxWidth: number) {
-  return useMedia({ maxWidth });
-}
+export const useScreenSize = (maxWidth: number) => useMedia({ maxWidth });
 
 export const useIsMobile = () => useScreenSize(MAX_MOBILE_SIZE);
 export const useIsMobileOrTablet = () => useScreenSize(MAX_TABLET_SIZE);
@@ -22,5 +20,3 @@ export const useWindowSize = () => {
   }, []);
   return size;
 };
-
-export default useScreenSize;

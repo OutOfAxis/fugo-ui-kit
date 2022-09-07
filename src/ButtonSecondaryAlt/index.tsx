@@ -1,7 +1,7 @@
-import Button, { ButtonProps } from "../Button";
+import { Button, ButtonProps } from "../Button";
 import { forwardRef } from "react";
 
-const ButtonSecondaryAlt = forwardRef<HTMLDivElement, ButtonProps>(
+export const ButtonSecondaryAlt = forwardRef<HTMLDivElement, ButtonProps>(
   ({ children, disabled = false, className = "", ...props }, ref) => (
     <Button
       {...props}
@@ -18,5 +18,3 @@ const ButtonSecondaryAlt = forwardRef<HTMLDivElement, ButtonProps>(
   )
 );
 ButtonSecondaryAlt.displayName = "ButtonSecondaryAlt";
-
-export default ButtonSecondaryAlt;
