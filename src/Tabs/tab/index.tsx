@@ -10,8 +10,10 @@ export type TabProps = {
 };
 
 export const Tab = forwardRef<HTMLDivElement, TabProps>(
-  ({ children, className = "" }) => (
-    <div className={`${className} flex-1 bg-gray-100`}>{children}</div>
+  ({ children, className = "" }, ref) => (
+    <div ref={ref} className={`${className} flex-1 bg-gray-100`}>
+      {children}
+    </div>
   )
 );
 Tab.displayName = "Tab";

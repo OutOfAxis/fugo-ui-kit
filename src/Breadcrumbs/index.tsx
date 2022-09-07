@@ -36,10 +36,10 @@ export const Breadcrumbs = forwardRef<
   ComponentProps<typeof BreadcrumbsContainer> & {
     Separator?: ComponentType;
   }
->(({ children, Separator = BreadcrumbsSeparator, ...props }) => {
+>(({ children, Separator = BreadcrumbsSeparator, ...props }, ref) => {
   const lastIndex = Children.count(children) - 1;
   return (
-    <BreadcrumbsContainer {...props}>
+    <BreadcrumbsContainer ref={ref} {...props}>
       {Children.map(children, (child, index) =>
         child ? (
           <li key={`breadcrumb-${index}`}>

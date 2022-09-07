@@ -15,11 +15,12 @@ export const Tag = forwardRef<
     color?: keyof typeof styles;
     truncateable?: boolean;
   }
->(({ children, color = "default", truncateable = false }) => {
+>(({ children, color = "default", truncateable = false }, ref) => {
   const isMobile = useIsMobile();
 
   return (
     <div
+      ref={ref}
       className={`uppercase py-1 font-bold rounded
         ${truncateable ? "block truncate" : "inline-block"}
         ${isMobile ? "text-xs px-1" : "text-xs px-2"}
