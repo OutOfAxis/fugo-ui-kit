@@ -25,5 +25,6 @@
     "noUncheckedIndexedAccess": true /* Include 'undefined' in index signature results */,
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
-  "include": ["./declaration.d.ts", "./src/**/*.ts", "./src/**/*.tsx"]
+  "include": ["./declaration.d.ts", "./src/**/*.ts", "./src/**/*.tsx"],
+  "exclude": ["./src/**/*.stories.tsx", "./src/**/*.test.tsx"]
 }

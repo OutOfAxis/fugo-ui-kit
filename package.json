@@ -4,7 +4,7 @@
   "description": "React components Kit for Fugo",
   "scripts": {
     "build": "npm-run-all -p -l \"build:*\"",
-    "build:declarations": "tsc",
+    "build:declarations": "tsc -p ./tsconfig.build.json",
     "build:assets": "copy \"./src/**/*.svg\" ./lib/ && copy \"./src/**/*.css\" ./lib/",
     "build:styles": "postcss src/tailwind.css -o src/styles.css",
     "build:babel": "babel --extensions .ts,.tsx src --ignore \"**/*.test.tsx\" --ignore \"**/*.stories.tsx\" -d lib",
@@ -16,7 +16,7 @@
     "prettier": "prettier --write './src/**/*.{ts,tsx}'",
     "prepare": "husky install",
     "start": "npm-run-all -p -l \"start:*\" storybook",
-    "start:declarations": "tsc --watch",
+    "start:declarations": "tsc -p ./tsconfig.build.json --watch",
     "start:build": "babel --watch --extensions .ts,.tsx src --ignore \"**/*.test.tsx\" --ignore \"**/*.stories.tsx\" -d lib",
     "start:yalc": "chokidar \"./lib/**/*\" -c \"yalc push\"",
     "start:styles": "TAILWIND_MODE=watch postcss src/tailwind.css -o src/styles.css --watch",

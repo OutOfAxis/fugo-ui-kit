@@ -16,7 +16,7 @@ const centered = (triggerRect?: PRect | null, tooltipRect?: PRect | null) => {
 };
 
 export const Tooltip = (props: ComponentProps<typeof ReachTooltip>) => {
-  if (props.hidden) {
+  if (props.hidden || !props.label) {
     return <>{props.children}</>;
   }
   return (
