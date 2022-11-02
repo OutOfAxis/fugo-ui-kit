@@ -115,42 +115,45 @@ const useNumberInput = ({
     }
     onValueChange(newValue);
   });
-  const handleKeyDown = useEventCallback((e) => {
-    onKeyDown?.(e);
-    if (e.defaultPrevented) {
-      return;
+  const handleKeyDown: KeyboardEventHandler<HTMLInputElement> =
+    useEventCallback((event) => {
+      onKeyDown?.(event);
+      if (event.defaultPrevented) {
+        return;
+      }
+      if (value == null) {
+        return;
+      }
+      if (event.key === "ArrowDown") {
+        event.preventDefault();
+        const newValue = value - step;
+        handleValueChange(newValue);
+      }
+      if (event.key === "ArrowUp") {
+        event.preventDefault();
+        const newValue = value + step;
+        handleValueChange(newValue);
+      }
+    });
+  const handleChange: ChangeEventHandler<HTMLInputElement> = useEventCallback(
+    (event) => {
+      onChange?.(event);
+      if (event.defaultPrevented) {
+        return;
+      }
+      onFormattedChange(event);
+      try {
+        const newValue = parseNumber(
+          event.currentTarget.value,
+          fractionDigits,
+          min
+        );
+        handleValueChange(newValue);
+      } catch (error) {
+        // ignore invalid number input
+      }
     }
-    if (value == null) {
-      return;
-    }
-    if (e.key === "ArrowDown") {
-      e.preventDefault();
-      const newValue = value - step;
-      handleValueChange(newValue);
-    }
-    if (e.key === "ArrowUp") {
-      e.preventDefault();
-      const newValue = value + step;
-      handleValueChange(newValue);
-    }
-  });
-  const handleChange = useEventCallback((event) => {
-    onChange?.(event);
-    if (event.defaultPrevented) {
-      return;
-    }
-    onFormattedChange(event);
-    try {
-      const newValue = parseNumber(
-        event.currentTarget.value,
-        fractionDigits,
-        min
-      );
-      handleValueChange(newValue);
-    } catch (error) {
-      // ignore invalid number input
-    }
-  });
+  );
   return {
     formattedValue,
     handleChange,
@@ -167,6 +170,7 @@ export const NumberInputBase = ({
   min,
   max,
   fractionDigits = 2,
+  onChange,
   ...props
 }: Omit<
   InputHTMLAttributes<HTMLInputElement>,
@@ -181,7 +185,7 @@ export const NumberInputBase = ({
 }) => {
   const { formattedValue, handleKeyDown, handleChange } = useNumberInput({
     value,
-    onChange: props.onChange,
+    onChange,
     onValueChange,
     step,
     onKeyDown,
@@ -204,56 +208,45 @@ export const NumberInput = ({
   value,
   onValueChange,
   step = 1,
-  validate,
-  precision = 1,
-  isPositive,
+  onKeyDown,
+  min,
+  max,
+  fractionDigits = 2,
   disabled,
   noSteps = false,
+  onChange,
+  className = "",
   ...props
 }: Omit<
   ComponentProps<typeof InputBase>,
-  "value" | "onValueChange" | "step"
+  "value" | "onValueChange" | "step" | "min" | "max"
 > & {
   value: number;
   onValueChange: (newValue: number) => void;
   step?: number;
-  validate?: (newValue: number) => boolean;
-  precision?: number;
-  isPositive?: boolean;
-  disabled?: boolean;
   noSteps?: boolean;
+  min?: number;
+  max?: number;
+  fractionDigits?: number;
 }) => {
-  const [rawValue, setRawValue] = useState<string>(
-    (value / precision).toString()
-  );
-  useEffect(() => {
-    setRawValue((value / precision).toString());
-  }, [precision, value]);
-  const { value: formattedValue, onChange: onFormattedChange } = useRifm({
-    accept: /[\d.]/g,
-    format: (v) => formatFloatingPointNumber(v, 2),
-    onChange: setRawValue,
-    value: rawValue,
-  });
-  const handleChange = (newValue: number) => {
-    if (isNaN(newValue)) {
-      return;
-    }
-    if (isPositive && newValue < 0) {
-      return;
-    }
-    if (validate && !validate(newValue)) {
-      return;
-    }
-    onValueChange(newValue);
-  };
+  const { formattedValue, handleChange, handleKeyDown, handleValueChange } =
+    useNumberInput({
+      value,
+      onValueChange,
+      step,
+      onKeyDown,
+      min,
+      max,
+      fractionDigits,
+      onChange,
+    });
   return (
     <div className="flex space-x-3">
       {noSteps ? null : (
         <ButtonPrimary
           disabled={disabled}
           className="h-10 w-10 font-bold text-2xl"
-          onClick={() => handleChange(value - step)}
+          onClick={() => handleValueChange(value - step)}
         >
           -
         </ButtonPrimary>
@@ -262,45 +255,17 @@ export const NumberInput = ({
         <InputBase
           {...props}
           disabled={disabled}
-          className="text-center"
+          className={`${className} text-center`}
           value={formattedValue}
-          onKeyDown={(e) => {
-            if (e.key === "ArrowDown") {
-              e.preventDefault();
-              handleChange(value - step);
-            }
-            if (e.key === "ArrowUp") {
-              e.preventDefault();
-              handleChange(value + step);
-            }
-          }}
-          onValueChange={(newValueRaw, event) => {
-            if (event) {
-              onFormattedChange(event);
-            }
-            try {
-              const newValue = parseNumber(newValueRaw, 2);
-              if (isNaN(newValue)) {
-                return;
-              }
-              if (isPositive && newValue < 0) {
-                return;
-              }
-              if (validate && !validate(newValue)) {
-                return;
-              }
-              handleChange(newValue * precision);
-            } catch (error) {
-              // ignore invalid number input
-            }
-          }}
+          onKeyDown={handleKeyDown}
+          onChange={handleChange}
         />
       </InputContainer>
       {noSteps ? null : (
         <ButtonPrimary
           disabled={disabled}
           className="h-10 w-10 font-bold text-2xl"
-          onClick={() => handleChange(value + step)}
+          onClick={() => handleValueChange(value + step)}
         >
           +
         </ButtonPrimary>
