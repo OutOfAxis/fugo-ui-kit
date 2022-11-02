@@ -17,7 +17,10 @@ export default {
     },
   },
   args: {},
-  argTypes: {},
+  argTypes: {
+    min: { control: { type: "number" } },
+    max: { control: { type: "number" } },
+  },
 } as ComponentMeta<typeof Component>;
 
 export const Base: CaseFn = (props) => {

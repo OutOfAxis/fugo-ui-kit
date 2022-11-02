@@ -154,11 +154,20 @@ const useNumberInput = ({
       }
     }
   );
+  const handleInvalidValueReset = useEventCallback(() => {
+    setRawValue((rawValue) =>
+      value != null &&
+      value !== parseNumber(rawValue ?? "", fractionDigits, min)
+        ? value.toString()
+        : rawValue
+    );
+  });
   return {
     formattedValue,
     handleChange,
     handleKeyDown,
     handleValueChange,
+    handleInvalidValueReset,
   };
 };
 
@@ -171,6 +180,7 @@ export const NumberInputBase = ({
   max,
   fractionDigits = 2,
   onChange,
+  onBlur,
   ...props
 }: Omit<
   InputHTMLAttributes<HTMLInputElement>,
@@ -183,7 +193,12 @@ export const NumberInputBase = ({
   min?: number;
   max?: number;
 }) => {
-  const { formattedValue, handleKeyDown, handleChange } = useNumberInput({
+  const {
+    formattedValue,
+    handleKeyDown,
+    handleChange,
+    handleInvalidValueReset,
+  } = useNumberInput({
     value,
     onChange,
     onValueChange,
@@ -199,6 +214,13 @@ export const NumberInputBase = ({
       value={formattedValue}
       onKeyDown={handleKeyDown}
       onChange={handleChange}
+      onBlur={(event) => {
+        onBlur?.(event);
+        if (event.defaultPrevented) {
+          return;
+        }
+        handleInvalidValueReset();
+      }}
     />
   );
 };
@@ -216,6 +238,7 @@ export const NumberInput = ({
   noSteps = false,
   onChange,
   className = "",
+  onBlur,
   ...props
 }: Omit<
   ComponentProps<typeof InputBase>,
@@ -229,17 +252,22 @@ export const NumberInput = ({
   max?: number;
   fractionDigits?: number;
 }) => {
-  const { formattedValue, handleChange, handleKeyDown, handleValueChange } =
-    useNumberInput({
-      value,
-      onValueChange,
-      step,
-      onKeyDown,
-      min,
-      max,
-      fractionDigits,
-      onChange,
-    });
+  const {
+    formattedValue,
+    handleChange,
+    handleKeyDown,
+    handleValueChange,
+    handleInvalidValueReset,
+  } = useNumberInput({
+    value,
+    onValueChange,
+    step,
+    onKeyDown,
+    min,
+    max,
+    fractionDigits,
+    onChange,
+  });
   return (
     <div className="flex space-x-3">
       {noSteps ? null : (
@@ -259,6 +287,13 @@ export const NumberInput = ({
           value={formattedValue}
           onKeyDown={handleKeyDown}
           onChange={handleChange}
+          onBlur={(event) => {
+            onBlur?.(event);
+            if (event.defaultPrevented) {
+              return;
+            }
+            handleInvalidValueReset();
+          }}
         />
       </InputContainer>
       {noSteps ? null : (
