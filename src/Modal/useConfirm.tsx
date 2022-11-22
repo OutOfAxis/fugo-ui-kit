@@ -6,18 +6,20 @@ export type ConfirmModalProps = {
   title: ReactNode;
   description: ReactNode;
   actionName: ReactNode;
+  cancelActionName?: ReactNode;
 };
 
 export const useConfirmModal = (): ((
   props: ConfirmModalProps
 ) => Promise<boolean>) => {
   const createPortal = usePortal();
-  return ({ title, description, actionName }) =>
+  return ({ title, description, actionName, cancelActionName }) =>
     createPortal<boolean>(({ onClose }) => (
       <Confirm
         isOpen
         title={title}
         confirmTitle={actionName}
+        cancelTitle={cancelActionName}
         onConfirm={() => onClose(true)}
         onCancel={() => onClose(false)}
       >

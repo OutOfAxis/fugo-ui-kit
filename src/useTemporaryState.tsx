@@ -11,6 +11,7 @@ export const useTemporaryState = <T extends unknown>(
       const timerId = setTimeout(() => setState(undefined), timeout);
       return () => clearTimeout(timerId);
     }
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state, timeout]);
   return stateItems;
 };
