@@ -41,6 +41,8 @@ Table.displayName = "Table";
 export const Row = forwardRef<
   HTMLTableRowElement,
   {
+    borderColor?: string;
+    backgroundColor?: string;
     isSelectable?: boolean;
     alwaysShowSelect?: boolean;
     isSelected: boolean;
@@ -51,6 +53,8 @@ export const Row = forwardRef<
 >(
   (
     {
+      borderColor,
+      backgroundColor = "bg-white",
       isSelectable,
       alwaysShowSelect = false,
       isSelected,
@@ -60,11 +64,13 @@ export const Row = forwardRef<
     },
     ref
   ) => {
-    const borderColor = isSelected
-      ? "border-blue-400"
-      : isSelectable
-      ? styles.selectable
-      : "border-gray-200";
+    const borderColorValue =
+      borderColor ||
+      (isSelected
+        ? "border-blue-400"
+        : isSelectable
+        ? styles.selectable
+        : "border-gray-200");
 
     return (
       <tr
@@ -82,7 +88,7 @@ export const Row = forwardRef<
           <td className="w-8" />
         )}
         <td
-          className={`w-3 md:w-4 rounded-l-lg border-l border-t border-b bg-white ${borderColor}`}
+          className={`w-3 md:w-4 rounded-l-lg border-l border-t border-b ${backgroundColor} ${borderColorValue}`}
         />
         {React.Children.map(
           children,
@@ -90,11 +96,12 @@ export const Row = forwardRef<
             child &&
             React.cloneElement(child, {
               ...child.props,
-              borderColor,
+              borderColor: borderColorValue,
+              backgroundColor,
             })
         )}
         <td
-          className={`w-4 rounded-r-lg border-t border-b border-r bg-white ${borderColor}`}
+          className={`w-4 rounded-r-lg border-t border-b border-r ${backgroundColor} ${borderColorValue}`}
         />
       </tr>
     );
@@ -107,14 +114,25 @@ export const Cell = forwardRef<
   {
     className?: string;
     borderColor?: string;
+    backgroundColor?: string;
     children?: ReactNode;
   }
->(({ className = "", borderColor = "", children = null }, ref) => (
-  <td
-    ref={ref}
-    className={`border-t border-b bg-white ${borderColor} ${className}`}
-  >
-    {children}
-  </td>
-));
+>(
+  (
+    {
+      className = "",
+      borderColor = "",
+      backgroundColor = "bg-white",
+      children = null,
+    },
+    ref
+  ) => (
+    <td
+      ref={ref}
+      className={`border-t border-b ${backgroundColor} ${borderColor} ${className}`}
+    >
+      {children}
+    </td>
+  )
+);
 Cell.displayName = "Cell";
