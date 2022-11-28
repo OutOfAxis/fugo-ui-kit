@@ -12,6 +12,7 @@ import useForkRef from "@material-ui/core/utils/useForkRef";
 export interface ButtonProps extends HTMLAttributes<HTMLDivElement> {
   disabled?: boolean;
   small?: boolean;
+  extraSmall?: boolean;
   isLoading?: boolean;
   autoFocus?: boolean;
 }
@@ -37,6 +38,7 @@ export const Button = forwardRef<HTMLDivElement, ButtonProps>(
       onClick = undefined,
       disabled = false,
       small = false,
+      extraSmall = false,
       isLoading,
       ...props
     },
@@ -87,8 +89,12 @@ export const Button = forwardRef<HTMLDivElement, ButtonProps>(
       <div
         ref={ref}
         {...props}
-        className={`inline-block font-semibold ${
-          small ? `py-2 px-3` : `py-3 px-4`
+        className={`inline-block ${
+          small
+            ? `py-2 px-3 font-semibold`
+            : extraSmall
+            ? `py-0.5 px-2.5 text-sm`
+            : `py-3 px-4 font-semibold`
         } rounded focus:outline-none select-none whitespace-nowrap focus:shadow-lg ${className}`}
         onClick={handleClick}
         onKeyDown={(e) =>
