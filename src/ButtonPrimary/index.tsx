@@ -6,7 +6,7 @@ export const ButtonPrimary = forwardRef<HTMLDivElement, ButtonProps>(
     const {
       children,
       disabled,
-      className,
+      className = "",
       isLoading,
       onClick = () => {},
       ...restProps

@@ -13,7 +13,7 @@ export const Checkbox = forwardRef<HTMLDivElement, Props>(
       disabled,
       value,
       onChange,
-      className,
+      className = "",
       IndeterminateIcon = CircleIndeterminateIcon,
       ActiveIcon = CircleActiveIcon,
       InactiveIcon = CircleInactiveIcon,

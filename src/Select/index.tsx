@@ -71,7 +71,7 @@ export const SelectList = forwardRef<
     portal?: boolean;
     className?: string;
   }
->(({ className, children, portal = true }, ref) => {
+>(({ className = "", children, portal = true }, ref) => {
   const content = (
     <UiSelect.Content
       ref={ref}

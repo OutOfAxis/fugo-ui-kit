@@ -8,24 +8,29 @@ export const Textarea = forwardRef<
     error?: string;
     withError?: boolean;
   }
->(({ className, containerClassName, error, withError, ...props }, ref) => {
-  return (
-    <div className={containerClassName}>
-      <TextareaAutosize
-        ref={ref}
-        {...props}
-        className={`${className ?? ""} py-3 px-4 rounded border outline-none ${
-          error
-            ? "text-red-600 border-red-600"
-            : "border-gray-500 focus:border-blue-500"
-        }`}
-      />
-      {withError ? (
-        <small className="font-bold mt-1 uppercase text-2xs text-gray-700">
-          {error || "\u00A0"}
-        </small>
-      ) : null}
-    </div>
-  );
-});
+>(
+  (
+    { className = "", containerClassName = "", error, withError, ...props },
+    ref
+  ) => {
+    return (
+      <div className={containerClassName}>
+        <TextareaAutosize
+          className={`${className} py-3 px-4 rounded border outline-none ${
+            error
+              ? "text-red-600 border-red-600"
+              : "border-gray-500 focus:border-blue-500"
+          }`}
+          {...props}
+          ref={ref}
+        />
+        {withError ? (
+          <small className="font-bold mt-1 uppercase text-2xs text-gray-700">
+            {error || "\u00A0"}
+          </small>
+        ) : null}
+      </div>
+    );
+  }
+);
 Textarea.displayName = "Textarea";

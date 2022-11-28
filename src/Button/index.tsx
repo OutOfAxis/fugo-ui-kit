@@ -93,7 +93,7 @@ export const Button = forwardRef<HTMLDivElement, ButtonProps>(
           small
             ? `py-2 px-3 font-semibold`
             : extraSmall
-            ? `py-0.5 px-2.5 text-sm`
+            ? `py-0.5 px-2.5 text-sm font-bold`
             : `py-3 px-4 font-semibold`
         } rounded focus:outline-none select-none whitespace-nowrap focus:shadow-lg ${className}`}
         onClick={handleClick}

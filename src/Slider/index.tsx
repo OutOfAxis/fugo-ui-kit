@@ -85,7 +85,7 @@ export const SliderSideValue = forwardRef<
     min?: number;
     max: number;
   }
->(({ className, value, onChange, min = 0, max }, ref) => {
+>(({ className = "", value, onChange, min = 0, max }, ref) => {
   return (
     <div className={`${className} flex items-center`}>
       <div className="flex-1 pl-2">

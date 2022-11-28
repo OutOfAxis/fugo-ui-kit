@@ -5,7 +5,7 @@ import { useWidth } from "./useWidth";
 
 export const FixedBar = ({
   children,
-  className,
+  className = "",
   defaultHeight,
 }: {
   children: ReactNode;
