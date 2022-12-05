@@ -44,6 +44,7 @@ export const MenuItem = forwardRef<
   <MenuItemReach
     {...props}
     ref={ref}
+    disabled={disabled}
     className={`${props.className || ""} rounded`}
     onSelect={disabled ? noop : (onClick as any)}
   />
