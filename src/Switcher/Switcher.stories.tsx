@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
-import { Switcher } from "./index";
+import { Switcher, SwitcherOption } from "./index";
 import { useArgs } from "@storybook/client-api";
 
 const Component = Switcher;
@@ -24,28 +24,15 @@ export const Base: CaseFn = (props) => {
   return (
     <Switcher
       {...props}
-      onChange={(value) => {
-        props.onChange?.(value);
+      value={args.value}
+      onValueChange={(value) => {
+        props.onValueChange?.(value);
         setArgs({ ...args, value });
       }}
-    />
+    >
+      <SwitcherOption value="1">Option 1</SwitcherOption>
+      <SwitcherOption value="2">Option 2</SwitcherOption>
+    </Switcher>
   );
 };
 Base.storyName = Component.name;
-Base.args = {
-  value: "a",
-  options: [
-    {
-      value: "a",
-      label: "Option A",
-    },
-    {
-      value: "b",
-      label: "Option B",
-    },
-    {
-      value: "c",
-      label: "Option C",
-    },
-  ],
-};

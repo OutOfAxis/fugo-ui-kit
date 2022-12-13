@@ -51,7 +51,7 @@ export const SplitButtonDropDown = forwardRef<
         <div className="flex items-center text-white">
           <ButtonPrimary
             disabled={disabled}
-            className="rounded-r-none border border-r-1"
+            className="rounded-r-none border-r"
             onClick={onClick}
           >
             {label}
