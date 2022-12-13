@@ -4,24 +4,33 @@ import {
   cloneElement,
   ReactElement,
   HTMLAttributes,
+  ForwardedRef,
 } from "react";
 
-export type SwitcherItemProps = {
-  value: string;
+export type SwitcherItemProps<T extends unknown> = {
+  value: T;
   onClick?: () => void;
   active?: boolean;
   first?: boolean;
   last?: boolean;
-};
+} & HTMLAttributes<HTMLDivElement>;
 
-export const Switcher = forwardRef<
-  HTMLDivElement,
+export type SwitcherProps<T extends unknown> = {
+  children: Array<ReactElement<SwitcherItemProps<T>>>;
+  value: T;
+  onValueChange: (newValue: T) => void;
+} & Omit<HTMLAttributes<HTMLDivElement>, "children">;
+
+const SwitcherInner = <T extends unknown>(
   {
-    children: Array<ReactElement<SwitcherItemProps>>;
-    value: string;
-    onValueChange: (newValue: string) => void;
-  } & Omit<HTMLAttributes<HTMLDivElement>, "children">
->(({ children, value, onValueChange, className = "", ...props }, ref) => {
+    children,
+    value,
+    onValueChange,
+    className = "",
+    ...props
+  }: SwitcherProps<T>,
+  ref: ForwardedRef<HTMLDivElement>
+) => {
   return (
     <div
       {...props}
@@ -41,13 +50,24 @@ export const Switcher = forwardRef<
       })}
     </div>
   );
-});
-Switcher.displayName = "Switcher";
+};
 
-export const SwitcherOption = forwardRef<
-  HTMLDivElement,
-  SwitcherItemProps & HTMLAttributes<HTMLDivElement>
->(({ value, active, first, last, className = "", ...props }, ref) => {
+export const Switcher = forwardRef(SwitcherInner) as <T>(
+  props: SwitcherProps<T> & { ref?: ForwardedRef<HTMLDivElement> }
+) => ReturnType<typeof SwitcherInner>;
+(Switcher as any).displayName = "Switcher";
+
+const SwitcherItemInner = <T extends unknown>(
+  {
+    value,
+    active,
+    first,
+    last,
+    className = "",
+    ...props
+  }: SwitcherItemProps<T>,
+  ref: ForwardedRef<HTMLDivElement>
+) => {
   return (
     <div
       {...props}
@@ -64,5 +84,9 @@ export const SwitcherOption = forwardRef<
       `}
     />
   );
-});
-SwitcherOption.displayName = "SwitcherOption";
+};
+
+export const SwitcherOption = forwardRef(SwitcherItemInner) as <T>(
+  props: SwitcherItemProps<T> & { ref?: ForwardedRef<HTMLDivElement> }
+) => ReturnType<typeof SwitcherItemInner>;
+(SwitcherOption as any).displayName = "SwitcherOption";
