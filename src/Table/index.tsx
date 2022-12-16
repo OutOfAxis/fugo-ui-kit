@@ -1,13 +1,16 @@
-import React, {
+import {
+  cloneElement,
   ChangeEvent,
   ReactElement,
   MouseEvent,
   ReactNode,
   forwardRef,
+  isValidElement,
 } from "react";
 import { Checkbox } from "../Checkbox";
 import styles from "./index.module.css";
 import noop from "lodash/noop";
+import flattenChildren from "react-keyed-flatten-children";
 
 export const Table = forwardRef<
   HTMLTableElement,
@@ -21,18 +24,18 @@ export const Table = forwardRef<
     className={`border-separate table-fixed w-full ${styles.table}`}
   >
     <tbody>
-      {React.Children.map(
-        children,
-        (child: ReactElement | null) =>
-          child &&
-          React.cloneElement(child, {
+      {flattenChildren(children).map((child) => {
+        if (isValidElement(child)) {
+          return cloneElement(child, {
             ...child.props,
             isSelectable:
               child.props.isSelectable != null
                 ? child.props.isSelectable && isEditable
                 : isEditable,
-          })
-      )}
+          });
+        }
+        return child;
+      })}
     </tbody>
   </table>
 ));
@@ -90,16 +93,16 @@ export const Row = forwardRef<
         <td
           className={`w-3 md:w-4 rounded-l-lg border-l border-t border-b ${backgroundColor} ${borderColorValue}`}
         />
-        {React.Children.map(
-          children,
-          (child) =>
-            child &&
-            React.cloneElement(child, {
+        {flattenChildren(children).map((child) => {
+          if (isValidElement(child)) {
+            return cloneElement(child, {
               ...child.props,
               borderColor: borderColorValue,
               backgroundColor,
-            })
-        )}
+            });
+          }
+          return child;
+        })}
         <td
           className={`w-4 rounded-r-lg border-t border-b border-r ${backgroundColor} ${borderColorValue}`}
         />

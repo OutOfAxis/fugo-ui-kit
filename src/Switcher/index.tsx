@@ -32,11 +32,7 @@ const SwitcherInner = <T extends unknown>(
   ref: ForwardedRef<HTMLDivElement>
 ) => {
   return (
-    <div
-      {...props}
-      ref={ref}
-      className={`${className} flex h-12 mr-5 font-bold`}
-    >
+    <div {...props} ref={ref} className={`${className} flex h-12 font-bold`}>
       {Children.map(children, (child, index) => {
         return (
           child &&
