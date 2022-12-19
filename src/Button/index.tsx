@@ -95,7 +95,7 @@ export const Button = forwardRef<HTMLDivElement, ButtonProps>(
             : extraSmall
             ? `py-0.5 px-2.5 text-sm font-bold`
             : `py-3 px-4 font-semibold`
-        } rounded focus:outline-none select-none whitespace-nowrap focus:shadow-lg ${className}`}
+        } rounded focus:outline-none select-none whitespace-nowrap focus:shadow-lg leading-none ${className}`}
         onClick={handleClick}
         onKeyDown={(e) =>
           e.key === "Enter" ? handleClick(e as any) : undefined
