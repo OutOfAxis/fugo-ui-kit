@@ -6,6 +6,9 @@ const Component = Combobox;
 
 export default {
   component: Component,
+  parameters: {
+    viewMode: "story",
+  },
   argTypes: {
     onChange: {
       type: "function",

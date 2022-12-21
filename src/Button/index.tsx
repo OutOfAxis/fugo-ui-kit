@@ -91,10 +91,10 @@ export const Button = forwardRef<HTMLDivElement, ButtonProps>(
         {...props}
         className={`inline-block ${
           small
-            ? `py-2 px-3 font-semibold`
+            ? `py-2 px-3 font-semibold h-10`
             : extraSmall
-            ? `py-0.5 px-2.5 text-sm font-bold`
-            : `py-3 px-4 font-semibold`
+            ? `py-0.5 px-2.5 text-sm font-bold h-6`
+            : `py-3 px-4 font-semibold h-12`
         } rounded focus:outline-none select-none whitespace-nowrap focus:shadow-lg leading-none ${className}`}
         onClick={handleClick}
         onKeyDown={(e) =>

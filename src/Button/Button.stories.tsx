@@ -37,3 +37,9 @@ export const Small: Case = {
     small: true,
   },
 };
+
+export const ExtraSmall: Case = {
+  args: {
+    extraSmall: true,
+  },
+};
