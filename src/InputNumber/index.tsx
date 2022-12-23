@@ -279,7 +279,7 @@ export const NumberInput = ({
           -
         </ButtonPrimary>
       )}
-      <InputContainer disabled={disabled} className="flex-1 h-10">
+      <InputContainer disabled={disabled} className="flex-1 !h-10">
         <InputBase
           {...props}
           disabled={disabled}
