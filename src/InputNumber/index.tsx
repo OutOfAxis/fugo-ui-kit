@@ -273,7 +273,7 @@ export const NumberInput = ({
       {noSteps ? null : (
         <ButtonPrimary
           disabled={disabled}
-          className="h-10 w-10 font-bold text-2xl"
+          className="!h-10 w-10 font-bold text-2xl"
           onClick={() => handleValueChange(value - step)}
         >
           -
@@ -299,7 +299,7 @@ export const NumberInput = ({
       {noSteps ? null : (
         <ButtonPrimary
           disabled={disabled}
-          className="h-10 w-10 font-bold text-2xl"
+          className="!h-10 w-10 font-bold text-2xl"
           onClick={() => handleValueChange(value + step)}
         >
           +
