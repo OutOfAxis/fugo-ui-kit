@@ -1,10 +1,10 @@
-import { forwardRef } from "react";
+import { forwardRef, ReactNode } from "react";
 
 export const Toggle = forwardRef<
   HTMLDivElement,
   {
     className?: string;
-    label?: string;
+    label?: ReactNode;
     value?: boolean;
     disabled?: boolean;
     onChange: (value: boolean) => void;
