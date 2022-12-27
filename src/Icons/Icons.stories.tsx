@@ -1,4 +1,5 @@
 import { ComponentStoryFn, Meta, StoryFn } from "@storybook/react";
+import { ReactComponent as InfoIcon } from "./InfoIcon.svg";
 import {
   PremiumIcon,
   PremiumIconSvg,
@@ -12,22 +13,30 @@ import { CardName, ContentCard } from "../ContentCard/ContentCard";
 import { Spinner } from "./Spinner";
 
 const Icons = { PremiumIconSvg, PremiumIconBoxSvg };
+const SvgIcons = { InfoIcon };
 
 export default {} as Meta;
+
+const svgImportTemplate = (name: string) =>
+  `import { ReactComponent as ${name} } from "@outofaxis/fugo-ui-kit/lib/Icons/${name}.svg";`;
+
+const iconUsageTemplate = (name: string) => `<${name} />`;
 
 const ClipboardCopy = ({
   children,
   name,
+  template = svgImportTemplate,
 }: {
   children: ReactNode;
   name: string;
+  template?: (name: string) => string;
 }) => {
   const [isCopied, setIsCopied] = useTemporaryState(2000);
   return (
     <div
       className="flex items-center space-x-2 cursor-pointer"
       onClick={() => {
-        navigator.clipboard.writeText(`<${name} />`);
+        navigator.clipboard.writeText(template(name));
         setIsCopied(true);
       }}
     >
@@ -41,8 +50,13 @@ export const AllIcons: StoryFn<{ color: string }> = ({ color }) => {
   return (
     <>
       {map(Icons, (Icon, name) => (
-        <ClipboardCopy key={name} name={name}>
+        <ClipboardCopy key={name} name={name} template={iconUsageTemplate}>
           <Icon color={color} />
+        </ClipboardCopy>
+      ))}
+      {map(SvgIcons, (Icon, name) => (
+        <ClipboardCopy key={name} name={name}>
+          <Icon />
         </ClipboardCopy>
       ))}
     </>
