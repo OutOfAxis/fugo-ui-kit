@@ -16,7 +16,7 @@ export const IconTooltip = ({
     <Tooltip label={label} position={position}>
       <InfoIcon
         {...props}
-        className={`${className} text-gray-600 hover:text-blue-600 transition-colors`}
+        className={`${className} text-gray-600 hover:text-blue-600 transition-colors align-middle ml-1 inline-block`}
       />
     </Tooltip>
   );
