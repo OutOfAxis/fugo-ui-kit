@@ -13,7 +13,11 @@ export const IconTooltip = ({
   position?: Position;
 } & SVGAttributes<SVGSVGElement>) => {
   return (
-    <Tooltip label={label} position={position}>
+    <Tooltip
+      label={label}
+      position={position}
+      className="max-w-screen-xs whitespace-normal"
+    >
       <InfoIcon
         {...props}
         className={`${className} text-gray-600 hover:text-blue-600 transition-colors align-middle ml-1 inline-block`}
