@@ -5,6 +5,7 @@ import { ReactComponent as ArrowDownIcon } from "./icons/arrow-down.svg";
 import noop from "lodash/noop";
 import { useIsMobile } from "../useScreenSize";
 import { Tooltip } from "../Tooltip";
+import { ButtonProps } from "../Button";
 
 export const SplitButtonDropDown = forwardRef<
   any,
@@ -14,10 +15,18 @@ export const SplitButtonDropDown = forwardRef<
     onClick?: MouseEventHandler;
     disabled?: boolean;
     disabledTooltip?: string;
+    ButtonComponent?: React.ComponentType<ButtonProps>;
   }
 >(
   (
-    { label, children, onClick = noop, disabled = false, disabledTooltip },
+    {
+      label,
+      children,
+      onClick = noop,
+      disabled = false,
+      disabledTooltip,
+      ButtonComponent = ButtonPrimary,
+    },
     ref
   ) => {
     const isMobile = useIsMobile();
@@ -28,7 +37,7 @@ export const SplitButtonDropDown = forwardRef<
           <React.Fragment>
             <Tooltip label={disabledTooltip} hidden={!disabled}>
               <MenuButton disabled={disabled}>
-                <ButtonPrimary
+                <ButtonComponent
                   className="h-12 w-12 rounded-full flex justify-center items-center"
                   disabled={disabled}
                 >
@@ -39,7 +48,7 @@ export const SplitButtonDropDown = forwardRef<
                   >
                     +
                   </span>
-                </ButtonPrimary>
+                </ButtonComponent>
               </MenuButton>
             </Tooltip>
             <MenuList>{children}</MenuList>
@@ -49,21 +58,21 @@ export const SplitButtonDropDown = forwardRef<
     ) : (
       <Tooltip label={disabledTooltip} hidden={!disabled}>
         <div className="flex items-center text-white">
-          <ButtonPrimary
+          <ButtonComponent
             disabled={disabled}
             className="rounded-r-none border-r"
             onClick={onClick}
           >
             {label}
-          </ButtonPrimary>
+          </ButtonComponent>
           <Menu color="light">
             <MenuButton disabled={disabled}>
-              <ButtonPrimary
+              <ButtonComponent
                 className="h-12 rounded-l-none flex"
                 disabled={disabled}
               >
                 <ArrowDownIcon className="stroke-current h-3 w-3" />
-              </ButtonPrimary>
+              </ButtonComponent>
             </MenuButton>
             <MenuList>{React.Children.toArray(children).slice(1)}</MenuList>
           </Menu>
