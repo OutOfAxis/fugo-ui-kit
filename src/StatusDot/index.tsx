@@ -13,14 +13,15 @@ export const StatusDot = forwardRef<
   {
     color: keyof typeof colors;
     label: string;
+    className?: string;
   }
->(({ color, label }, ref) => {
+>(({ color, label, className = "" }, ref) => {
   const isMobile = useIsMobile();
 
   return (
     <div
       ref={ref}
-      className={`text-sm font-bold whitespace-nowrap ${colors[color]}`}
+      className={`text-sm font-bold whitespace-nowrap ${colors[color]} ${className}`}
     >
       •&nbsp;
       {!isMobile && label}
