@@ -1,5 +1,6 @@
 import React, { forwardRef, MouseEventHandler, ReactNode } from "react";
 import { Menu, MenuItem, MenuButton, MenuList } from "./Menu";
+import { Position } from "@reach/popover";
 import { ButtonPrimary } from "../ButtonPrimary";
 import { ReactComponent as ArrowDownIcon } from "./icons/arrow-down.svg";
 import noop from "lodash/noop";
@@ -15,6 +16,7 @@ export const SplitButtonDropDown = forwardRef<
     onClick?: MouseEventHandler;
     disabled?: boolean;
     disabledTooltip?: string;
+    position?: Position;
     ButtonComponent?: React.ComponentType<ButtonProps>;
   }
 >(
@@ -25,6 +27,7 @@ export const SplitButtonDropDown = forwardRef<
       onClick = noop,
       disabled = false,
       disabledTooltip,
+      position,
       ButtonComponent = ButtonPrimary,
     },
     ref
@@ -51,7 +54,7 @@ export const SplitButtonDropDown = forwardRef<
                 </ButtonComponent>
               </MenuButton>
             </Tooltip>
-            <MenuList>{children}</MenuList>
+            <MenuList position={position}>{children}</MenuList>
           </React.Fragment>
         )}
       </Menu>
