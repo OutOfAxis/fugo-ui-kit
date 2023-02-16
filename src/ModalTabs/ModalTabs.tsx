@@ -6,7 +6,7 @@ ModalTabs.displayName = "ModalTabs";
 
 export const ModalTabList = styled(
   TabList
-)`flex flex-shrink-0 text-2xl font-bold border-b border-gray-200 h-24`;
+)`flex flex-shrink-0 text-lg sm:text-2xl font-bold border-b border-gray-200 h-16 sm:h-24`;
 ModalTabList.displayName = "ModalTabList";
 
 export const ModalTab = styled(Tab)`flex-1`;
