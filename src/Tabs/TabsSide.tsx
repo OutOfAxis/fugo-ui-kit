@@ -30,8 +30,8 @@ export const TabsSide = forwardRef<
       <FixedSideBar className="z-10 flex-shrink-0">
         <ul
           ref={ref}
-          className={`bg-white h-full pt-12 pl-16 ${
-            isFolded ? "pr-8" : "pr-10"
+          className={`bg-white h-full pt-6 sm:pt-12 pl-4 sm:pl-16 ${
+            isFolded ? "pr-4 sm:pr-8" : "pr-4 sm:pr-10"
           } whitespace-nowrap space-y-10 border-r border-gray-300 ${className}`}
         >
           {React.Children.map(children, (child) => (
