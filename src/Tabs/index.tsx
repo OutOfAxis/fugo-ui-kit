@@ -33,7 +33,7 @@ export const Tabs = forwardRef<
                   ? "border-b-2 border-blue-500 font-bold transition duration-300 ease-in-out"
                   : ""
               } cursor-pointer whitespace-nowrap inline-block
-            py-2 mx-6 my-1 first:pl-0 last:pr-0 first:ml-0 last:mr-0 mb-0`}
+            py-2 mx-2 sm:mx-6 my-1 first:pl-0 last:pr-0 first:ml-0 last:mr-0 mb-0`}
               onClick={
                 child.props.disabled
                   ? undefined
