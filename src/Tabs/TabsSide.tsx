@@ -43,7 +43,9 @@ export const TabsSide = forwardRef<
               } cursor-pointer whitespace-nowrap flex items-center font-bold text-sm`}
               onClick={() => onChange(child.props.id)}
             >
-              <div className="w-6 h-6 mr-3">{child.props.icon}</div>
+              <div className={`w-6 h-6 ${isFolded ? "" : "mr-3"}`}>
+                {child.props.icon}
+              </div>
               {isFolded ? null : child.props.label}
             </li>
           ))}
