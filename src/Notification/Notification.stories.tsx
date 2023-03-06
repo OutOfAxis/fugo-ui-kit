@@ -1,6 +1,7 @@
 import { ComponentStoryFn, Meta } from "@storybook/react";
 import {
   NotificationProvider,
+  useErrorNotification,
   useNotification,
   useSuccessNotification,
 } from "./Notification";
@@ -81,6 +82,40 @@ Success.parameters = {
 const showNotification = useSuccessNotification();
 showNotification({
   content: () => <div>Success</div>,
+  duration: 3000,
+  isClosable: true,
+});
+      `,
+      language: "jsx",
+      type: "auto",
+    },
+  },
+};
+
+export const Error: ComponentStoryFn<any> = () => {
+  const showNotification = useErrorNotification();
+  return (
+    <ButtonPrimary
+      onClick={() => {
+        showNotification({
+          content: () => <div>Error</div>,
+          duration: 3000,
+          isClosable: true,
+        });
+      }}
+    >
+      useErrorNotification
+    </ButtonPrimary>
+  );
+};
+Error.storyName = "useErrorNotification";
+Error.parameters = {
+  docs: {
+    source: {
+      code: `
+const showNotification = useErrorNotification();
+showNotification({
+  content: () => <div>Error</div>,
   duration: 3000,
   isClosable: true,
 });

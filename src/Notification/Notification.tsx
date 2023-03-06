@@ -52,6 +52,22 @@ export const useSuccessNotification = (): NotificationContextValue => {
   );
 };
 
+export const useErrorNotification = (): NotificationContextValue => {
+  const createNotification = useNotification();
+  return useCallback(
+    ({ content, ...rest }) =>
+      createNotification({
+        ...rest,
+        content: (props) => (
+          <ErrorNotificationContent {...props}>
+            {content(props)}
+          </ErrorNotificationContent>
+        ),
+      }),
+    [createNotification]
+  );
+};
+
 export const NotificationProvider = ({ children }: { children: ReactNode }) => {
   const [state, setState] = useState<{
     isOpen: boolean;
@@ -132,6 +148,24 @@ const SuccessNotificationContent = ({
   );
 };
 SuccessNotificationContent.displayName = "SuccessNotificationContent";
+
+const ErrorNotificationContent = ({
+  onClose,
+  children,
+  isClosable = false,
+}: NotificationContentProps & { children: ReactNode }) => {
+  return (
+    <div className="relative max-w-screen-2/3 w-full p-6 bg-red-100 border border-red-300 rounded-t text-red-600 font-extrabold">
+      {children}
+      {isClosable ? (
+        <CloseIcon
+          onClick={onClose}
+          className="absolute right-3 top-6 cursor-pointer"
+        />
+      ) : null}
+    </div>
+  );
+};
 
 const Notification = ({
   isOpen,
