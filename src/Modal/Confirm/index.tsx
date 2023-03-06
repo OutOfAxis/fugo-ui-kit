@@ -10,7 +10,7 @@ export const Confirm = forwardRef<
     children: ReactNode;
     footer?: ReactNode;
     confirmTitle: ReactNode;
-    cancelTitle?: ReactNode;
+    cancelTitle?: ReactNode | null;
     isOpen: boolean;
     onCancel: () => void;
     onConfirm: (event: FormEvent<HTMLFormElement>) => void;
@@ -66,9 +66,11 @@ export const Confirm = forwardRef<
             </div>
             <div className="border-b border-gray-200 mx-auto" />
             <div className="flex justify-between items-center bg-gray-100 rounded-b-lg p-6 pr-24 lg:pr-6">
-              <ButtonSecondary onClick={onCancel}>
-                {cancelTitle || t("common.cancel", "Cancel")}
-              </ButtonSecondary>
+              {cancelTitle === null ? null : (
+                <ButtonSecondary onClick={onCancel}>
+                  {cancelTitle || t("common.cancel", "Cancel")}
+                </ButtonSecondary>
+              )}
               {footer}
               <ButtonSubmit
                 disabled={!isValid || isLoading}
