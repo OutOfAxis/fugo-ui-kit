@@ -62,7 +62,7 @@ export const SwitchableDatePicker = ({
         <div className="ml-2 font-bold text-sm">No End Date</div>
       </label>
       <label
-        className={`flex items-center ml-8 ${isOpen ? "hidden xs:block" : ""}`}
+        className={`items-center ml-8 ${isOpen ? "hidden xs:flex" : "flex"}`}
       >
         <SquareCheckbox
           disabled={disabled}
