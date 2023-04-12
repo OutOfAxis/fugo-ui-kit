@@ -13,7 +13,7 @@ export const ThreeDotDropDown = forwardRef<
   <Menu ref={ref} color="dark">
     <MenuButton>
       <div className="h-8 w-8 flex items-center justify-center">
-        <Icon className="h-4 w-4 cursor-pointer fill-current text-gray-500" />
+        <Icon className="h-4 w-4 cursor-pointer fill-current text-gray-700" />
       </div>
     </MenuButton>
     <MenuList position={position}>{children}</MenuList>
