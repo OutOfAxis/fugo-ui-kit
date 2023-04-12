@@ -26,6 +26,7 @@ export const Tabs = forwardRef<
         {React.Children.map(children, (child) =>
           child ? (
             <li
+              data-tabid={child.props.id}
               className={`${tabClassName} ${
                 child.props.disabled ? "text-gray-500" : ""
               } ${
