@@ -47,7 +47,7 @@ export const Toggle = forwardRef<
       >
         <span
           className={`inline-block h-5 w-5 rounded-full bg-white
-          shadow transform transition ease-in-out duration-200 ${
+          shadow-sm transform transition ease-in-out duration-200 ${
             value ? "translate-x-5" : "translate-x-0"
           }`}
         />

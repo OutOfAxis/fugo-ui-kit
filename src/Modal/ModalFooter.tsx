@@ -8,7 +8,7 @@ export const ModalFooter = forwardRef<
   }
 >(({ children, className = "" }, ref) => (
   <div
-    className={`p-4 bg-gray-100 rounded-b-lg border-t border-gray-300 shadow-lg ${className}`}
+    className={`p-4 bg-gray-100 rounded-b-lg border-t border-gray-300 ${className}`}
     ref={ref}
   >
     {children}
