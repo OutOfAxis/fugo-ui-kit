@@ -1,30 +1,33 @@
-import { forwardRef } from "react";
-import { useIsMobile } from "../useScreenSize";
+import { forwardRef, HTMLAttributes } from "react";
 
 const colors = {
-  success: "text-green-400",
-  error: "text-red-500",
-  warning: "text-yellow-300",
+  success: "text-green-600",
+  error: "text-red-600",
+  warning: "text-yellow-600",
   muted: "text-gray-600",
 } as const;
+
+export type StatusDotColor = keyof typeof colors;
 
 export const StatusDot = forwardRef<
   HTMLDivElement,
   {
-    color: keyof typeof colors;
+    color: StatusDotColor;
     label: string;
+    labelProps?: HTMLAttributes<HTMLSpanElement>;
     className?: string;
-  }
->(({ color, label, className = "" }, ref) => {
-  const isMobile = useIsMobile();
-
+  } & HTMLAttributes<HTMLDivElement>
+>(({ color, label, labelProps, className = "", ...props }, ref) => {
   return (
     <div
+      {...props}
       ref={ref}
       className={`text-sm font-bold whitespace-nowrap ${colors[color]} ${className}`}
     >
-      •&nbsp;
-      {!isMobile && label}
+      •
+      <span className="hidden sm:inline" {...labelProps}>
+        &nbsp;{label}
+      </span>
     </div>
   );
 });
