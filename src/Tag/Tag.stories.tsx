@@ -23,6 +23,7 @@ export const Base: CaseFn = () => {
     <div className="flex space-x-2">
       <Tag color="default">default</Tag>
       <Tag color="error">error</Tag>
+      <Tag color="warning">warning</Tag>
       <Tag color="success">success</Tag>
       <Tag color="info">info</Tag>
       <div className="w-32">
