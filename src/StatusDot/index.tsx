@@ -22,7 +22,7 @@ export const StatusDot = forwardRef<
     <div
       {...props}
       ref={ref}
-      className={`text-sm font-bold whitespace-nowrap ${colors[color]} ${className}`}
+      className={`font-bold whitespace-nowrap ${colors[color]} ${className}`}
     >
       •
       <span className="hidden sm:inline" {...labelProps}>
