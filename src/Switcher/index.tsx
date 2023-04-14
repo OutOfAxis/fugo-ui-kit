@@ -71,12 +71,12 @@ const SwitcherItemInner = <T extends unknown>(
       className={`${className}
         ${
           active
-            ? "border-gray-700 z-20 text-gray-900"
+            ? "z-20 border-gray-700 text-gray-900"
             : "border-gray-500 text-gray-700"
         }
         ${first ? "rounded-l-md" : "-ml-px"}
         ${last ? "rounded-r-md" : ""}
-        flex items-center border px-4 py-3 cursor-pointer
+        flex cursor-pointer items-center border px-4 py-3
       `}
     />
   );

@@ -37,24 +37,24 @@ export const Toggle = forwardRef<
               }
         }
         data-testid="toggler"
-        className={`relative inline-block flex-shrink-0 h-6 w-11 border-2
-        border-transparent rounded-full ${
+        className={`relative inline-block h-6 w-11 flex-shrink-0 rounded-full
+        border-2 border-transparent ${
           disabled ? "" : "cursor-pointer"
-        } transition-colors
-        ease-in-out duration-200 focus:outline-none focus:shadow-outline ${
+        } focus:shadow-outline
+        transition-colors duration-200 ease-in-out focus:outline-none ${
           value ? "bg-green-400" : "bg-gray-300"
         }`}
       >
         <span
-          className={`inline-block h-5 w-5 rounded-full bg-white
-          shadow-sm transform transition ease-in-out duration-200 ${
+          className={`inline-block h-5 w-5 transform rounded-full
+          bg-white shadow-sm transition duration-200 ease-in-out ${
             value ? "translate-x-5" : "translate-x-0"
           }`}
         />
       </span>
       {label && (
         <p
-          className={`ml-1.5 font-semibold text-sm text-gray-700 ${labelClassName} ${
+          className={`ml-1.5 text-sm font-semibold text-gray-700 ${labelClassName} ${
             disabled ? "" : "cursor-pointer"
           }`}
           onClick={

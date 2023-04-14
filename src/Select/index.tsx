@@ -38,22 +38,22 @@ export const Select = forwardRef<
     return (
       <Wrapper className={`${className} block`} ref={ref}>
         {label ? (
-          <div className="block mb-2 text-xs font-semibold tracking-widest text-left text-gray-700 uppercase">
+          <div className="mb-2 block text-left text-xs font-semibold uppercase tracking-widest text-gray-700">
             {label}
           </div>
         ) : null}
         <UiSelect.Root value={value || undefined} onValueChange={onChange}>
           <UiSelect.Trigger
             className={`${
-              isLoading ? `${skeletonStyles.wave} overflow-hidden relative` : ""
-            } ${buttonClassName} text-gray-900 flex items-center justify-between text-left bg-white rounded border border-gray-500 min-h-[3rem] outline-none px-4 py-1 w-full overflow-hidden`}
+              isLoading ? `${skeletonStyles.wave} relative overflow-hidden` : ""
+            } ${buttonClassName} flex min-h-[3rem] w-full items-center justify-between overflow-hidden rounded border border-gray-500 bg-white px-4 py-1 text-left text-gray-900 outline-none`}
             disabled={disabled}
           >
             <UiSelect.Value placeholder={placeholder}>
               {buttonChildren}
             </UiSelect.Value>
             <UiSelect.Icon>
-              <ArrowDownIcon className="ml-2 w-3 h-3 stroke-current text-blue-600 arrowDown" />
+              <ArrowDownIcon className="arrowDown ml-2 h-3 w-3 stroke-current text-blue-600" />
             </UiSelect.Icon>
           </UiSelect.Trigger>
           {children}
@@ -75,14 +75,14 @@ export const SelectList = forwardRef<
   const content = (
     <UiSelect.Content
       ref={ref}
-      className={`${className} z-in-modal bg-white border border-gray-500 rounded shadow text-gray-900`}
+      className={`${className} z-in-modal rounded border border-gray-500 bg-white text-gray-900 shadow`}
     >
-      <UiSelect.ScrollUpButton className="flex items-center justify-center h-6 transform rotate-180">
-        <ArrowDownIcon className="w-3 h-3 stroke-current text-gray-700 arrowDown" />
+      <UiSelect.ScrollUpButton className="flex h-6 rotate-180 transform items-center justify-center">
+        <ArrowDownIcon className="arrowDown h-3 w-3 stroke-current text-gray-700" />
       </UiSelect.ScrollUpButton>
       <UiSelect.Viewport>{children}</UiSelect.Viewport>
-      <UiSelect.ScrollDownButton className="flex items-center justify-center h-6">
-        <ArrowDownIcon className="w-3 h-3 stroke-current text-gray-700 arrowDown" />
+      <UiSelect.ScrollDownButton className="flex h-6 items-center justify-center">
+        <ArrowDownIcon className="arrowDown h-3 w-3 stroke-current text-gray-700" />
       </UiSelect.ScrollDownButton>
     </UiSelect.Content>
   );
@@ -109,8 +109,8 @@ export const Option = forwardRef<
       disabled={disabled}
       className={`
         ${className}
-        min-h-[3rem] flex items-center py-2 px-4 outline-none
-        hover:bg-gray-100 cursor-pointer
+        flex min-h-[3rem] cursor-pointer items-center py-2 px-4
+        outline-none hover:bg-gray-100
         [&[data-state="checked"]]:font-bold
       `}
     >

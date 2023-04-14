@@ -9,7 +9,7 @@ export const ModalHeader = forwardRef<
 >(({ children, className = "" }, ref) => (
   <>
     <div className={`${className} p-4`}>{children}</div>
-    <div className="border-b border-gray-200 mx-auto" ref={ref} />
+    <div className="mx-auto border-b border-gray-200" ref={ref} />
   </>
 ));
 ModalHeader.displayName = "ModalHeader";

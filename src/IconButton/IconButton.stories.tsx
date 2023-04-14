@@ -24,5 +24,5 @@ export const Base: CaseFn = (props) => {
 };
 Base.storyName = Component.displayName;
 Base.args = {
-  children: <PremiumIcon className="w-5 h-5" />,
+  children: <PremiumIcon className="h-5 w-5" />,
 };

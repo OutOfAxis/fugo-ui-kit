@@ -106,7 +106,7 @@ export const WithAspectRatio: StoryFn<{ width: number; height: number }> = ({
         >
           <img
             src="https://placebear.com/g/200/300"
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 h-full w-full object-cover"
             alt=""
           />
         </div>

@@ -21,20 +21,20 @@ export function ListboxRounded<Option extends string = string>({
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger
-        className={`${className} text-gray-700 border border-gray-300 rounded-full pr-2.5 pl-3 text-sm outline-none h-10 whitespace-nowrap`}
+        className={`${className} h-10 whitespace-nowrap rounded-full border border-gray-300 pr-2.5 pl-3 text-sm text-gray-700 outline-none`}
       >
         <span className="mr-2">
           {isMobile ? "" : title} <b>{options[selected]}</b>
         </span>
       </DropdownMenu.Trigger>
       <DropdownMenu.Portal>
-        <DropdownMenu.Content className="z-menu-overlay text-gray-200 bg-gray-900 py-3 text-sm rounded-lg shadow">
+        <DropdownMenu.Content className="z-menu-overlay rounded-lg bg-gray-900 py-3 text-sm text-gray-200 shadow">
           {(Object.keys(options) as Array<Option>).map((key, i) => (
             <DropdownMenu.Item
               key={`key_${key}`}
               className={`${
                 i ? "mt-1" : ""
-              } px-4 outline-none hover:bg-gray-800 cursor-pointer`}
+              } cursor-pointer px-4 outline-none hover:bg-gray-800`}
               onSelect={() => onSelect(key)}
             >
               {title} <b>{options[key]}</b>

@@ -26,7 +26,7 @@ export const Tag = forwardRef<
     return (
       <div
         ref={ref}
-        className={`${className} py-1 font-bold rounded text-xs xs:text-sm px-1 xs:px-2
+        className={`${className} rounded py-1 px-1 text-xs font-bold xs:px-2 xs:text-sm
           ${truncateable ? "block truncate" : "inline-block"}
           ${styles[color]}
         `}

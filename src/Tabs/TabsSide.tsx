@@ -30,9 +30,9 @@ export const TabsSide = forwardRef<
       <FixedSideBar className="z-10 flex-shrink-0">
         <ul
           ref={ref}
-          className={`bg-white h-full pt-6 sm:pt-12 pl-4 sm:pl-16 ${
+          className={`h-full bg-white pt-6 pl-4 sm:pt-12 sm:pl-16 ${
             isFolded ? "pr-4 sm:pr-8" : "pr-4 sm:pr-10"
-          } whitespace-nowrap space-y-10 border-r border-gray-300 ${className}`}
+          } space-y-10 whitespace-nowrap border-r border-gray-300 ${className}`}
         >
           {React.Children.map(children, (child) => (
             <li
@@ -40,10 +40,10 @@ export const TabsSide = forwardRef<
                 activeTabId === child.props.id
                   ? "text-blue-600"
                   : "text-gray-500"
-              } cursor-pointer whitespace-nowrap flex items-center font-bold text-sm`}
+              } flex cursor-pointer items-center whitespace-nowrap text-sm font-bold`}
               onClick={() => onChange(child.props.id)}
             >
-              <div className={`w-6 h-6 ${isFolded ? "" : "mr-3"}`}>
+              <div className={`h-6 w-6 ${isFolded ? "" : "mr-3"}`}>
                 {child.props.icon}
               </div>
               {isFolded ? null : child.props.label}

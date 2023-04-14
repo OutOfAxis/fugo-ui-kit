@@ -372,7 +372,7 @@ export const InputBase = forwardRef<
       ref={ref}
       {...props}
       {...inputGroupContext?.override}
-      className={`${className} h-full w-full outline-none px-2 align-middle bg-transparent`}
+      className={`${className} h-full w-full bg-transparent px-2 align-middle outline-none`}
       onChange={(event) => {
         inputGroupContext?.input.onChange?.(event);
         onChange?.(event);

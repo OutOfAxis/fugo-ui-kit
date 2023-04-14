@@ -273,13 +273,13 @@ export const NumberInput = ({
       {noSteps ? null : (
         <ButtonPrimary
           disabled={disabled || (min != null && value <= min)}
-          className="!h-10 w-10 font-bold text-2xl"
+          className="!h-10 w-10 text-2xl font-bold"
           onClick={() => handleValueChange(value - step)}
         >
           -
         </ButtonPrimary>
       )}
-      <InputContainer disabled={disabled} className="flex-1 !h-10">
+      <InputContainer disabled={disabled} className="!h-10 flex-1">
         <InputBase
           {...props}
           disabled={disabled}
@@ -299,7 +299,7 @@ export const NumberInput = ({
       {noSteps ? null : (
         <ButtonPrimary
           disabled={disabled || (max != null && max <= value)}
-          className="!h-10 w-10 font-bold text-2xl"
+          className="!h-10 w-10 text-2xl font-bold"
           onClick={() => handleValueChange(value + step)}
         >
           +

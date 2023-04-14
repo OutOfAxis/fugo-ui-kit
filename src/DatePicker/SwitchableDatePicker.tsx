@@ -81,17 +81,17 @@ export const SwitchableDatePicker = forwardRef<SwitchableDatePickerRef, Props>(
             value={!hasEndDate}
             onChange={toggleHasEndDate}
           />
-          <div className="ml-2 font-bold text-sm">No End Date</div>
+          <div className="ml-2 text-sm font-bold">No End Date</div>
         </label>
         <label
-          className={`items-center ml-8 ${isOpen ? "hidden xs:flex" : "flex"}`}
+          className={`ml-8 items-center ${isOpen ? "hidden xs:flex" : "flex"}`}
         >
           <SquareCheckbox
             disabled={disabled}
             value={isWeekScheduleEnabled}
             onChange={handleWeekScheduleToggle}
           />
-          <div className="ml-2 font-bold text-sm">Week Schedule</div>
+          <div className="ml-2 text-sm font-bold">Week Schedule</div>
         </label>
       </div>
     );

@@ -17,21 +17,21 @@ export const Snackbar = ({
   return (
     <Portal>
       <div
-        className={`flex items-center justify-between bg-gray-800
-         p-4 rounded-lg absolute bottom-0 left-0 ml-4 mb-4 text-sm ${styles.show}`}
+        className={`absolute bottom-0 left-0 ml-4
+         mb-4 flex items-center justify-between rounded-lg bg-gray-800 p-4 text-sm ${styles.show}`}
       >
         <div className="pr-1 text-gray-300">{message}</div>
         <div className="flex items-center">
           {onUndo && (
             <div
-              className="cursor-pointer text-blue-400 stroke-current hover:text-blue-300 px-2"
+              className="cursor-pointer stroke-current px-2 text-blue-400 hover:text-blue-300"
               onClick={onUndo}
             >
               {buttonTitle || t("components.snackbar.undo", "Undo")}
             </div>
           )}
           <IconRemove
-            className="cursor-pointer text-gray-200 stroke-current hover:text-gray-400"
+            className="cursor-pointer stroke-current text-gray-200 hover:text-gray-400"
             onClick={onClose}
           />
         </div>

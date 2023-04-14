@@ -10,8 +10,8 @@ export const ButtonSecondary = forwardRef<HTMLDivElement, ButtonProps>(
       className={`${
         disabled
           ? `bg-gray-200 text-gray-500`
-          : `bg-white hover:bg-gray-300 text-gray-700`
-      } !font-bold border border-gray-500 ${className}`}
+          : `bg-white text-gray-700 hover:bg-gray-300`
+      } border border-gray-500 !font-bold ${className}`}
     >
       {children}
     </Button>

@@ -26,7 +26,7 @@ export const Checkbox = forwardRef<HTMLDivElement, Props>(
         : "text-gray-400 hover:text-gray-700 stroke-current";
 
     return (
-      <div className={`w-6 h-6 ${className}`} ref={ref}>
+      <div className={`h-6 w-6 ${className}`} ref={ref}>
         <CustomCheckboxContainer
           checked={value}
           onChange={onChange}

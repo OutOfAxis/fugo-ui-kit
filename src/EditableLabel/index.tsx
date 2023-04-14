@@ -22,7 +22,7 @@ export const EditableLabel = forwardRef<
     <input
       ref={ref}
       autoFocus
-      className={`grid font-bold text-sm text-gray-700 rounded outline-none leading-snug bg-gray-100`}
+      className={`grid rounded bg-gray-100 text-sm font-bold leading-snug text-gray-700 outline-none`}
       onBlur={onBlurHandler}
       onClick={(event) => event.stopPropagation()}
       onKeyDown={(event) => event.key === "Enter" && onBlurHandler(event)}
@@ -31,7 +31,7 @@ export const EditableLabel = forwardRef<
   ) : (
     <div
       ref={ref}
-      className={`font-bold text-sm truncate hover:cursor-text leading-snug ${
+      className={`truncate text-sm font-bold leading-snug hover:cursor-text ${
         onNameChange && "cursor-text"
       }`}
       onClick={(e) => {

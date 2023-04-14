@@ -35,8 +35,8 @@ export const SearchBar = forwardRef<
       <div className={`h-10 ${isMobile && "w-10"}`}>
         <div
           onClick={handleClick}
-          className={`${containerClassName} flex items-center h-10 rounded-full border border-gray-300 focus-within:border-blue-500
-        bg-gray-100 focus-within:bg-white
+          className={`${containerClassName} flex h-10 items-center rounded-full border border-gray-300 bg-gray-100
+        focus-within:border-blue-500 focus-within:bg-white
         ${
           isMobile
             ? foldable && isFolded
@@ -46,12 +46,12 @@ export const SearchBar = forwardRef<
         }
       `}
         >
-          <div className="bg-transparent h-full flex items-center pl-3">
+          <div className="flex h-full items-center bg-transparent pl-3">
             <IconSearch className="stroke-current text-gray-600" />
           </div>
           <input
             {...props}
-            className={`bg-transparent p-1 pr-3 w-full h-full outline-none ${
+            className={`h-full w-full bg-transparent p-1 pr-3 outline-none ${
               isMobile && foldable && isFolded ? "ml-4" : ""
             }`}
             onChange={(event) => onChange(event.target.value)}

@@ -8,7 +8,7 @@ export const TextPlaceholder = forwardRef<
 >(({ min = 40, max = 120 }, ref) => (
   <div
     ref={ref}
-    className={`bg-gray-200 h-3 transition-all duration-500 rounded-full relative overflow-hidden ${skeletonStyles.wave}`}
+    className={`relative h-3 overflow-hidden rounded-full bg-gray-200 transition-all duration-500 ${skeletonStyles.wave}`}
     style={{ width: random(min, max) }}
   />
 ));
@@ -23,7 +23,7 @@ export const ButtonPlaceholder = forwardRef<
 >(({ rounded = false, width = 80 }, ref) => (
   <div
     ref={ref}
-    className={`bg-gray-200 h-8 transition-all duration-500 rounded${
+    className={`h-8 bg-gray-200 transition-all duration-500 rounded${
       rounded ? "-full" : ""
     } relative overflow-hidden ${skeletonStyles.wave}`}
     style={{ width }}

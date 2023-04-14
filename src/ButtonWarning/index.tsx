@@ -6,7 +6,7 @@ export const ButtonWarning = forwardRef<HTMLDivElement, ButtonProps>(
     <Button
       {...props}
       ref={ref}
-      className={`${className} border border-red-600 bg-red-100 text-red-600 hover:bg-red-200 !font-bold`}
+      className={`${className} border border-red-600 bg-red-100 !font-bold text-red-600 hover:bg-red-200`}
     />
   )
 );

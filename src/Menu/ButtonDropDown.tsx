@@ -15,7 +15,7 @@ export const ButtonDropDown = forwardRef<
     <MenuButton>
       <ButtonPrimary className={className}>
         {label}
-        <ArrowDownIcon className="stroke-current h-3 w-3 ml-2" />
+        <ArrowDownIcon className="ml-2 h-3 w-3 stroke-current" />
       </ButtonPrimary>
     </MenuButton>
     <MenuList>{children}</MenuList>

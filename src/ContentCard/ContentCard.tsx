@@ -62,12 +62,12 @@ export const ContentCard = forwardRef<
     <RoundedCard
       {...props}
       ref={ref}
-      className={`flex flex-col cursor-pointer select-none relative ${
+      className={`relative flex cursor-pointer select-none flex-col ${
         props.className || ""
       }`}
     >
       <div className="relative h-full bg-white">{preview}</div>
-      <div className="p-2 bg-white">{children}</div>
+      <div className="bg-white p-2">{children}</div>
     </RoundedCard>
   );
 });

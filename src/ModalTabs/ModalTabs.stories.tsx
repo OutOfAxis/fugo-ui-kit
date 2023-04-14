@@ -47,7 +47,7 @@ export const Base: CaseFn = (props) => {
             <ModalTab>Tab B</ModalTab>
             <ModalTab>Tab C</ModalTab>
           </ModalTabList>
-          <TabPanels className="overflow-auto w-screen">
+          <TabPanels className="w-screen overflow-auto">
             <TabPanel>Content for Tab A</TabPanel>
             <TabPanel>Content for Tab B</TabPanel>
             <TabPanel>Content for Tab C</TabPanel>

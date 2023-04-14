@@ -35,7 +35,7 @@ export const Base: CaseFn = (props) => {
       <Tab
         id="tab1"
         label="Tab 1"
-        icon={<PremiumIconSvg className="w-6 h-6" />}
+        icon={<PremiumIconSvg className="h-6 w-6" />}
         className="p-4"
       >
         Tab content 1
@@ -43,7 +43,7 @@ export const Base: CaseFn = (props) => {
       <Tab
         id="tab2"
         label="Tab 2"
-        icon={<PremiumIconSvg className="w-6 h-6" />}
+        icon={<PremiumIconSvg className="h-6 w-6" />}
         className="p-4"
       >
         Content for tab 2

@@ -20,7 +20,7 @@ export const IconTooltip = ({
     >
       <InfoIcon
         {...props}
-        className={`${className} text-gray-500 hover:text-blue-600 transition-colors align-middle ml-1 inline-block`}
+        className={`${className} ml-1 inline-block align-middle text-gray-500 transition-colors hover:text-blue-600`}
       />
     </Tooltip>
   );

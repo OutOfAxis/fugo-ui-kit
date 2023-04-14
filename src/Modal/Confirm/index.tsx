@@ -58,14 +58,14 @@ export const Confirm = forwardRef<
       <Modal isOpen={isOpen} onClose={onCancel} size={size} ref={ref}>
         {() => (
           <form onSubmit={handleSubmit}>
-            <div className="px-7 pb-2 pt-10 text-gray-800 text-2xl font-bold flex justify-center">
+            <div className="flex justify-center px-7 pb-2 pt-10 text-2xl font-bold text-gray-800">
               {title}
             </div>
-            <div className="px-7 pt-2 pb-6 flex justify-center flex-col flex-1 sm:flex-0">
+            <div className="sm:flex-0 flex flex-1 flex-col justify-center px-7 pt-2 pb-6">
               {children}
             </div>
-            <div className="border-b border-gray-200 mx-auto" />
-            <div className="flex justify-between items-center bg-gray-100 rounded-b-lg p-6 pr-24 lg:pr-6">
+            <div className="mx-auto border-b border-gray-200" />
+            <div className="flex items-center justify-between rounded-b-lg bg-gray-100 p-6 pr-24 lg:pr-6">
               {cancelTitle === null ? null : (
                 <ButtonSecondary onClick={onCancel}>
                   {cancelTitle || t("common.cancel", "Cancel")}

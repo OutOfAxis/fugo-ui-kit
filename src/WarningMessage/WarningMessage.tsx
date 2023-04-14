@@ -11,9 +11,9 @@ export const WarningMessage = forwardRef<
       {...props}
       className={`${
         props.className || ""
-      } text-sm bg-orange-100 border border-orange-300 p-3 rounded-lg`}
+      } rounded-lg border border-orange-300 bg-orange-100 p-3 text-sm`}
     >
-      <WarningIcon className="text-orange-500 inline mr-1 w-5" />
+      <WarningIcon className="mr-1 inline w-5 text-orange-500" />
       {children}
     </div>
   );

@@ -23,7 +23,7 @@ export const EditableTitle = forwardRef<
     <input
       {...props}
       ref={ref}
-      className={`${className} text-gray-700 font-semibold ml-3 px-3`}
+      className={`${className} ml-3 px-3 font-semibold text-gray-700`}
       onChange={(e) => onChange(e.currentTarget.value)}
     />
   );

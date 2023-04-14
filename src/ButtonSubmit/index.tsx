@@ -29,9 +29,9 @@ export const ButtonSubmit = forwardRef<
     <button
       {...restProps}
       ref={ref}
-      className={`${className} inline-block py-3 px-4 font-bold rounded focus:shadow-lg focus:outline-none ${classes}`}
+      className={`${className} inline-block rounded py-3 px-4 font-bold focus:shadow-lg focus:outline-none ${classes}`}
     >
-      <div className="flex flex-cols justify-center items-center h-full">
+      <div className="flex-cols flex h-full items-center justify-center">
         {children}
         {isLoading && <ButtonLoader />}
       </div>

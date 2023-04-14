@@ -9,7 +9,7 @@ export const ButtonSecondaryAlt = forwardRef<HTMLDivElement, ButtonProps>(
       disabled={disabled}
       className={`bg-white ${
         disabled ? `text-gray-500` : `text-gray-700`
-      } !font-bold border border-transparent ${
+      } border border-transparent !font-bold ${
         disabled ? `` : `hover:border-gray-500`
       } ${className}`}
     >

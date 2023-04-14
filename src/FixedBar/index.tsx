@@ -19,7 +19,7 @@ export const FixedBar = ({
     <div ref={containerRef} style={{ height }}>
       <div
         ref={menuRef}
-        className={`fixed w-full z-nav-bar ${className}`}
+        className={`fixed z-nav-bar w-full ${className}`}
         style={{ width }}
       >
         {children}

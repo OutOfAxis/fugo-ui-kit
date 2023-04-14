@@ -6,7 +6,7 @@ export const ButtonDanger = forwardRef<HTMLDivElement, ButtonProps>(
     <Button
       {...props}
       ref={ref}
-      className={`${className} bg-red-600 text-white hover:bg-red-400 font-bold`}
+      className={`${className} bg-red-600 font-bold text-white hover:bg-red-400`}
     />
   )
 );

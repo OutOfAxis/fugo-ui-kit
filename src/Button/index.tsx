@@ -91,11 +91,11 @@ export const Button = forwardRef<HTMLDivElement, ButtonProps>(
         {...props}
         className={`inline-block ${
           small
-            ? `py-2 px-3 font-semibold h-10`
+            ? `h-10 py-2 px-3 font-semibold`
             : extraSmall
-            ? `py-0.5 px-2.5 text-sm font-bold h-6`
-            : `py-3 px-4 font-semibold h-12`
-        } rounded focus:outline-none select-none whitespace-nowrap focus:shadow-lg leading-none ${className}`}
+            ? `h-6 py-0.5 px-2.5 text-sm font-bold`
+            : `h-12 py-3 px-4 font-semibold`
+        } select-none whitespace-nowrap rounded leading-none focus:shadow-lg focus:outline-none ${className}`}
         onClick={handleClick}
         onKeyDown={(e) =>
           e.key === "Enter" ? handleClick(e as any) : undefined
@@ -103,7 +103,7 @@ export const Button = forwardRef<HTMLDivElement, ButtonProps>(
         role="button"
         tabIndex={props.autoFocus ? -1 : undefined}
       >
-        <div className="flex flex-cols justify-center items-center h-full">
+        <div className="flex-cols flex h-full items-center justify-center">
           {children}
           {isProcessing && <ButtonLoader />}
         </div>

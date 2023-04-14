@@ -23,7 +23,7 @@ export const Base: CaseFn = (props) => {
   return (
     <div className="flex">
       <FixedSideBar {...props}>
-        <div className="p-4 bg-white border border-black h-full">
+        <div className="h-full border border-black bg-white p-4">
           Side panel
         </div>
       </FixedSideBar>

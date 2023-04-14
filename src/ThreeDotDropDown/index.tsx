@@ -15,10 +15,10 @@ export const ThreeDotDropDown = forwardRef<
   <Menu ref={ref} color="dark">
     <MenuButton
       className={`${className} ${
-        rotate ? "rotate-90 origin-center" : undefined
+        rotate ? "origin-center rotate-90" : undefined
       }`}
     >
-      <div className="h-8 w-8 flex items-center justify-center">
+      <div className="flex h-8 w-8 items-center justify-center">
         <Icon className="h-4 w-4 cursor-pointer fill-current text-gray-700" />
       </div>
     </MenuButton>

@@ -9,7 +9,7 @@ export const SquareCheckbox = forwardRef<HTMLDivElement, Props>(
     <Checkbox
       {...props}
       ref={ref}
-      className={`w-7 h-7 ${props.className || ""}`}
+      className={`h-7 w-7 ${props.className || ""}`}
       IndeterminateIcon={IndeterminateIcon}
       InactiveIcon={InactiveIcon}
       ActiveIcon={ActiveIcon}

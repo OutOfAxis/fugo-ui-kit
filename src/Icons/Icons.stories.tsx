@@ -34,7 +34,7 @@ const ClipboardCopy = ({
   const [isCopied, setIsCopied] = useTemporaryState(2000);
   return (
     <div
-      className="flex items-center space-x-2 cursor-pointer"
+      className="flex cursor-pointer items-center space-x-2"
       onClick={() => {
         navigator.clipboard.writeText(template(name));
         setIsCopied(true);
@@ -88,7 +88,7 @@ export const PremiumIconBoxStory = () => (
       preview={
         <img
           src="https://placebear.com/g/200/300"
-          className="w-full h-full object-cover"
+          className="h-full w-full object-cover"
           alt=""
         />
       }

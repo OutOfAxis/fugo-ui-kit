@@ -30,7 +30,7 @@ export const Modal = forwardRef<
         dangerouslyBypassFocusLock // Modal scroll jumps to bottom without this
       >
         <DialogContent
-          className={`${className} bg-white sm:rounded-lg shadow-lg p-0 w-screen sm:w-auto flex flex-col ${
+          className={`${className} flex w-screen flex-col bg-white p-0 shadow-lg sm:w-auto sm:rounded-lg ${
             size || "default-modal-width"
           }`}
           aria-label="Dialog"

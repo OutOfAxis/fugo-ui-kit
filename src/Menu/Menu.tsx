@@ -70,7 +70,7 @@ export const MenuList = forwardRef<
           {...props}
           ref={ref}
           onClick={(event) => event.stopPropagation()}
-          className={`${className} text-sm rounded shadow-md ${styles[color]} ${styles.animated}`}
+          className={`${className} rounded text-sm shadow-md ${styles[color]} ${styles.animated}`}
           data-reach-menu-list=""
         />
       </MenuPopover>

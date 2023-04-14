@@ -22,7 +22,7 @@ export const StatusDot = forwardRef<
     <div
       {...props}
       ref={ref}
-      className={`font-bold truncate ${colors[color]} ${className}`}
+      className={`truncate font-bold ${colors[color]} ${className}`}
     >
       •
       <span className="hidden sm:inline" {...labelProps}>

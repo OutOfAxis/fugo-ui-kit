@@ -47,7 +47,7 @@ export const Combobox = forwardRef<HTMLDivElement, ComboboxProps>(
       value={value ? value?.toString() : placeholder || label}
     >
       {!!label && (
-        <label className="block text-xs text-gray-700 font-semibold uppercase tracking-widest mb-2">
+        <label className="mb-2 block text-xs font-semibold uppercase tracking-widest text-gray-700">
           {label}
         </label>
       )}
@@ -79,9 +79,9 @@ export const ComboboxList = forwardRef<HTMLUListElement, ComboboxListProps>(
       <ComboboxPopover
         aria-label="combobox-popover"
         portal={portal}
-        className="w-full z-in-modal"
+        className="z-in-modal w-full"
       >
-        <div className="border-b xl:border-l border-gray-200 mx-4" />
+        <div className="mx-4 border-b border-gray-200 xl:border-l" />
         <ReachComboboxList aria-label="combobox-list" ref={ref}>
           {placeholder && (
             <ComboboxOption value="default" aria-label="combobox-default">

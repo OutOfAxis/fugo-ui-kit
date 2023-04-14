@@ -7,7 +7,7 @@ export const ModalContent = forwardRef<
     className?: string;
   }
 >(({ children, className = "" }, ref) => (
-  <div ref={ref} className={`p-4 flex-1 sm:flex-0 ${className}`}>
+  <div ref={ref} className={`sm:flex-0 flex-1 p-4 ${className}`}>
     {children}
   </div>
 ));

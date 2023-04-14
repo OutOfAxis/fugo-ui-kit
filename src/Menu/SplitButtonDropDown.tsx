@@ -41,12 +41,12 @@ export const SplitButtonDropDown = forwardRef<
             <Tooltip label={disabledTooltip} hidden={!disabled}>
               <MenuButton disabled={disabled}>
                 <ButtonComponent
-                  className="h-12 w-12 rounded-full flex justify-center items-center"
+                  className="flex h-12 w-12 items-center justify-center rounded-full"
                   disabled={disabled}
                 >
                   <span
                     className={`text-xl font-bold ${
-                      isExpanded ? "transform rotate-45" : ""
+                      isExpanded ? "rotate-45 transform" : ""
                     }`}
                   >
                     +
@@ -71,10 +71,10 @@ export const SplitButtonDropDown = forwardRef<
           <Menu color="light">
             <MenuButton disabled={disabled}>
               <ButtonComponent
-                className="h-12 rounded-l-none flex"
+                className="flex h-12 rounded-l-none"
                 disabled={disabled}
               >
-                <ArrowDownIcon className="stroke-current h-3 w-3" />
+                <ArrowDownIcon className="h-3 w-3 stroke-current" />
               </ButtonComponent>
             </MenuButton>
             <MenuList>{React.Children.toArray(children).slice(1)}</MenuList>

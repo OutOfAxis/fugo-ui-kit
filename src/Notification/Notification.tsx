@@ -136,12 +136,12 @@ const SuccessNotificationContent = ({
   isClosable = false,
 }: NotificationContentProps & { children: ReactNode }) => {
   return (
-    <div className="relative max-w-screen-2/3 w-full p-6 bg-green-100 border border-green-300 rounded-t text-green-600 font-extrabold">
+    <div className="relative w-full max-w-screen-2/3 rounded-t border border-green-300 bg-green-100 p-6 font-extrabold text-green-600">
       {children}
       {isClosable ? (
         <CloseIcon
           onClick={onClose}
-          className="absolute right-3 top-6 cursor-pointer"
+          className="absolute top-6 right-3 cursor-pointer"
         />
       ) : null}
     </div>
@@ -155,12 +155,12 @@ const ErrorNotificationContent = ({
   isClosable = false,
 }: NotificationContentProps & { children: ReactNode }) => {
   return (
-    <div className="relative max-w-screen-2/3 w-full p-6 bg-red-100 border border-red-300 rounded-t text-red-600 font-extrabold">
+    <div className="relative w-full max-w-screen-2/3 rounded-t border border-red-300 bg-red-100 p-6 font-extrabold text-red-600">
       {children}
       {isClosable ? (
         <CloseIcon
           onClick={onClose}
-          className="absolute right-3 top-6 cursor-pointer"
+          className="absolute top-6 right-3 cursor-pointer"
         />
       ) : null}
     </div>
@@ -178,7 +178,6 @@ const Notification = ({
   duration?: number;
   children: ReactNode;
 }) => {
-  const [height, setHeight] = useState(1000);
   useEffect(() => {
     if (isOpen && duration) {
       const timeout = setTimeout(() => {
@@ -190,13 +189,9 @@ const Notification = ({
   return (
     <Portal>
       <div
-        ref={(elem) => {
-          if (elem && elem.offsetHeight !== height) {
-            setHeight(elem.offsetHeight);
-          }
-        }}
-        className="fixed w-full text-center flex justify-center transition-all duration-300 z-in-modal"
-        style={{ bottom: isOpen ? 0 : -height }}
+        className={`${
+          isOpen ? "" : "translate-y-full"
+        } fixed bottom-0 z-in-modal flex w-full justify-center text-center transition-all duration-300`}
       >
         {children}
       </div>

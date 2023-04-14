@@ -16,16 +16,16 @@ export const Textarea = forwardRef<
     return (
       <div className={containerClassName}>
         <TextareaAutosize
-          className={`${className} py-3 px-4 rounded border outline-none ${
+          className={`${className} rounded border py-3 px-4 outline-none ${
             error
-              ? "text-red-600 border-red-600"
+              ? "border-red-600 text-red-600"
               : "border-gray-500 focus:border-blue-500"
           }`}
           {...props}
           ref={ref}
         />
         {withError ? (
-          <small className="font-bold mt-1 uppercase text-2xs text-gray-700">
+          <small className="mt-1 text-2xs font-bold uppercase text-gray-700">
             {error || "\u00A0"}
           </small>
         ) : null}

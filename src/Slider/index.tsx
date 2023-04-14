@@ -54,10 +54,10 @@ export const SliderPercentLabeled = forwardRef<
   return (
     <div className={className}>
       <div className="flex items-center justify-between">
-        <div className="text-xs font-semibold tracking-widest text-gray-700 uppercase">
+        <div className="text-xs font-semibold uppercase tracking-widest text-gray-700">
           {label}
         </div>
-        <div className="font-bold text-2xs">
+        <div className="text-2xs font-bold">
           {Math.round((value || 1) * 100)}%
         </div>
       </div>
@@ -97,7 +97,7 @@ export const SliderSideValue = forwardRef<
           max={max}
         />
       </div>
-      <div className="pl-2 font-bold text-sm text-gray-700">{value}</div>
+      <div className="pl-2 text-sm font-bold text-gray-700">{value}</div>
     </div>
   );
 });

@@ -21,7 +21,7 @@ export const Table = forwardRef<
 >(({ isEditable, children }, ref) => (
   <table
     ref={ref}
-    className={`border-separate table-fixed w-full ${styles.table}`}
+    className={`w-full table-fixed border-separate ${styles.table}`}
   >
     <tbody>
       {flattenChildren(children).map((child) => {
@@ -91,7 +91,7 @@ export const Row = forwardRef<
           <td className="w-8" />
         )}
         <td
-          className={`w-3 md:w-4 rounded-l-lg border-l border-t border-b ${backgroundColor} ${borderColorValue}`}
+          className={`w-3 rounded-l-lg border-l border-t border-b md:w-4 ${backgroundColor} ${borderColorValue}`}
         />
         {flattenChildren(children).map((child) => {
           if (isValidElement(child)) {
