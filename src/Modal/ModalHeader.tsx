@@ -7,7 +7,7 @@ export const ModalHeader = forwardRef<
     className?: string;
   }
 >(({ children, className = "" }, ref) => (
-  <div ref={ref} className={`${className} px-6 pt-10 pb-4`}>
+  <div ref={ref} className={`${className} px-6 pt-10 pb-1`}>
     {children}
   </div>
 ));
