@@ -1,11 +1,9 @@
 import { CSSProperties, forwardRef, ReactNode } from "react";
-import { ModalHeader } from "./ModalHeader";
-import { ModalContent } from "./ModalContent";
-import { ModalFooter } from "./ModalFooter";
 import { DialogOverlay, DialogContent } from "@reach/dialog";
 import "@reach/dialog/styles.css";
 import "./styles.css";
 import { isFunction } from "lodash";
+import { div } from "../styled";
 
 export const Modal = forwardRef<
   HTMLDivElement,
@@ -44,4 +42,11 @@ export const Modal = forwardRef<
 );
 Modal.displayName = "Modal";
 
-export { ModalHeader, ModalContent, ModalFooter };
+export const ModalHeader = div`px-4 sm:px-6 pt-10 pb-1`;
+ModalHeader.displayName = "ModalHeader";
+
+export const ModalContent = div`sm:flex-0 flex-1 py-4 px-4 sm:px-6`;
+ModalContent.displayName = "ModalContent";
+
+export const ModalFooter = div`rounded-b-lg border-t border-gray-300 bg-gray-100 py-6 pl-4 pr-24 sm:pl-6 sm:pr-6`;
+ModalFooter.displayName = "ModalFooter";
