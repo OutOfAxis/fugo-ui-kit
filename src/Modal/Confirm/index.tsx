@@ -57,11 +57,14 @@ export const Confirm = forwardRef<
     return (
       <Modal isOpen={isOpen} onClose={onCancel} size={size} ref={ref}>
         {() => (
-          <form onSubmit={handleSubmit}>
+          <form
+            onSubmit={handleSubmit}
+            className="flex max-h-screen flex-1 flex-col"
+          >
             <ModalHeader className="flex justify-center text-2xl font-bold text-gray-800">
               {title}
             </ModalHeader>
-            <ModalContent className="flex flex-col justify-center">
+            <ModalContent className="flex flex-col overflow-y-auto">
               {children}
             </ModalContent>
             <ModalFooter className="flex items-center justify-between">
