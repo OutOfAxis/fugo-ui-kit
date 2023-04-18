@@ -64,9 +64,7 @@ export const Confirm = forwardRef<
             <ModalHeader className="flex justify-center text-2xl font-bold text-gray-800">
               {title}
             </ModalHeader>
-            <ModalContent className="flex flex-col overflow-y-auto">
-              {children}
-            </ModalContent>
+            <ModalContent className="flex flex-col">{children}</ModalContent>
             <ModalFooter className="flex items-center justify-between">
               {cancelTitle === null ? null : (
                 <ButtonSecondary onClick={onCancel}>
