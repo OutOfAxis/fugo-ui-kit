@@ -1,5 +1,10 @@
 import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
-import { TableKeyValue, ResponsiveTableRow, TableLabelCell } from "./index";
+import {
+  TableKeyValue,
+  ResponsiveTableRow,
+  TableLabelCell,
+  ResponsiveTableBody,
+} from "./index";
 
 const Component = TableKeyValue;
 
@@ -21,14 +26,16 @@ export default {
 export const Base: CaseFn = () => {
   return (
     <TableKeyValue>
-      <ResponsiveTableRow>
-        <TableLabelCell>Label</TableLabelCell>
-        <td>Value</td>
-      </ResponsiveTableRow>
-      <ResponsiveTableRow>
-        <TableLabelCell>Label</TableLabelCell>
-        <td>Value</td>
-      </ResponsiveTableRow>
+      <ResponsiveTableBody>
+        <ResponsiveTableRow>
+          <TableLabelCell>Label</TableLabelCell>
+          <td>Value</td>
+        </ResponsiveTableRow>
+        <ResponsiveTableRow>
+          <TableLabelCell>Label</TableLabelCell>
+          <td>Value</td>
+        </ResponsiveTableRow>
+      </ResponsiveTableBody>
     </TableKeyValue>
   );
 };
