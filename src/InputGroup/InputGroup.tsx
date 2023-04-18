@@ -12,7 +12,7 @@ export const InputGroup = ({
   children: ReactNode;
 } & HTMLAttributes<HTMLDivElement>) => (
   <div {...props} className={`${props.className ?? ""} space-y-3`}>
-    <div className="text-xl text-gray-900">{header}</div>
+    <div className="text-xl">{header}</div>
     {description && <div className="text-gray-700">{description}</div>}
     {children}
   </div>

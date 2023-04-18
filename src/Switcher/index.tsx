@@ -69,11 +69,7 @@ const SwitcherItemInner = <T extends unknown>(
       {...props}
       ref={ref}
       className={`${className}
-        ${
-          active
-            ? "z-20 border-gray-700 text-gray-900"
-            : "border-gray-500 text-gray-700"
-        }
+        ${active ? "z-20 border-gray-700" : "border-gray-500 text-gray-700"}
         ${first ? "rounded-l-md" : "-ml-px"}
         ${last ? "rounded-r-md" : ""}
         flex cursor-pointer items-center border px-4 py-3

@@ -61,7 +61,7 @@ export const Confirm = forwardRef<
             onSubmit={handleSubmit}
             className="flex max-h-screen flex-1 flex-col"
           >
-            <ModalHeader className="flex justify-center text-2xl font-bold text-gray-800">
+            <ModalHeader className="flex justify-center text-2xl font-bold">
               {title}
             </ModalHeader>
             <ModalContent className="flex flex-col">{children}</ModalContent>

@@ -12,7 +12,7 @@ export const TopTip = forwardRef<
   const { t } = useTranslation();
 
   return (
-    <div className={`mt-12 text-center text-gray-800 ${className}`} ref={ref}>
+    <div className={`mt-12 text-center ${className}`} ref={ref}>
       <BulbIcon className="mr-1 inline align-text-bottom text-purple-600" />
       <span className="font-bold">
         {t("components.topTip", "ProTip!")}

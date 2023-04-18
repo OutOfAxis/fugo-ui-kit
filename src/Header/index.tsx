@@ -13,7 +13,7 @@ export const Header = forwardRef<
   return (
     <h1
       ref={ref}
-      className={`text-left font-bold leading-none text-gray-800
+      className={`text-left font-bold leading-none
         ${isMobile ? "text-2xl" : "text-5xl"}
         ${className}
       `}
