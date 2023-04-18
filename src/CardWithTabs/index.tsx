@@ -8,7 +8,7 @@ CardWithTabs.displayName = "CardWithTabs";
 
 export const CardTabList = styled(
   TabList
-)`flex flex-shrink-0 xs:text-lg sm:text-2xl font-bold border-b border-gray-300 h-12`;
+)`flex px-3 flex-shrink-0 xs:text-lg sm:text-2xl font-bold border-b border-gray-300 h-12`;
 CardTabList.displayName = "CardTabList";
 
 export const CardTab = styled(Tab)`mx-0 sm:mx-6`;
