@@ -1,6 +1,6 @@
 import { FormEvent, forwardRef, ReactNode, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Modal } from "../index";
+import { Modal, ModalContent, ModalFooter, ModalHeader } from "../index";
 import { ButtonSecondary } from "../../ButtonSecondary";
 import { ButtonSubmit } from "../../ButtonSubmit";
 
@@ -58,14 +58,13 @@ export const Confirm = forwardRef<
       <Modal isOpen={isOpen} onClose={onCancel} size={size} ref={ref}>
         {() => (
           <form onSubmit={handleSubmit}>
-            <div className="flex justify-center px-7 pb-2 pt-10 text-2xl font-bold text-gray-800">
+            <ModalHeader className="flex justify-center text-2xl font-bold text-gray-800">
               {title}
-            </div>
-            <div className="sm:flex-0 flex flex-1 flex-col justify-center px-7 pt-2 pb-6">
+            </ModalHeader>
+            <ModalContent className="flex flex-col justify-center">
               {children}
-            </div>
-            <div className="mx-auto border-b border-gray-200" />
-            <div className="flex items-center justify-between rounded-b-lg bg-gray-100 p-6 pr-24 lg:pr-6">
+            </ModalContent>
+            <ModalFooter className="flex items-center justify-between">
               {cancelTitle === null ? null : (
                 <ButtonSecondary onClick={onCancel}>
                   {cancelTitle || t("common.cancel", "Cancel")}
@@ -80,7 +79,7 @@ export const Confirm = forwardRef<
               >
                 {confirmTitle}
               </ButtonSubmit>
-            </div>
+            </ModalFooter>
           </form>
         )}
       </Modal>
