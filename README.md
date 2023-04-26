@@ -17,7 +17,7 @@ Because the kit uses "passive compilation", your project will bundle only necess
 #### With Yarn
 
 ```shell
-yarn add @date-io/date-fns@1 @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome @material-ui/core @material-ui/pickers @outofaxis/react-google-flight-datepicker @radix-ui/react-dropdown-menu @radix-ui/react-label @radix-ui/react-select @radix-ui/react-slot @reach/checkbox @reach/combobox @reach/dialog @reach/disclosure @reach/menu-button @reach/popover @reach/rect @reach/slider @reach/tabs @reach/tooltip date-fns final-form i18next lodash react react-device-detect react-dom react-final-form react-i18next react-router-dom rifm tailwindcss use-debounce use-media uuid react-keyed-flatten-children
+yarn add @date-io/date-fns@1 @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome @material-ui/core @material-ui/pickers @outofaxis/react-google-flight-datepicker @radix-ui/react-dropdown-menu @radix-ui/react-label @radix-ui/react-select @radix-ui/react-slot @radix-ui/react-tooltip @reach/checkbox @reach/combobox @reach/dialog @reach/disclosure @reach/popover @reach/rect @reach/slider @reach/tabs date-fns final-form i18next lodash react react-device-detect react-dom react-final-form react-i18next react-router-dom rifm tailwindcss use-debounce use-media uuid react-keyed-flatten-children
 ```
 
 ```shell
@@ -27,7 +27,7 @@ yarn add @outofaxis/fugo-ui-kit
 #### With NPM
 
 ```shell
-npm i --legacy-peer-deps -S @date-io/date-fns@1 @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome @material-ui/core @material-ui/pickers @outofaxis/react-google-flight-datepicker @radix-ui/react-dropdown-menu @radix-ui/react-label @radix-ui/react-select @radix-ui/react-slot @reach/checkbox @reach/combobox @reach/dialog @reach/disclosure @reach/menu-button @reach/popover @reach/rect @reach/slider @reach/tabs @reach/tooltip date-fns final-form i18next lodash react react-device-detect react-dom react-final-form react-i18next react-router-dom rifm tailwindcss use-debounce use-media uuid react-keyed-flatten-children
+npm i --legacy-peer-deps -S @date-io/date-fns@1 @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome @material-ui/core @material-ui/pickers @outofaxis/react-google-flight-datepicker @radix-ui/react-dropdown-menu @radix-ui/react-label @radix-ui/react-select @radix-ui/react-slot @radix-ui/react-tooltip @reach/checkbox @reach/combobox @reach/dialog @reach/disclosure @reach/popover @reach/rect @reach/slider @reach/tabs date-fns final-form i18next lodash react react-device-detect react-dom react-final-form react-i18next react-router-dom rifm tailwindcss use-debounce use-media uuid react-keyed-flatten-children
 ```
 
 ```shell

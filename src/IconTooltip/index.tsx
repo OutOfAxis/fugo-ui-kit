@@ -1,21 +1,29 @@
 import { Tooltip } from "../Tooltip";
-import { Position } from "@reach/tooltip";
-import { ReactNode, SVGAttributes } from "react";
+import { ComponentProps, SVGAttributes } from "react";
 import { ReactComponent as InfoIcon } from "../Icons/InfoIcon.svg";
 
 export const IconTooltip = ({
-  label,
-  position,
   className = "",
+  hidden,
+  label,
+  side,
+  sideOffset,
+  align,
+  alignOffset,
   ...props
-}: {
-  label: ReactNode;
-  position?: Position;
-} & SVGAttributes<SVGSVGElement>) => {
+}: Pick<
+  ComponentProps<typeof Tooltip>,
+  "hidden" | "label" | "align" | "alignOffset" | "side" | "sideOffset"
+> &
+  SVGAttributes<SVGSVGElement>) => {
   return (
     <Tooltip
+      hidden={hidden}
       label={label}
-      position={position}
+      side={side}
+      sideOffset={sideOffset}
+      align={align}
+      alignOffset={alignOffset}
       className="max-w-screen-xs whitespace-normal"
     >
       <InfoIcon

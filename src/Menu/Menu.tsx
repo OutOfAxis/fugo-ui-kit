@@ -1,28 +1,21 @@
 import React, { forwardRef } from "react";
 import noop from "lodash/noop";
-import {
-  Menu as MenuReach,
-  MenuButton as MenuButtonReach,
-  MenuItem as MenuItemReach,
-  MenuPopover,
-  MenuItems,
-} from "@reach/menu-button";
-import { positionDefault } from "@reach/popover";
 import styles from "./index.module.css";
 import { ComponentProps } from "react";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 
 type ColorThemeValue = "light" | "dark";
 
 const ColorContext = React.createContext<ColorThemeValue>("light");
 
-export const Menu = forwardRef<
-  any,
-  ComponentProps<typeof MenuReach> & { color: "light" | "dark" }
->(({ color, ...menuProps }, ref) => (
+export const Menu = ({
+  color,
+  ...menuProps
+}: ComponentProps<typeof DropdownMenu.Root> & { color: "light" | "dark" }) => (
   <ColorContext.Provider value={color}>
-    <MenuReach {...menuProps} ref={ref} />
+    <DropdownMenu.Root modal={false} {...menuProps} />
   </ColorContext.Provider>
-));
+);
 Menu.displayName = "Menu";
 
 function useContextColor() {
@@ -37,15 +30,17 @@ function useContextColor() {
 
 export const MenuItem = forwardRef<
   HTMLDivElement,
-  Omit<ComponentProps<typeof MenuItemReach>, "onSelect"> & {
+  Omit<ComponentProps<typeof DropdownMenu.Item>, "onSelect"> & {
     onClick?: () => void;
   }
 >(({ disabled = false, onClick = noop, ...props }, ref) => (
-  <MenuItemReach
+  <DropdownMenu.Item
     {...props}
     ref={ref}
     disabled={disabled}
-    className={`${props.className || ""} rounded`}
+    className={`${
+      props.className || ""
+    } group-data-[color=dark]/dropdown:hover:bg-gray-800 group-data-[color=dark]/dropdown:py-[5px] flex cursor-pointer rounded p-2 px-5 outline-0 hover:bg-gray-100`}
     onSelect={disabled ? noop : (onClick as any)}
   />
 ));
@@ -53,44 +48,40 @@ MenuItem.displayName = "MenuItem";
 
 export const MenuList = forwardRef<
   HTMLDivElement,
-  ComponentProps<typeof MenuItems> & ComponentProps<typeof MenuPopover>
->(
-  (
-    { portal = true, className = "", position = positionDefault, ...props },
-    ref
-  ) => {
-    const color = useContextColor();
-    return (
-      <MenuPopover
-        portal={portal}
-        position={position}
+  ComponentProps<typeof DropdownMenu.Content>
+>(({ className = "", ...props }, ref) => {
+  const color = useContextColor();
+  return (
+    <DropdownMenu.Portal>
+      <DropdownMenu.Content
+        {...props}
         style={{ zIndex: 2147483001 }} // greater than Intercom button
-      >
-        <MenuItems
-          {...props}
-          ref={ref}
-          onClick={(event) => event.stopPropagation()}
-          className={`${className} rounded text-sm shadow-md ${styles[color]} ${styles.animated}`}
-          data-reach-menu-list=""
-        />
-      </MenuPopover>
-    );
-  }
-);
+        ref={ref}
+        onClick={(event) => event.stopPropagation()}
+        className={`${className} ${
+          color === "dark"
+            ? "bg-gray-900 py-4 text-gray-200"
+            : "border border-gray-300 bg-white p-2"
+        } ${styles[color]} ${
+          styles.animated
+        } group/dropdown max-w-[100vw] rounded text-sm shadow-md`}
+        data-color={color}
+      />
+    </DropdownMenu.Portal>
+  );
+});
 MenuList.displayName = "MenuList";
 
 export const MenuButton = forwardRef<
   HTMLButtonElement,
-  ComponentProps<typeof MenuButtonReach>
+  ComponentProps<typeof DropdownMenu.Trigger>
 >((props, ref) => (
-  <MenuButtonReach
+  <DropdownMenu.Trigger
     {...props}
     ref={ref}
     onClick={(e) => {
       e.stopPropagation();
-      if (props.onClick) {
-        props.onClick(e);
-      }
+      props.onClick?.(e);
     }}
   />
 ));

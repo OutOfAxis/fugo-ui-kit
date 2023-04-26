@@ -1,29 +1,43 @@
-import ReachTooltip from "@reach/tooltip";
-import "@reach/tooltip/styles.css";
-import { PRect } from "@reach/rect";
-import "./index.module.css";
-import { ComponentProps } from "react";
+import { ComponentProps, ReactNode } from "react";
+import * as RadixTooltip from "@radix-ui/react-tooltip";
 
-const centered = (triggerRect?: PRect | null, tooltipRect?: PRect | null) => {
-  const triggerCenter =
-    (triggerRect?.left || 0) + (triggerRect?.width || 0) / 2;
-  const left = triggerCenter - (tooltipRect?.width || 0) / 2;
-  const maxLeft = window.innerWidth - (tooltipRect?.width || 0) - 2;
-  return {
-    left: Math.min(Math.max(2, left), maxLeft) + window.scrollX,
-    top: (triggerRect?.bottom || 0) + 8 + window.scrollY,
-  };
-};
-
-export const Tooltip = (props: ComponentProps<typeof ReachTooltip>) => {
-  if (props.hidden || !props.label) {
-    return <>{props.children}</>;
+export const Tooltip = ({
+  hidden,
+  label,
+  children,
+  side,
+  sideOffset,
+  align,
+  alignOffset,
+  className = "",
+}: {
+  hidden?: boolean;
+  label?: ReactNode;
+  children: ReactNode;
+} & Pick<
+  ComponentProps<typeof RadixTooltip.Content>,
+  "side" | "sideOffset" | "align" | "alignOffset" | "className"
+>) => {
+  if (hidden || !label) {
+    return <>{children}</>;
   }
   return (
-    <ReachTooltip
-      {...props}
-      className={`${props.className || ""} !z-in-modal`}
-      position={props.position || centered}
-    />
+    <RadixTooltip.Provider delayDuration={300}>
+      <RadixTooltip.Root>
+        <RadixTooltip.Trigger asChild>{children}</RadixTooltip.Trigger>
+        <RadixTooltip.Portal>
+          <RadixTooltip.Content
+            side={side}
+            sideOffset={sideOffset}
+            align={align}
+            alignOffset={alignOffset}
+            className={`${className} z-in-modal max-w-screen-xs rounded bg-gray-900 p-2 text-sm text-gray-100 shadow-sm`}
+          >
+            {label}
+            <RadixTooltip.Arrow />
+          </RadixTooltip.Content>
+        </RadixTooltip.Portal>
+      </RadixTooltip.Root>
+    </RadixTooltip.Provider>
   );
 };
