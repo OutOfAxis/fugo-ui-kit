@@ -31,7 +31,7 @@ export const Tooltip = ({
             sideOffset={sideOffset}
             align={align}
             alignOffset={alignOffset}
-            className={`${className} z-in-modal max-w-screen-xs rounded bg-gray-900 p-2 text-sm text-gray-100 shadow-sm`}
+            className={`${className} z-[2147483001] max-w-screen-xs rounded bg-gray-900 p-2 text-sm text-gray-100 shadow-sm`}
           >
             {label}
             <RadixTooltip.Arrow />
