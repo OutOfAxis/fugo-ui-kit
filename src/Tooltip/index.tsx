@@ -34,7 +34,7 @@ export const Tooltip = ({
             className={`${className} z-[2147483001] max-w-screen-xs rounded bg-gray-900 p-2 text-sm text-gray-100 shadow-sm`}
           >
             {label}
-            <RadixTooltip.Arrow />
+            <RadixTooltip.Arrow className="fill-gray-900" />
           </RadixTooltip.Content>
         </RadixTooltip.Portal>
       </RadixTooltip.Root>
