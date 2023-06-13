@@ -31,7 +31,7 @@ export const Base: ComponentStoryFn<any> = () => {
       onClick={() => {
         showNotification({
           content: () => <div>Notification content with any style</div>,
-          duration: 3000,
+          duration: 30000,
           isClosable: true,
         });
       }}
@@ -65,8 +65,9 @@ export const Success: ComponentStoryFn<any> = () => {
       onClick={() => {
         showNotification({
           content: () => <div>Success</div>,
-          duration: 3000,
+          duration: 5000,
           isClosable: true,
+          confetti: true,
         });
       }}
     >

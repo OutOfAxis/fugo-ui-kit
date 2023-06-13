@@ -10,6 +10,7 @@ import Portal from "@reach/portal";
 import { ReactComponent as CloseIcon } from "./CloseIcon.svg";
 import { useEventCallback } from "../useEventCallback";
 import { v4 as uuid } from "uuid";
+import { Confetti } from "../Confetti";
 
 const animationDuration = 300;
 
@@ -17,10 +18,12 @@ type NotificationContextValue = ({
   content,
   duration,
   isClosable,
+  confetti,
 }: {
   content: (props: NotificationContentProps) => ReactNode;
   duration?: number;
   isClosable?: boolean;
+  confetti?: boolean;
 }) => void;
 
 type NotificationContentProps = {
@@ -76,26 +79,32 @@ export const NotificationProvider = ({ children }: { children: ReactNode }) => {
       content: (props: NotificationContentProps) => ReactNode;
       duration?: number;
       isClosable: boolean;
+      confetti?: boolean;
     }>;
   }>({
     isOpen: false,
     queue: [],
   });
   const currentItem = state.queue[0];
-  const { id, content, duration, isClosable } = currentItem || {};
+  const { id, content, duration, isClosable, confetti } = currentItem || {};
   const handleOpen = useEventCallback(
     ({
       content,
       duration,
       isClosable = true,
+      confetti = false,
     }: {
       content: (props: NotificationContentProps) => ReactNode;
       duration?: number;
       isClosable?: boolean;
+      confetti?: boolean;
     }) => {
       setState((state) => ({
         isOpen: true,
-        queue: [...state.queue, { id: uuid(), content, duration, isClosable }],
+        queue: [
+          ...state.queue,
+          { id: uuid(), content, duration, isClosable, confetti },
+        ],
       }));
     }
   );
@@ -123,6 +132,7 @@ export const NotificationProvider = ({ children }: { children: ReactNode }) => {
               isClosable,
             })
           : null}
+        {confetti ? <Confetti /> : null}
       </Notification>
       {children}
     </NotificationContext.Provider>
@@ -191,9 +201,9 @@ const Notification = ({
       <div
         className={`${
           isOpen ? "" : "translate-y-full"
-        } fixed bottom-0 z-in-modal flex w-full justify-center text-center transition-all duration-300`}
+        } pointer-events-none fixed bottom-0 z-in-modal flex w-full justify-center text-center transition-all duration-300`}
       >
-        {children}
+        <div className="pointer-events-auto w-fit-content">{children}</div>
       </div>
     </Portal>
   );
