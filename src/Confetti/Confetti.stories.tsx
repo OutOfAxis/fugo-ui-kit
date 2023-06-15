@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
 import { Confetti } from "./index";
-import { useState } from "react";
 import { ButtonPrimary } from "../ButtonPrimary";
+import { useRef } from "react";
 
 const Component = Confetti;
 
@@ -21,14 +21,19 @@ export default {
 } as ComponentMeta<typeof Component>;
 
 export const Base: CaseFn = (props) => {
-  const [animated, setAnimated] = useState(true);
+  const confettiRef = useRef<any>(null);
   return (
     <div>
-      <ButtonPrimary onClick={() => setAnimated(!animated)}>
+      <ButtonPrimary
+        onClick={() => {
+          confettiRef.current?.trigger();
+        }}
+      >
         Toggle animation
       </ButtonPrimary>
-      <Confetti animated={animated} {...props} />
+      <Confetti ref={confettiRef} imperative {...props} />
     </div>
   );
 };
+
 Base.storyName = "Confetti";

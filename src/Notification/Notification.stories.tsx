@@ -31,7 +31,7 @@ export const Base: ComponentStoryFn<any> = () => {
       onClick={() => {
         showNotification({
           content: () => <div>Notification content with any style</div>,
-          duration: 30000,
+          duration: 3000,
           isClosable: true,
         });
       }}
@@ -61,18 +61,31 @@ showNotification({
 export const Success: ComponentStoryFn<any> = () => {
   const showNotification = useSuccessNotification();
   return (
-    <ButtonPrimary
-      onClick={() => {
-        showNotification({
-          content: () => <div>Success</div>,
-          duration: 5000,
-          isClosable: true,
-          confetti: true,
-        });
-      }}
-    >
-      useSuccessNotification
-    </ButtonPrimary>
+    <div className="space-x-3">
+      <ButtonPrimary
+        onClick={() => {
+          showNotification({
+            content: () => <div>Success</div>,
+            duration: 3000,
+            isClosable: true,
+          });
+        }}
+      >
+        useSuccessNotification
+      </ButtonPrimary>
+      <ButtonPrimary
+        onClick={() => {
+          showNotification({
+            content: () => <div>Success</div>,
+            duration: 3000,
+            isClosable: true,
+            confetti: true,
+          });
+        }}
+      >
+        useSuccessNotification with confetti
+      </ButtonPrimary>
+    </div>
   );
 };
 Success.storyName = "useSuccessNotification";

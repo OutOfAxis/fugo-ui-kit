@@ -10,9 +10,14 @@ import Portal from "@reach/portal";
 import { ReactComponent as CloseIcon } from "./CloseIcon.svg";
 import { useEventCallback } from "../useEventCallback";
 import { v4 as uuid } from "uuid";
-import { Confetti } from "../Confetti";
+import { Confetti, ConfettiRef } from "../Confetti";
+import { useRef } from "react";
+import { Countdown, useCountdown } from "../useCountdown";
+import "animate.css";
 
-const animationDuration = 300;
+const animationDuration = 500;
+
+type ContentFn = (props: NotificationContentProps) => ReactNode;
 
 type NotificationContextValue = ({
   content,
@@ -20,7 +25,7 @@ type NotificationContextValue = ({
   isClosable,
   confetti,
 }: {
-  content: (props: NotificationContentProps) => ReactNode;
+  content: ContentFn;
   duration?: number;
   isClosable?: boolean;
   confetti?: boolean;
@@ -31,6 +36,7 @@ type NotificationContentProps = {
   duration?: number;
   onClose: () => void;
   isClosable?: boolean;
+  countdown: Countdown;
 };
 
 const NotificationContext = createContext<NotificationContextValue>(() => {});
@@ -76,7 +82,7 @@ export const NotificationProvider = ({ children }: { children: ReactNode }) => {
     isOpen: boolean;
     queue: Array<{
       id: string;
-      content: (props: NotificationContentProps) => ReactNode;
+      content: ContentFn;
       duration?: number;
       isClosable: boolean;
       confetti?: boolean;
@@ -86,7 +92,6 @@ export const NotificationProvider = ({ children }: { children: ReactNode }) => {
     queue: [],
   });
   const currentItem = state.queue[0];
-  const { id, content, duration, isClosable, confetti } = currentItem || {};
   const handleOpen = useEventCallback(
     ({
       content,
@@ -94,7 +99,7 @@ export const NotificationProvider = ({ children }: { children: ReactNode }) => {
       isClosable = true,
       confetti = false,
     }: {
-      content: (props: NotificationContentProps) => ReactNode;
+      content: ContentFn;
       duration?: number;
       isClosable?: boolean;
       confetti?: boolean;
@@ -116,64 +121,107 @@ export const NotificationProvider = ({ children }: { children: ReactNode }) => {
       queue: rest,
     }));
   }, []);
+  const confettiRef = useRef<ConfettiRef>(null);
+  useEffect(() => {
+    if (currentItem?.confetti) {
+      confettiRef.current?.trigger();
+    }
+  }, [currentItem]);
   return (
     <NotificationContext.Provider value={handleOpen}>
-      <Notification
-        key={id}
-        isOpen={state.isOpen}
-        onClose={handleClose}
-        duration={duration}
-      >
-        {content
-          ? content({
-              isOpen: state.isOpen,
-              onClose: handleClose,
-              duration,
-              isClosable,
-            })
-          : null}
-        {confetti ? <Confetti /> : null}
-      </Notification>
+      {currentItem ? (
+        <Notification
+          key={currentItem.id}
+          isOpen={state.isOpen}
+          onClose={handleClose}
+          duration={currentItem.duration}
+          content={currentItem.content}
+          isClosable={currentItem.isClosable}
+        />
+      ) : null}
+      <Confetti ref={confettiRef} imperative />
       {children}
     </NotificationContext.Provider>
   );
 };
 NotificationProvider.displayName = "NotificationProvider";
 
-const SuccessNotificationContent = ({
-  onClose,
-  children,
-  isClosable = false,
-}: NotificationContentProps & { children: ReactNode }) => {
+const NotificationProgressBar = ({
+  duration,
+  countdown,
+  className = "bg-green-400",
+}: {
+  duration?: number;
+  countdown: Countdown;
+  className?: string;
+}) => {
+  if (!duration || countdown.value == null) {
+    return null;
+  }
   return (
-    <div className="relative w-full max-w-screen-2/3 rounded-t border border-green-300 bg-green-100 p-6 font-extrabold text-green-600">
-      {children}
+    <div
+      className={`${className} ${
+        countdown.isPaused ? "opacity-30" : ""
+      } absolute bottom-0 left-0 h-1 rounded-r-full transition-all duration-300 ease-linear`}
+      style={{
+        width: `${(1 - countdown.value / duration) * 100}%`,
+      }}
+    />
+  );
+};
+
+const BasicNotificationContent = ({
+  children,
+  isOpen,
+  isClosable,
+  onClose,
+  countdown,
+  duration,
+  className = "",
+  progressBarClassName,
+}: NotificationContentProps & {
+  children: ReactNode;
+  className?: string;
+  progressBarClassName?: string;
+}) => {
+  return (
+    <div
+      className={`${className} ${
+        isOpen ? "animate__bounceInUp" : "animate__fadeOutDown"
+      } animate__animated relative mb-8 w-full max-w-screen-2/3 overflow-hidden rounded-lg py-5 px-7`}
+    >
+      <div className="space-y-2">{children}</div>
       {isClosable ? (
         <CloseIcon
           onClick={onClose}
-          className="absolute top-6 right-3 cursor-pointer"
+          className="absolute top-3 right-3 h-4 w-4 cursor-pointer text-gray-600"
         />
       ) : null}
+      <NotificationProgressBar
+        className={progressBarClassName}
+        countdown={countdown}
+        duration={duration}
+      />
     </div>
   );
 };
+
+const SuccessNotificationContent = (
+  props: NotificationContentProps & { children: ReactNode }
+) => {
+  return <BasicNotificationContent {...props} className="bg-green-200" />;
+};
 SuccessNotificationContent.displayName = "SuccessNotificationContent";
 
-const ErrorNotificationContent = ({
-  onClose,
-  children,
-  isClosable = false,
-}: NotificationContentProps & { children: ReactNode }) => {
+const ErrorNotificationContent = (
+  props: NotificationContentProps & { children: ReactNode }
+) => {
   return (
-    <div className="relative w-full max-w-screen-2/3 rounded-t border border-red-300 bg-red-100 p-6 font-extrabold text-red-600">
-      {children}
-      {isClosable ? (
-        <CloseIcon
-          onClick={onClose}
-          className="absolute top-6 right-3 cursor-pointer"
-        />
-      ) : null}
-    </div>
+    <BasicNotificationContent
+      {...props}
+      className="bg-red-200"
+      progressBarClassName="bg-red-500"
+    />
   );
 };
 
@@ -181,29 +229,34 @@ const Notification = ({
   isOpen,
   onClose,
   duration,
-  children,
+  isClosable,
+  content,
 }: {
   isOpen: boolean;
   onClose: () => void;
   duration?: number;
-  children: ReactNode;
+  isClosable?: boolean;
+  content: ContentFn;
 }) => {
-  useEffect(() => {
-    if (isOpen && duration) {
-      const timeout = setTimeout(() => {
-        onClose();
-      }, duration);
-      return () => clearTimeout(timeout);
-    }
-  }, [isOpen, onClose, duration]);
+  const countdown = useCountdown(duration, onClose);
   return (
     <Portal>
       <div
-        className={`${
-          isOpen ? "" : "translate-y-full"
-        } pointer-events-none fixed bottom-0 z-in-modal flex w-full justify-center text-center transition-all duration-300`}
+        className={`animate__animated animate__faster pointer-events-none fixed bottom-0 z-in-modal flex w-full justify-center text-center`}
       >
-        <div className="pointer-events-auto w-fit-content">{children}</div>
+        <div
+          className="pointer-events-auto w-fit-content"
+          onMouseEnter={() => countdown.setIsPaused(true)}
+          onMouseLeave={() => countdown.setIsPaused(false)}
+        >
+          {content({
+            isOpen,
+            onClose,
+            duration,
+            isClosable,
+            countdown,
+          })}
+        </div>
       </div>
     </Portal>
   );

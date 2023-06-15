@@ -10,7 +10,10 @@ export const useIsMobile = () => useScreenSize(MAX_MOBILE_SIZE);
 export const useIsMobileOrTablet = () => useScreenSize(MAX_TABLET_SIZE);
 
 export const useWindowSize = () => {
-  const [size, setSize] = useState([window.innerWidth, window.innerHeight]);
+  const [size, setSize] = useState<[number, number]>([
+    window.innerWidth,
+    window.innerHeight,
+  ]);
   useLayoutEffect(() => {
     const updateSize = () => {
       setSize([window.innerWidth, window.innerHeight]);

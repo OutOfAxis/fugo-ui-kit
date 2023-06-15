@@ -1,7 +1,15 @@
-import { useEffect, useRef } from "react";
+import {
+  forwardRef,
+  useEffect,
+  useRef,
+  useImperativeHandle,
+  useCallback,
+  useState,
+} from "react";
 import sample from "lodash/sample";
 import random from "lodash/random";
 import { Portal } from "@radix-ui/react-portal";
+import { useWindowSize } from "../useScreenSize";
 
 const defaultColors: Array<string> = [
   "#00D8D6",
@@ -11,149 +19,195 @@ const defaultColors: Array<string> = [
   "#019492",
 ];
 
-export const Confetti = ({
-  className = "",
-  animated = true,
-  colors = defaultColors,
-  count = 500,
-  // speed = 2,
-  speed = 0.2,
-}: {
-  className?: string;
-  animated?: boolean;
-  colors?: Array<string>;
-  count?: number;
-  speed?: number;
-}) => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationTimerRef = useRef<number | null>(null);
-  const particlesRef = useRef<Array<Particle>>([]);
-  const isAnimatedRef = useRef(animated);
-  useEffect(() => {
-    isAnimatedRef.current = animated;
-  }, [animated]);
+export type ConfettiRef = {
+  trigger: () => void;
+  hide: () => void;
+};
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) {
-      return;
-    }
-    const width = (canvas.width = canvas.offsetWidth);
-    const height = (canvas.height = canvas.offsetHeight);
-    const context = canvas.getContext("2d")!;
+export const Confetti = forwardRef<
+  ConfettiRef,
+  {
+    imperative?: boolean;
+    className?: string;
+    colors?: Array<string>;
+    count?: number;
+    speed?: number;
+    maxSpeed?: number;
+    acceleration?: number;
+    isFromBottom?: boolean;
+    minSize?: number;
+    maxSize?: number;
+  }
+>(
+  (
+    {
+      imperative = false,
+      className = "",
+      colors = defaultColors,
+      count = 400,
+      // speed = 8,
+      // acceleration = 0.2,
+      // isFromBottom = false,
+      speed = -200,
+      maxSpeed = 8,
+      acceleration = 4,
+      isFromBottom = true,
+      minSize = 5,
+      maxSize = 15,
+    },
+    ref
+  ) => {
+    const [width, height] = useWindowSize();
+    const canvasRef = useRef<HTMLCanvasElement>(null);
+    const animationTimerRef = useRef<number | null>(null);
+    const particlesRef = useRef<Array<Particle>>([]);
+    const [isHidden, setIsHidden] = useState(false);
 
-    const particles = particlesRef.current;
-    let waveAngle: number = 0;
-
-    function resetParticle(particle: Particle): Particle {
-      particle.color = sample(colors)!;
-      particle.x = random(0, width, true);
-      // particle.y = random(height, height * 2, true);
-      // particle.yIncrement = random(-150, -10, true);
-      particle.y = random(-height, 0, true);
-      particle.yIncrement = speed;
-      particle.diameter = random(5, 15, true);
-      particle.tilt = random(-10, 0, true);
-      particle.tiltAngleIncrement = random(0.05, 0.12, true);
-      particle.tiltAngle = 0;
-      return particle;
-    }
-
-    function tick() {
-      context.clearRect(0, 0, width, height);
-      if (particles.length === 0) {
-        animationTimerRef.current = null;
+    const trigger = useCallback(() => {
+      setIsHidden(false);
+      const canvas = canvasRef.current;
+      if (!canvas) {
         return;
       }
-      update();
-      draw();
-      animationTimerRef.current = requestAnimationFrame(tick);
-    }
+      const context = canvas.getContext("2d")!;
 
-    function repopulateParticles() {
-      while (particles.length < count) {
-        particles.push(resetParticle({} as any));
-      }
-    }
+      const particles = particlesRef.current;
+      let waveAngle: number = 0;
 
-    function start() {
       repopulateParticles();
       if (animationTimerRef.current == null) {
         tick();
       }
-    }
 
-    function draw() {
-      particles.forEach((particle) => {
-        context.beginPath();
-        context.lineWidth = particle.diameter;
-        context.strokeStyle = particle.color;
-        context.lineCap = "round";
-        const x = particle.x + particle.tilt;
-        context.moveTo(x + particle.diameter / 2, particle.y);
-        context.lineTo(x, particle.y + particle.tilt + particle.diameter / 2);
-        context.stroke();
-      });
-    }
-
-    function update() {
-      const isAnimated = isAnimatedRef.current;
-      waveAngle += 0.01;
-      for (let i = 0; i < particles.length; i++) {
-        const particle = particles[i]!;
-        if (!isAnimated && particle.y < -15) {
-          particle.y = height + 100;
-        } else {
-          particle.tiltAngle += particle.tiltAngleIncrement;
-          particle.x += Math.sin(waveAngle);
-          particle.y +=
-            (Math.cos(waveAngle) + particle.diameter + particle.yIncrement) *
-            0.5;
-          particle.yIncrement += speed;
-          particle.tilt = Math.sin(particle.tiltAngle) * 15;
+      function tick() {
+        if (!canvas) {
+          return;
         }
-        if (
-          particle.x > width + 20 ||
-          particle.x < -20 ||
-          particle.y > height * 2
-        ) {
-          if (isAnimated && particles.length <= count) {
-            resetParticle(particle);
-          } else {
-            particles.splice(i, 1);
-            i--;
+        const width = (canvas.width = canvas.offsetWidth);
+        const height = (canvas.height = canvas.offsetHeight);
+        context.clearRect(0, 0, width, height);
+        if (particles.length === 0) {
+          animationTimerRef.current = null;
+          return;
+        }
+        update();
+        draw();
+        animationTimerRef.current = requestAnimationFrame(tick);
+
+        function update() {
+          waveAngle += 0.01;
+          for (let i = 0; i < particles.length; i++) {
+            const particle = particles[i]!;
+            particle.tiltAngle += particle.tiltAngleIncrement;
+            particle.x += Math.sin(waveAngle);
+            particle.y +=
+              (Math.cos(waveAngle) + particle.diameter + particle.speed) * 0.5;
+            particle.speed = Math.min(maxSpeed, particle.speed + acceleration);
+            particle.tilt = Math.sin(particle.tiltAngle) * 15;
+            if (
+              particle.x > width + 20 ||
+              particle.x < -20 ||
+              particle.y > height * 2
+            ) {
+              particles.splice(i, 1);
+              i--;
+            }
           }
         }
-      }
-    }
 
-    if (isAnimatedRef.current) {
-      start();
-    }
-  }, [animated, colors, count, speed]);
-  useEffect(() => {
-    return () => {
-      if (animationTimerRef.current != null) {
-        cancelAnimationFrame(animationTimerRef.current);
-        animationTimerRef.current = null;
+        function draw() {
+          particles.forEach((particle) => {
+            context.beginPath();
+            context.lineWidth = particle.diameter;
+            context.strokeStyle = particle.color;
+            context.lineCap = "round";
+            const x = particle.x + particle.tilt;
+            context.moveTo(x + particle.diameter / 2, particle.y);
+            context.lineTo(
+              x,
+              particle.y + particle.tilt + particle.diameter / 2
+            );
+            context.stroke();
+          });
+        }
       }
-    };
-  }, []);
-  return (
-    <Portal>
-      <canvas
-        ref={canvasRef}
-        className={`${className} pointer-events-none fixed inset-0 block h-screen w-screen`}
-      />
-    </Portal>
-  );
-};
+
+      function createParticle(): Particle {
+        return {
+          color: sample(colors)!,
+          x: random(0, width, true),
+          y: isFromBottom
+            ? random(height, height * 2, true)
+            : random(-height, 0, true),
+          speed: random(speed / 2, speed, true),
+          diameter: random(minSize, maxSize, true),
+          tilt: random(-10, 0, true),
+          tiltAngleIncrement: random(0.05, 0.12, true),
+          tiltAngle: 0,
+        };
+      }
+
+      function repopulateParticles() {
+        while (particles.length < count) {
+          particles.push(createParticle());
+        }
+      }
+    }, [
+      acceleration,
+      colors,
+      count,
+      height,
+      isFromBottom,
+      maxSize,
+      maxSpeed,
+      minSize,
+      speed,
+      width,
+    ]);
+    useImperativeHandle(
+      ref,
+      () => ({
+        trigger,
+        hide: () => {
+          setIsHidden(true);
+        },
+      }),
+      [trigger]
+    );
+    useEffect(() => {
+      if (!imperative) {
+        trigger();
+      }
+    }, [imperative, trigger]);
+    useEffect(() => {
+      return () => {
+        if (animationTimerRef.current != null) {
+          cancelAnimationFrame(animationTimerRef.current);
+          animationTimerRef.current = null;
+        }
+      };
+    }, []);
+    return (
+      <Portal>
+        <canvas
+          ref={canvasRef}
+          width={width}
+          height={height}
+          className={`${className} pointer-events-none fixed inset-0 block h-screen w-screen transition-opacity duration-500`}
+          style={{
+            opacity: isHidden ? 0 : 1,
+          }}
+        />
+      </Portal>
+    );
+  }
+);
 
 type Particle = {
   color: string;
   x: number;
   y: number;
-  yIncrement: number;
+  speed: number;
   diameter: number;
   tilt: number;
   tiltAngleIncrement: number;
