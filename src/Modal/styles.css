@@ -12,7 +12,7 @@
 
   [data-reach-dialog-content] {
     width: max-content;
-    margin: 10vh auto 0;
+    margin: 10vh auto;
     min-height: 0;
   }
 }
