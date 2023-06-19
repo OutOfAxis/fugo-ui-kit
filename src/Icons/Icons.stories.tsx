@@ -1,4 +1,5 @@
 import { ComponentStoryFn, Meta, StoryFn } from "@storybook/react";
+import { ReactComponent as CheckCircleIcon } from "./CheckCircleIcon.svg";
 import { ReactComponent as InfoIcon } from "./InfoIcon.svg";
 import {
   PremiumIcon,
@@ -13,7 +14,7 @@ import { CardName, ContentCard } from "../ContentCard/ContentCard";
 import { Spinner } from "./Spinner";
 
 const Icons = { PremiumIconSvg, PremiumIconBoxSvg };
-const SvgIcons = { InfoIcon };
+const SvgIcons = { CheckCircleIcon, InfoIcon };
 
 export default {} as Meta;
 

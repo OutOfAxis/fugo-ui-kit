@@ -45,9 +45,6 @@ export const Confetti = forwardRef<
       className = "",
       colors = defaultColors,
       count = 400,
-      // speed = 8,
-      // acceleration = 0.2,
-      // isFromBottom = false,
       speed = -200,
       maxSpeed = 8,
       acceleration = 4,
@@ -133,9 +130,11 @@ export const Confetti = forwardRef<
       }
 
       function createParticle(): Particle {
+        const width = canvas?.width || 0;
+        const height = canvas?.height || 0;
         return {
           color: sample(colors)!,
-          x: random(0, width, true),
+          x: random(0, width ?? 0, true),
           y: isFromBottom
             ? random(height, height * 2, true)
             : random(-height, 0, true),
@@ -156,13 +155,11 @@ export const Confetti = forwardRef<
       acceleration,
       colors,
       count,
-      height,
       isFromBottom,
       maxSize,
       maxSpeed,
       minSize,
       speed,
-      width,
     ]);
     useImperativeHandle(
       ref,

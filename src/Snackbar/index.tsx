@@ -1,4 +1,4 @@
-import Portal from "@reach/portal";
+import { Portal } from "@radix-ui/react-portal";
 import { useTranslation } from "react-i18next";
 import { SnackbarProps } from "./types";
 import { ReactComponent as IconRemove } from "./remove.svg";

@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 import { useEventCallback } from "../useEventCallback";
 import { v4 as uuid } from "uuid";
-import Portal from "@reach/portal";
+import { Portal } from "@radix-ui/react-portal";
 
 type PortalContextValue = <ReturnType = void>(
   content: (props: PortalContentProps<ReturnType>) => ReactNode

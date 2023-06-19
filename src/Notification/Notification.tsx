@@ -6,7 +6,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import Portal from "@reach/portal";
+import { Portal } from "@radix-ui/react-portal";
 import { ReactComponent as CloseIcon } from "./CloseIcon.svg";
 import { useEventCallback } from "../useEventCallback";
 import { v4 as uuid } from "uuid";
@@ -39,10 +39,18 @@ type NotificationContentProps = {
   countdown: Countdown;
 };
 
-const NotificationContext = createContext<NotificationContextValue>(() => {});
+const NotificationContext = createContext<NotificationContextValue | null>(
+  null
+);
 
 export const useNotification = () => {
-  return useContext(NotificationContext);
+  const fn = useContext(NotificationContext);
+  if (fn == null) {
+    throw new Error(
+      "useNotification must be used within a NotificationProvider"
+    );
+  }
+  return fn;
 };
 
 export const useSuccessNotification = (): NotificationContextValue => {
@@ -139,7 +147,7 @@ export const NotificationProvider = ({ children }: { children: ReactNode }) => {
           isClosable={currentItem.isClosable}
         />
       ) : null}
-      <Confetti ref={confettiRef} imperative />
+      <Confetti ref={confettiRef} imperative className="z-in-modal" />
       {children}
     </NotificationContext.Provider>
   );

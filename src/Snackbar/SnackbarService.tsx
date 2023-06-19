@@ -21,7 +21,15 @@ type SnackbarContextProps = {
 
 type SnackbarContextValue = (props: SnackbarContextProps) => void;
 
-const SnackbarContext = createContext<SnackbarContextValue>(() => null);
+const defaultSnackbarContextValue: SnackbarContextValue = () => {
+  console.error(
+    "Snackbar compound components cannot be rendered outside the Snackbar component"
+  );
+};
+
+const SnackbarContext = createContext<SnackbarContextValue>(
+  defaultSnackbarContextValue
+);
 
 export const useSnackbar = () => useContext(SnackbarContext);
 
