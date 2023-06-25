@@ -24,6 +24,8 @@ export type ConfettiRef = {
   hide: () => void;
 };
 
+const DEFAULT_HEIGHT = 1080;
+
 export const Confetti = forwardRef<
   ConfettiRef,
   {
@@ -45,9 +47,9 @@ export const Confetti = forwardRef<
       className = "",
       colors = defaultColors,
       count = 400,
-      speed = -200,
-      maxSpeed = 8,
-      acceleration = 4,
+      speed = -250,
+      maxSpeed = 10,
+      acceleration = 10,
       isFromBottom = true,
       minSize = 5,
       maxSize = 15,
@@ -55,6 +57,7 @@ export const Confetti = forwardRef<
     ref
   ) => {
     const [width, height] = useWindowSize();
+    const scale = height / DEFAULT_HEIGHT;
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const animationTimerRef = useRef<number | null>(null);
     const particlesRef = useRef<Array<Particle>>([]);
@@ -96,15 +99,18 @@ export const Confetti = forwardRef<
           for (let i = 0; i < particles.length; i++) {
             const particle = particles[i]!;
             particle.tiltAngle += particle.tiltAngleIncrement;
-            particle.x += Math.sin(waveAngle);
-            particle.y +=
-              (Math.cos(waveAngle) + particle.diameter + particle.speed) * 0.5;
-            particle.speed = Math.min(maxSpeed, particle.speed + acceleration);
-            particle.tilt = Math.sin(particle.tiltAngle) * 15;
+            particle.x += Math.sin(waveAngle) * scale;
+            particle.y += (Math.cos(waveAngle) + particle.speed) * scale;
+            particle.speed = Math.min(
+              particle.maxSpeed,
+              particle.speed + acceleration
+            );
+            particle.tilt = Math.sin(particle.tiltAngle) * 15 * scale;
             if (
               particle.x > width + 20 ||
               particle.x < -20 ||
-              particle.y > height * 2
+              particle.y > height * 2 ||
+              (particle.y < -200 * scale && Math.random() < 0.05)
             ) {
               particles.splice(i, 1);
               i--;
@@ -139,8 +145,9 @@ export const Confetti = forwardRef<
             ? random(height, height * 2, true)
             : random(-height, 0, true),
           speed: random(speed / 2, speed, true),
-          diameter: random(minSize, maxSize, true),
-          tilt: random(-10, 0, true),
+          maxSpeed: random(maxSpeed, maxSpeed * 2, true),
+          diameter: random(minSize * scale, maxSize * scale, true),
+          tilt: random(-10 * scale, 0, true),
           tiltAngleIncrement: random(0.05, 0.12, true),
           tiltAngle: 0,
         };
@@ -205,6 +212,7 @@ type Particle = {
   x: number;
   y: number;
   speed: number;
+  maxSpeed: number;
   diameter: number;
   tilt: number;
   tiltAngleIncrement: number;
