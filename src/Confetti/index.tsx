@@ -47,9 +47,9 @@ export const Confetti = forwardRef<
       className = "",
       colors = defaultColors,
       count = 400,
-      speed = -250,
-      maxSpeed = 10,
-      acceleration = 10,
+      speed = -120,
+      maxSpeed = 7,
+      acceleration = 5,
       isFromBottom = true,
       minSize = 5,
       maxSize = 15,
@@ -144,7 +144,7 @@ export const Confetti = forwardRef<
           y: isFromBottom
             ? random(height, height * 2, true)
             : random(-height, 0, true),
-          speed: random(speed / 2, speed, true),
+          speed: random(speed * 0.7, speed, true),
           maxSpeed: random(maxSpeed, maxSpeed * 2, true),
           diameter: random(minSize * scale, maxSize * scale, true),
           tilt: random(-10 * scale, 0, true),
