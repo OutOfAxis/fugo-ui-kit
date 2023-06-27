@@ -238,6 +238,7 @@ export const NumberInput = ({
   noSteps = false,
   onChange,
   className = "",
+  containerClassName = "",
   onBlur,
   ...props
 }: Omit<
@@ -251,6 +252,7 @@ export const NumberInput = ({
   min?: number;
   max?: number;
   fractionDigits?: number;
+  containerClassName?: string;
 }) => {
   const {
     formattedValue,
@@ -269,7 +271,7 @@ export const NumberInput = ({
     onChange,
   });
   return (
-    <div className="flex space-x-3">
+    <div className={`${containerClassName} flex space-x-3`}>
       {noSteps ? null : (
         <ButtonPrimary
           disabled={disabled || (min != null && value <= min)}
