@@ -7,10 +7,19 @@ export const Textarea = forwardRef<
     containerClassName?: string;
     error?: string;
     withError?: boolean;
+    onValueChange?: (newValue: string) => void;
   }
 >(
   (
-    { className = "", containerClassName = "", error, withError, ...props },
+    {
+      className = "",
+      containerClassName = "",
+      error,
+      withError,
+      onChange,
+      onValueChange,
+      ...props
+    },
     ref
   ) => {
     return (
@@ -22,6 +31,10 @@ export const Textarea = forwardRef<
               : "border-gray-500 focus:border-blue-500"
           }`}
           {...props}
+          onChange={(event) => {
+            onChange?.(event);
+            onValueChange?.(event.target.value);
+          }}
           ref={ref}
         />
         {withError ? (
