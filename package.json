@@ -1,6 +1,6 @@
 {
   "name": "@outofaxis/fugo-ui-kit",
-  "version": "11.5.0",
+  "version": "11.6.0",
   "description": "React components Kit for Fugo",
   "scripts": {
     "build": "npm-run-all -p -l \"build:*\"",
