@@ -327,7 +327,7 @@ InputMessage.displayName = "InputMessage";
 export const InputHeader = div`text-xl mb-3`;
 InputHeader.displayName = "InputHeader";
 
-export const InputDescription = div`text-gray-700 mb-3`;
+export const InputDescription = div`text-gray-600 mb-3 mt-2 text-sm`;
 InputDescription.displayName = "InputDescription";
 
 export const InputContainer = forwardRef<
