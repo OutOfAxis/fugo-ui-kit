@@ -25,7 +25,7 @@ export const Table = forwardRef<
   >
     <tbody>
       {flattenChildren(children).map((child) => {
-        if (isValidElement(child)) {
+        if (isValidElement<any>(child)) {
           return cloneElement(child, {
             ...child.props,
             isSelectable:
@@ -91,10 +91,10 @@ export const Row = forwardRef<
           <td className="w-8" />
         )}
         <td
-          className={`w-3 rounded-l-lg border-l border-t border-b md:w-4 ${backgroundColor} ${borderColorValue}`}
+          className={`w-3 rounded-l-lg border-b border-l border-t md:w-4 ${backgroundColor} ${borderColorValue}`}
         />
         {flattenChildren(children).map((child) => {
-          if (isValidElement(child)) {
+          if (isValidElement<any>(child)) {
             return cloneElement(child, {
               ...child.props,
               borderColor: borderColorValue,
@@ -104,7 +104,7 @@ export const Row = forwardRef<
           return child;
         })}
         <td
-          className={`w-4 rounded-r-lg border-t border-b border-r ${backgroundColor} ${borderColorValue}`}
+          className={`w-4 rounded-r-lg border-b border-r border-t ${backgroundColor} ${borderColorValue}`}
         />
       </tr>
     );
@@ -132,7 +132,7 @@ export const Cell = forwardRef<
   ) => (
     <td
       ref={ref}
-      className={`border-t border-b ${backgroundColor} ${borderColor} ${className}`}
+      className={`border-b border-t ${backgroundColor} ${borderColor} ${className}`}
     >
       {children}
     </td>

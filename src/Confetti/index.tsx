@@ -159,6 +159,7 @@ export const Confetti = forwardRef<
         }
       }
     }, [
+      scale,
       acceleration,
       colors,
       count,
