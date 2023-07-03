@@ -5,6 +5,7 @@ import { Modal, ModalFooter } from "../Modal";
 import { ButtonSecondary } from "../ButtonSecondary";
 
 export default {
+  title: "Portal",
   decorators: [
     (Story) => (
       <PortalProvider>

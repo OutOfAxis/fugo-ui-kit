@@ -3,6 +3,7 @@ import { useSnackbar, SnackbarProvider } from "./SnackbarService";
 import { ButtonPrimary } from "../ButtonPrimary";
 
 export default {
+  title: "Snackbar",
   parameters: {
     docs: {
       description: {

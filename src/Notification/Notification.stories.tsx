@@ -8,6 +8,7 @@ import {
 import { ButtonPrimary } from "../ButtonPrimary";
 
 export default {
+  title: "Notification",
   parameters: {
     docs: {
       description: {

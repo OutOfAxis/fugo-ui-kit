@@ -10,12 +10,10 @@ export default {
   parameters: {
     viewMode: "story",
   },
-  argTypes: {
-    children: {
-      type: "string",
-      defaultValue: "Header title",
-    },
+  args: {
+    children: "Header title",
   },
+  argTypes: {},
 } as ComponentMeta<typeof Component>;
 
 export const Base: Case = {};

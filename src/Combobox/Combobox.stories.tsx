@@ -9,16 +9,15 @@ export default {
   parameters: {
     viewMode: "story",
   },
+  args: {
+    placeholder: "Select an option",
+  },
   argTypes: {
     onChange: {
       type: "function",
     },
     onSelect: {
       type: "function",
-    },
-    placeholder: {
-      type: "string",
-      defaultValue: "Select an option",
     },
   },
 } as ComponentMeta<typeof Component>;

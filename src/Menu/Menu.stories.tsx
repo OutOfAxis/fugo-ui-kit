@@ -8,11 +8,10 @@ type CaseFn = ComponentStoryFn<typeof Component>;
 
 export default {
   component: Component,
-  argTypes: {
-    color: {
-      defaultValue: "light",
-    },
+  args: {
+    color: "light",
   },
+  argTypes: {},
   parameters: {
     docs: {
       description: {

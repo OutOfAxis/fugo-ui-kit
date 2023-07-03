@@ -16,7 +16,9 @@ import { Spinner } from "./Spinner";
 const Icons = { PremiumIconSvg, PremiumIconBoxSvg };
 const SvgIcons = { CheckCircleIcon, InfoIcon };
 
-export default {} as Meta;
+export default {
+  title: "Icons",
+} as Meta;
 
 const svgImportTemplate = (name: string) =>
   `import { ReactComponent as ${name} } from "@outofaxis/fugo-ui-kit/lib/Icons/${name}.svg";`;

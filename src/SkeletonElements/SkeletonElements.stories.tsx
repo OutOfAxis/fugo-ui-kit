@@ -2,6 +2,7 @@ import { ComponentStoryFn, Meta } from "@storybook/react";
 import { ButtonPlaceholder, TextPlaceholder } from "./index";
 
 export default {
+  title: "SkeletonElements",
   parameters: {
     docs: {
       description: {

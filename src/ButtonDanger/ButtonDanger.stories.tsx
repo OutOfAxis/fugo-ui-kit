@@ -7,11 +7,10 @@ type Case = ComponentStoryObj<typeof Component>;
 
 export default {
   component: Component,
+  args: {
+    children: "Button",
+  },
   argTypes: {
-    children: {
-      type: "string",
-      defaultValue: "Button",
-    },
     onClick: {
       type: "function",
     },
