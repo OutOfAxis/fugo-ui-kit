@@ -1,4 +1,4 @@
-import React, { ChangeEvent, forwardRef } from "react";
+import { ChangeEvent, ComponentType, forwardRef } from "react";
 import { ReactComponent as CircleInactiveIcon } from "./icons/checkbox-inactive.svg";
 import { ReactComponent as CircleActiveIcon } from "./icons/checkbox-active.svg";
 import { ReactComponent as CircleIndeterminateIcon } from "./icons/checkbox-indeterminate.svg";
@@ -54,7 +54,7 @@ export interface Props {
   value?: boolean | "mixed";
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   className?: string;
-  IndeterminateIcon?: React.ComponentType;
-  ActiveIcon?: React.ComponentType;
-  InactiveIcon?: React.ComponentType;
+  IndeterminateIcon?: ComponentType;
+  ActiveIcon?: ComponentType;
+  InactiveIcon?: ComponentType;
 }

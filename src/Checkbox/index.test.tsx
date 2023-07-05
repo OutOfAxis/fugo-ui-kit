@@ -16,11 +16,13 @@ it("clicks and updates property", () => {
   }
 
   const { container } = render(<Container />);
-  const input = container.querySelector('input[type="checkbox"]');
+  const input = container.querySelector(
+    'input[type="checkbox"]'
+  ) as HTMLInputElement;
 
   expect(input).toHaveAttribute("aria-checked", "mixed");
-  fireEvent.click(input!);
-  expect(input).toHaveAttribute("aria-checked", "false");
-  fireEvent.click(input!);
-  expect(input).toHaveAttribute("aria-checked", "true");
+  fireEvent.click(input);
+  expect(input.checked).toBe(false);
+  fireEvent.click(input);
+  expect(input.checked).toBe(true);
 });
