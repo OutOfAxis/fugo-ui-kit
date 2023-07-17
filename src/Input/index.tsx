@@ -1,10 +1,8 @@
 import {
   ChangeEvent,
-  createContext,
   forwardRef,
   HTMLAttributes,
   InputHTMLAttributes,
-  MutableRefObject,
   ReactNode,
   Ref,
   SVGProps,
@@ -22,14 +20,11 @@ import { ReactComponent as ViewOffIcon } from "./icons/view-off.svg";
 import { ReactComponent as ViewOnIcon } from "./icons/view-on.svg";
 import useForkRef from "@material-ui/core/utils/useForkRef";
 import { div, styled } from "../styled";
-import {
-  FieldInputProps,
-  FieldMetaState,
-  FieldRenderProps,
-} from "react-final-form";
+import { FieldRenderProps } from "react-final-form";
 import { Slot } from "@radix-ui/react-slot";
 import { setInputValue } from "./setInputValue";
 import { useEventCallback } from "../useEventCallback";
+import { InputGroupContext, InputGroupContextType } from "./InputGroupContext";
 
 const InputLabelStyled = styled("label")`
   block text-xs font-semibold text-gray-700 uppercase tracking-widest mb-2 text-left
@@ -88,22 +83,6 @@ InputAdornmentSeparator.displayName = "InputAdornmentSeparator";
 
 const InputMessageStyled = div`font-bold mt-1 uppercase text-2xs text-gray-700`;
 InputMessageStyled.displayName = "InputMessageStyled";
-
-export type InputGroupContextType<
-  FieldValue extends unknown = any,
-  T extends HTMLElement = any
-> = {
-  input: Partial<FieldInputProps<FieldValue, T>>;
-  meta: Partial<FieldMetaState<FieldValue>>;
-  inputRef: MutableRefObject<HTMLInputElement | null>;
-  id: string;
-  override: InputHTMLAttributes<T>;
-  setOverride: (override: InputHTMLAttributes<T>) => void;
-};
-
-const InputGroupContext = createContext<undefined | InputGroupContextType>(
-  undefined
-);
 
 export const InputGroup = forwardRef<
   HTMLDivElement,
@@ -221,7 +200,9 @@ export const InputShowPasswordAdornment = forwardRef<
   SVGSVGElement,
   SVGProps<SVGSVGElement>
 >(({ "aria-checked": showPasswordProp, onClick, ...props }, ref) => {
-  const inputGroupContext = useContext(InputGroupContext);
+  const inputGroupContext = useContext<
+    undefined | InputGroupContextType<string, HTMLInputElement>
+  >(InputGroupContext);
   if (inputGroupContext && inputGroupContext?.input.type !== "password") {
     return null;
   }
@@ -363,7 +344,9 @@ export const InputBase = forwardRef<
     onValueChange?: ValueChangeEventHandler<HTMLInputElement>;
   }
 >(({ onChange, onValueChange, className = "", ...props }, outerRef) => {
-  const inputGroupContext = useContext(InputGroupContext);
+  const inputGroupContext = useContext<
+    undefined | InputGroupContextType<string, HTMLInputElement>
+  >(InputGroupContext);
   const ref = useForkRef(outerRef, inputGroupContext?.inputRef ?? null);
   return (
     <input
