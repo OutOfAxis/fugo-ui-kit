@@ -48,18 +48,10 @@ InputLabel.displayName = "InputLabel";
 
 const InputContainerStyled = div<{ "data-success"?: boolean }>`
   relative bg-white border rounded h-12
-  ${({
-    "aria-disabled": disabled,
-    "aria-invalid": error,
-    "data-success": isSuccess,
-  }) =>
-    disabled
-      ? "text-gray-500 border-gray-500 bg-gray-100"
-      : error
-      ? "text-gray-700 border-red-500"
-      : isSuccess
-      ? "text-green-600 border-green-600"
-      : "text-gray-700 border-gray-500 focus-within:border-blue-500"}
+  text-gray-700 border-gray-500 focus-within:border-blue-500
+  [&[aria-disabled="true"]]:text-gray-500 [&[aria-disabled="true"]]:border-gray-500 [&[aria-disabled="true"]]:bg-gray-100
+  [&[aria-invalid="true"]]:text-gray-700 [&[aria-invalid="true"]]:border-red-500
+  [&[data-success="true"]]:text-green-600 [&[data-success="true"]]:border-green-600
 `;
 InputContainerStyled.displayName = "InputContainerStyled";
 

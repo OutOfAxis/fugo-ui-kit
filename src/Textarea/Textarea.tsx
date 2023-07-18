@@ -23,6 +23,7 @@ export const Textarea = forwardRef<
       withError,
       onChange,
       onValueChange,
+      disabled,
       ...props
     },
     outerRef
@@ -31,6 +32,8 @@ export const Textarea = forwardRef<
       undefined | InputGroupContextType<string, HTMLTextAreaElement>
     >(InputGroupContext);
     const ref = useForkRef(outerRef, inputGroupContext?.inputRef ?? null);
+    const isDisabled =
+      disabled ?? inputGroupContext?.override?.disabled ?? false;
     return (
       <div className={containerClassName}>
         <TextareaAutosize
@@ -44,9 +47,12 @@ export const Textarea = forwardRef<
             )
               ? "border-red-500"
               : "border-gray-500 focus:border-blue-500"
+          } ${
+            isDisabled ? "!border-gray-500 !bg-gray-100 !text-gray-500" : ""
           }`}
           {...props}
           {...inputGroupContext?.override}
+          disabled={isDisabled}
           onChange={(event) => {
             inputGroupContext?.input?.onChange?.(event);
             onChange?.(event);
