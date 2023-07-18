@@ -36,9 +36,13 @@ export const Textarea = forwardRef<
         <TextareaAutosize
           id={inputGroupContext?.id}
           {...inputGroupContext?.input}
-          className={`${className} rounded border px-4 py-3 outline-none ${
-            error
-              ? "border-red-600 text-red-600"
+          className={`${className} rounded border px-4 py-3 text-gray-700 outline-none ${
+            error ||
+            Boolean(
+              inputGroupContext?.meta.touched !== false &&
+                inputGroupContext?.meta.error
+            )
+              ? "border-red-500"
               : "border-gray-500 focus:border-blue-500"
           }`}
           {...props}
@@ -51,7 +55,7 @@ export const Textarea = forwardRef<
           ref={ref}
         />
         {withError ? (
-          <small className="mt-1 text-2xs font-bold uppercase text-gray-700">
+          <small className="mt-1 text-sm text-red-500">
             {error || "\u00A0"}
           </small>
         ) : null}

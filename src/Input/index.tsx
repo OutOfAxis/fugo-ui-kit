@@ -56,7 +56,7 @@ const InputContainerStyled = div<{ "data-success"?: boolean }>`
     disabled
       ? "text-gray-500 border-gray-500 bg-gray-100"
       : error
-      ? "text-red-600 border-red-600"
+      ? "text-gray-700 border-red-500"
       : isSuccess
       ? "text-green-600 border-green-600"
       : "text-gray-700 border-gray-500 focus-within:border-blue-500"}
@@ -81,7 +81,7 @@ InputCleanAdornmentStyled.displayName = "InputCleanAdornmentStyled";
 export const InputAdornmentSeparator = div`border-l border-gray-300 mx-2 h-5`;
 InputAdornmentSeparator.displayName = "InputAdornmentSeparator";
 
-const InputMessageStyled = div`font-bold mt-1 uppercase text-2xs text-gray-700`;
+const InputMessageStyled = div`[&[data-state="error"]]:text-red-500 mt-1 text-sm text-gray-700`;
 InputMessageStyled.displayName = "InputMessageStyled";
 
 export const InputGroup = forwardRef<
@@ -290,8 +290,15 @@ export const InputMessage = forwardRef<
   HTMLAttributes<HTMLDivElement> & { errorMessage?: string }
 >(({ children, errorMessage, ...props }, ref) => {
   const inputGroupContext = useContext(InputGroupContext);
+  const isError = Boolean(
+    inputGroupContext?.meta.touched !== false && inputGroupContext?.meta.error
+  );
   return (
-    <InputMessageStyled ref={ref} {...props}>
+    <InputMessageStyled
+      ref={ref}
+      {...props}
+      data-state={isError ? "error" : undefined}
+    >
       {errorMessage &&
       inputGroupContext?.meta.error === true &&
       inputGroupContext?.meta.touched !== false
@@ -308,7 +315,7 @@ InputMessage.displayName = "InputMessage";
 export const InputHeader = div`text-xl mb-3`;
 InputHeader.displayName = "InputHeader";
 
-export const InputDescription = div`text-gray-600 mb-3 mt-2 text-sm`;
+export const InputDescription = div`text-gray-700 mb-3 mt-2 text-xs`;
 InputDescription.displayName = "InputDescription";
 
 export const InputContainer = forwardRef<
