@@ -46,7 +46,7 @@ export const Select = forwardRef<
           <UiSelect.Trigger
             className={`${
               isLoading ? `${skeletonStyles.wave} relative overflow-hidden` : ""
-            } ${buttonClassName} flex min-h-[3rem] w-full items-center justify-between overflow-hidden rounded border border-gray-500 bg-white px-4 py-1 text-left outline-none`}
+            } ${buttonClassName} flex min-h-[3rem] w-full items-center justify-between overflow-hidden rounded border border-gray-300 bg-white px-4 py-1 text-left outline-none`}
             disabled={disabled}
           >
             <UiSelect.Value placeholder={placeholder}>
@@ -75,7 +75,7 @@ export const SelectList = forwardRef<
   const content = (
     <UiSelect.Content
       ref={ref}
-      className={`${className} z-in-modal rounded border border-gray-500 bg-white shadow`}
+      className={`${className} z-in-modal rounded border border-gray-300 bg-white shadow`}
     >
       <UiSelect.ScrollUpButton className="flex h-6 rotate-180 transform items-center justify-center">
         <ArrowDownIcon className="arrowDown h-3 w-3 stroke-current text-gray-700" />
@@ -109,7 +109,7 @@ export const Option = forwardRef<
       disabled={disabled}
       className={`
         ${className}
-        flex min-h-[3rem] cursor-pointer items-center py-2 px-4
+        flex min-h-[3rem] cursor-pointer items-center px-4 py-2
         outline-none hover:bg-gray-100
         [&[data-state="checked"]]:font-bold
       `}

@@ -27,7 +27,7 @@ import { useEventCallback } from "../useEventCallback";
 import { InputGroupContext, InputGroupContextType } from "./InputGroupContext";
 
 const InputLabelStyled = styled("label")`
-  block text-xs font-semibold text-gray-700 uppercase tracking-widest mb-2 text-left
+  block text-xs font-semibold text-gray-600 uppercase tracking-widest mb-2 text-left
 `;
 InputLabelStyled.displayName = "InputLabelStyled";
 
@@ -48,7 +48,7 @@ InputLabel.displayName = "InputLabel";
 
 const InputContainerStyled = div<{ "data-success"?: boolean }>`
   relative bg-white border rounded h-12
-  text-gray-700 border-gray-500 focus-within:border-blue-500
+  text-gray-700 border-gray-300 focus-within:border-blue-500
   [&[aria-disabled="true"]]:text-gray-500 [&[aria-disabled="true"]]:border-gray-500 [&[aria-disabled="true"]]:bg-gray-100
   [&[aria-invalid="true"]]:text-gray-700 [&[aria-invalid="true"]]:border-red-500
   [&[data-success="true"]]:text-green-600 [&[data-success="true"]]:border-green-600
