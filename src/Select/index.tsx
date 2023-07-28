@@ -1,24 +1,23 @@
-import { forwardRef, ReactNode } from "react";
+import { ForwardedRef, forwardRef, ReactNode } from "react";
 import * as UiSelect from "@radix-ui/react-select";
 import * as UiLabel from "@radix-ui/react-label";
 import { ReactComponent as ArrowDownIcon } from "./arrow-down.svg";
 import skeletonStyles from "../SkeletonElements/thumbnail-skeleton.module.css";
 
-export const Select = forwardRef<
-  any,
-  {
-    className?: string;
-    buttonClassName?: string;
-    children: ReactNode;
-    label?: string;
-    onChange: (value: string) => void;
-    placeholder?: string;
-    value?: string;
-    disabled?: boolean;
-    isLoading?: boolean;
-    buttonChildren?: ReactNode;
-  }
->(
+type SelectProps<T extends string> = {
+  className?: string;
+  buttonClassName?: string;
+  children: ReactNode;
+  label?: string;
+  onChange: (value: T) => void;
+  placeholder?: string;
+  value?: T;
+  disabled?: boolean;
+  isLoading?: boolean;
+  buttonChildren?: ReactNode;
+};
+
+export const Select = forwardRef<any, SelectProps<string>>(
   (
     {
       className = "",
@@ -61,7 +60,9 @@ export const Select = forwardRef<
       </Wrapper>
     );
   }
-);
+) as <T extends string = string>(
+  props: SelectProps<T> & { ref?: ForwardedRef<any> }
+) => JSX.Element;
 Select.displayName = "Select";
 
 export const SelectList = forwardRef<
