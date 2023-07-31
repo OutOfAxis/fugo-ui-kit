@@ -1,3 +1,4 @@
+/// <reference path="../../global.d.ts" />
 import { ForwardedRef, forwardRef, ReactNode } from "react";
 import * as UiSelect from "@radix-ui/react-select";
 import * as UiLabel from "@radix-ui/react-label";
@@ -31,7 +32,7 @@ export const Select = forwardRef<any, SelectProps<string>>(
       isLoading = false,
       buttonChildren,
     },
-    ref
+    ref,
   ) => {
     const Wrapper = label ? UiLabel.Root : "div";
     return (
@@ -59,9 +60,9 @@ export const Select = forwardRef<any, SelectProps<string>>(
         </UiSelect.Root>
       </Wrapper>
     );
-  }
+  },
 ) as <T extends string = string>(
-  props: SelectProps<T> & { ref?: ForwardedRef<any> }
+  props: SelectProps<T> & { ref?: ForwardedRef<any> },
 ) => JSX.Element;
 Select.displayName = "Select";
 
