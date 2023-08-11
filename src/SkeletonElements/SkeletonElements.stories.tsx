@@ -19,12 +19,11 @@ export const ButtonPlaceholderStory: ComponentStoryFn<
 };
 ButtonPlaceholderStory.storyName = "ButtonPlaceholder";
 ButtonPlaceholderStory.args = {
-  rounded: false,
-  width: 100,
+  style: { width: 100 },
 };
 
 export const TextPlaceholderStory: ComponentStoryFn<typeof TextPlaceholder> = (
-  props
+  props,
 ) => {
   return (
     <div className="space-y-4">
