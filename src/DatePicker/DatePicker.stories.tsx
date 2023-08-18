@@ -1,11 +1,11 @@
 import { SingleDatePicker } from "./DatePicker";
-import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
-import { useArgs } from "@storybook/client-api";
+import { Meta, StoryFn } from "@storybook/react";
+import { useArgs } from "@storybook/preview-api";
 
 const Component = SingleDatePicker;
 (Component as any).displayName = "DatePicker";
 
-type CaseFn = ComponentStoryFn<typeof Component>;
+type CaseFn = StoryFn<typeof Component>;
 
 export default {
   component: Component,
@@ -26,7 +26,7 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
 export const Base: CaseFn = (props) => {
   const [args, setArgs] = useArgs();

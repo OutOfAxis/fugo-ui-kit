@@ -1,9 +1,9 @@
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { TopTip } from "./index";
 
 const Component = TopTip;
 
-type Case = ComponentStoryObj<typeof Component>;
+type Case = StoryObj<typeof Component>;
 
 export default {
   component: Component,
@@ -16,7 +16,7 @@ export default {
   },
   args: {},
   argTypes: {},
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
 export const Base: Case = {
   storyName: Component.name,

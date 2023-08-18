@@ -4,15 +4,15 @@ import {
   BreadcrumbsItemLink,
   BreadcrumbsItem,
 } from "./";
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 
 const Component = Breadcrumbs;
 
-type Case = ComponentStoryObj<typeof Component>;
+type Case = StoryObj<typeof Component>;
 
 export default {
   component: Component,
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
 export const Base: Case = {
   name: Component.name,

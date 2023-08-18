@@ -1,4 +1,4 @@
-import { ComponentStoryFn, Meta, StoryFn } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { ReactComponent as CheckCircleIcon } from "./CheckCircleIcon.svg";
 import { ReactComponent as InfoIcon } from "./InfoIcon.svg";
 import {
@@ -69,7 +69,7 @@ AllIcons.args = {
   color: "#000",
 };
 
-export const SpinnerStory: ComponentStoryFn<typeof Spinner> = (props) => (
+export const SpinnerStory: StoryFn<typeof Spinner> = (props) => (
   <Spinner {...props} />
 );
 SpinnerStory.args = {

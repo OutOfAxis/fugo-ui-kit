@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import { Table, Row, Cell } from "./index";
 import { useState } from "react";
 
@@ -19,18 +19,18 @@ export default {
     Row,
     Cell,
   },
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
-export const Base: ComponentStoryFn<any> = (props) => {
+export const Base: StoryFn<any> = (props) => {
   // const [args, setArgs] = useArgs();
   const [selected, setSelected] = useState<Array<number>>(
-    props.isSelectable ? [0] : []
+    props.isSelectable ? [0] : [],
   );
   const handleSelect = (index: number) => {
     setSelected(
       selected.includes(index)
         ? selected.filter((x) => x !== index)
-        : [index, ...selected]
+        : [index, ...selected],
     );
   };
   return (

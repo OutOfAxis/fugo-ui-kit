@@ -1,14 +1,10 @@
 import { SquareCheckbox } from "./SquareCheckbox";
-import {
-  ComponentMeta,
-  ComponentStoryFn,
-  ComponentStoryObj,
-} from "@storybook/react";
-import { useArgs } from "@storybook/client-api";
+import { Meta, StoryFn, StoryObj } from "@storybook/react";
+import { useArgs } from "@storybook/preview-api";
 
 const Component = SquareCheckbox;
 
-type Case = ComponentStoryObj<typeof Component>;
+type Case = StoryObj<typeof Component>;
 
 export default {
   title: "SquareCheckbox",
@@ -21,9 +17,9 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
-export const Base: ComponentStoryFn<typeof Component> = () => {
+export const Base: StoryFn<typeof Component> = () => {
   const [args, setArgs] = useArgs();
   return (
     <SquareCheckbox

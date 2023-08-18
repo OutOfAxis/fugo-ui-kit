@@ -1,4 +1,4 @@
-import { ComponentStoryFn, Meta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { useSnackbar, SnackbarProvider } from "./SnackbarService";
 import { ButtonPrimary } from "../ButtonPrimary";
 
@@ -20,7 +20,7 @@ export default {
   ],
 } as Meta;
 
-export const Base: ComponentStoryFn<any> = () => {
+export const Base: StoryFn<any> = () => {
   const showSnackbar = useSnackbar();
   return (
     <ButtonPrimary

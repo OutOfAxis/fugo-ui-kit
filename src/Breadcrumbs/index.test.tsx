@@ -7,7 +7,7 @@ it("renders component properly", () => {
       <a href="/test 1">Test Link 1</a>
       <a href="/test2">Test Link 2</a>
       <span>Test label</span>
-    </Breadcrumbs>
+    </Breadcrumbs>,
   );
 
   expect(getByText("Test Link 1")).toBeInTheDocument();

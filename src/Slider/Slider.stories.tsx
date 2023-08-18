@@ -1,16 +1,16 @@
-import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import {
   Slider,
   SliderThrottled,
   SliderSideValue,
   SliderPercentLabeled,
 } from "./index";
-import { useArgs } from "@storybook/client-api";
+import { useArgs } from "@storybook/preview-api";
 import { SliderOrientation } from "@reach/slider";
 
 const Component = Slider;
 
-type CaseFn = ComponentStoryFn<typeof Component>;
+type CaseFn = StoryFn<typeof Component>;
 
 export default {
   component: Component,
@@ -28,7 +28,7 @@ export default {
       type: "function",
     },
   },
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
 export const Base: CaseFn = (props) => {
   const [args, setArgs] = useArgs();
@@ -61,8 +61,8 @@ Base.argTypes = {
   },
 };
 
-export const SliderThrottledStory: ComponentStoryFn<typeof SliderThrottled> = (
-  props
+export const SliderThrottledStory: StoryFn<typeof SliderThrottled> = (
+  props,
 ) => {
   const [args, setArgs] = useArgs();
   return (
@@ -82,8 +82,8 @@ SliderThrottledStory.args = {
 };
 SliderThrottledStory.argTypes = Base.argTypes;
 
-export const SliderSideValueStory: ComponentStoryFn<typeof SliderSideValue> = (
-  props
+export const SliderSideValueStory: StoryFn<typeof SliderSideValue> = (
+  props,
 ) => {
   const [args, setArgs] = useArgs();
   return (
@@ -104,9 +104,9 @@ SliderSideValueStory.args = {
   max: 100,
 };
 
-export const SliderPercentLabeledStory: ComponentStoryFn<
-  typeof SliderPercentLabeled
-> = (props) => {
+export const SliderPercentLabeledStory: StoryFn<typeof SliderPercentLabeled> = (
+  props,
+) => {
   const [args, setArgs] = useArgs();
   return (
     <SliderPercentLabeled

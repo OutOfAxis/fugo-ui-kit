@@ -1,9 +1,9 @@
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { ButtonSecondary } from "./";
 
 const Component = ButtonSecondary;
 
-type Case = ComponentStoryObj<typeof Component>;
+type Case = StoryObj<typeof Component>;
 
 export default {
   component: Component,
@@ -15,7 +15,7 @@ export default {
       type: "function",
     },
   },
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
 export const Base: Case = {
   name: Component.name,

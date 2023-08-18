@@ -3,19 +3,20 @@ import {
   forwardRef,
   HTMLAttributes,
   InputHTMLAttributes,
+  LabelHTMLAttributes,
+  MouseEvent,
   ReactNode,
   Ref,
+  SVGAttributes,
   SVGProps,
   useContext,
   useMemo,
   useRef,
   useState,
-  MouseEvent,
-  SVGAttributes,
-  LabelHTMLAttributes,
 } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { ReactComponent as RemoveIcon } from "./icons/remove.svg";
+import { ReactComponent as CopyIcon } from "./icons/copy.svg";
 import { ReactComponent as ViewOffIcon } from "./icons/view-off.svg";
 import { ReactComponent as ViewOnIcon } from "./icons/view-on.svg";
 import useForkRef from "@material-ui/core/utils/useForkRef";
@@ -25,6 +26,7 @@ import { Slot } from "@radix-ui/react-slot";
 import { setInputValue } from "./setInputValue";
 import { useEventCallback } from "../useEventCallback";
 import { InputGroupContext, InputGroupContextType } from "./InputGroupContext";
+import { copyToClipboard } from "../copyToClipboard";
 
 const InputLabelStyled = styled("label")`
   block text-xs font-semibold text-gray-600 uppercase tracking-widest mb-2 text-left
@@ -57,7 +59,7 @@ InputContainerStyled.displayName = "InputContainerStyled";
 
 export type ValueChangeEventHandler<T = Element> = (
   value: string,
-  event: ChangeEvent<T>
+  event: ChangeEvent<T>,
 ) => void;
 
 export const InputEndAdornment = div`
@@ -66,9 +68,14 @@ export const InputEndAdornment = div`
 InputEndAdornment.displayName = "InputEndAdornment";
 
 const InputCleanAdornmentStyled = styled(
-  RemoveIcon
+  RemoveIcon,
 )`cursor-pointer text-gray-300 hover:text-gray-500 stroke-current h-5`;
 InputCleanAdornmentStyled.displayName = "InputCleanAdornmentStyled";
+
+const InputCopyAdornmentStyled = styled(
+  CopyIcon,
+)`cursor-pointer text-gray-300 hover:text-gray-500 stroke-current h-5`;
+InputCopyAdornmentStyled.displayName = "InputCopyAdornmentStyled";
 
 export const InputAdornmentSeparator = div`border-l border-gray-300 mx-2 h-5`;
 InputAdornmentSeparator.displayName = "InputAdornmentSeparator";
@@ -103,7 +110,7 @@ export const InputGroup = forwardRef<
       success,
       ...restProps
     },
-    ref
+    ref,
   ) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const [override, setOverride] = useState<
@@ -140,13 +147,13 @@ export const InputGroup = forwardRef<
             },
             setOverride,
           }),
-          [id, type, value, name, error, success, override, disabled, onChange]
+          [id, type, value, name, error, success, override, disabled, onChange],
         )}
       >
         <Component ref={ref} {...restProps} />
       </InputGroupContext.Provider>
     );
-  }
+  },
 );
 InputGroup.displayName = "InputGroup";
 
@@ -179,7 +186,7 @@ export const InputGroupField = forwardRef<
           },
           setOverride,
         }),
-        [inputId, input, meta, override, setOverride, disabled]
+        [inputId, input, meta, override, setOverride, disabled],
       )}
     >
       <Component ref={ref} {...restProps} />
@@ -283,7 +290,7 @@ export const InputMessage = forwardRef<
 >(({ children, errorMessage, ...props }, ref) => {
   const inputGroupContext = useContext(InputGroupContext);
   const isError = Boolean(
-    inputGroupContext?.meta.touched !== false && inputGroupContext?.meta.error
+    inputGroupContext?.meta.touched !== false && inputGroupContext?.meta.error,
   );
   return (
     <InputMessageStyled
@@ -328,7 +335,7 @@ export const InputContainer = forwardRef<
         error ||
         Boolean(
           inputGroupContext?.meta.touched !== false &&
-            inputGroupContext?.meta.error
+            inputGroupContext?.meta.error,
         )
       }
       data-success={success || Boolean(inputGroupContext?.meta.submitSucceeded)}
@@ -396,6 +403,33 @@ export const InputCleanAdornment = forwardRef<
 });
 InputCleanAdornment.displayName = "InputCleanAdornment";
 
+export const InputCopyAdornment = forwardRef<
+  SVGSVGElement,
+  SVGAttributes<SVGSVGElement> & {
+    inputElement?: HTMLInputElement;
+  }
+>(({ inputElement, ...props }, ref) => {
+  const inputGroupContext = useContext(InputGroupContext);
+  const inputElem = inputElement ?? inputGroupContext?.inputRef?.current;
+  const value = inputElem?.value || inputGroupContext?.input.value;
+  if (!value) {
+    return null;
+  }
+  return (
+    <InputCopyAdornmentStyled
+      {...props}
+      ref={ref}
+      onClick={(e) => {
+        props.onClick?.(e);
+        if (!e.defaultPrevented) {
+          copyToClipboard(value);
+        }
+      }}
+    />
+  );
+});
+InputCopyAdornment.displayName = "InputCopyAdornment";
+
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   {
     inputContainerRef,
@@ -416,7 +450,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     onChange,
     ...restInputProps
   }: InputProps,
-  ref
+  ref,
 ) {
   return (
     <InputGroup
@@ -463,7 +497,7 @@ export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   label?: string;
   onValueChange?: (
     value: string,
-    event?: ChangeEvent<HTMLInputElement>
+    event?: ChangeEvent<HTMLInputElement>,
   ) => void;
   inputContainerClassName?: string;
   containerClassName?: string;

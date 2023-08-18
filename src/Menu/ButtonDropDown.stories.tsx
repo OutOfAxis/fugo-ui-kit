@@ -1,9 +1,9 @@
-import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import { ButtonDropDown, MenuItem } from "./ButtonDropDown";
 
 const Component = ButtonDropDown;
 
-type CaseFn = ComponentStoryFn<typeof Component>;
+type CaseFn = StoryFn<typeof Component>;
 
 export default {
   component: Component,
@@ -19,7 +19,7 @@ export default {
   subcomponents: {
     MenuItem,
   },
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
 export const Base: CaseFn = (props) => {
   return (

@@ -1,9 +1,9 @@
 import { Disclosure, DisclosureButton, DisclosurePanel } from "./index";
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 
 const Component = Disclosure;
 
-type Case = ComponentStoryObj<typeof Component>;
+type Case = StoryObj<typeof Component>;
 
 export default {
   component: Component,
@@ -18,7 +18,7 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
 export const Base: Case = {
   storyName: "Disclosure",

@@ -1,4 +1,4 @@
-import { ComponentStoryFn, Meta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { ButtonPlaceholder, TextPlaceholder } from "./index";
 
 export default {
@@ -12,9 +12,9 @@ export default {
   },
 } as Meta;
 
-export const ButtonPlaceholderStory: ComponentStoryFn<
-  typeof ButtonPlaceholder
-> = (props) => {
+export const ButtonPlaceholderStory: StoryFn<typeof ButtonPlaceholder> = (
+  props,
+) => {
   return <ButtonPlaceholder {...props} />;
 };
 ButtonPlaceholderStory.storyName = "ButtonPlaceholder";
@@ -22,7 +22,7 @@ ButtonPlaceholderStory.args = {
   style: { width: 100 },
 };
 
-export const TextPlaceholderStory: ComponentStoryFn<typeof TextPlaceholder> = (
+export const TextPlaceholderStory: StoryFn<typeof TextPlaceholder> = (
   props,
 ) => {
   return (

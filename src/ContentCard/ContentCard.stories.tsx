@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStoryObj, StoryFn } from "@storybook/react";
+import { Meta, StoryObj, StoryFn } from "@storybook/react";
 import {
   ContentCard,
   CardCheckbox,
@@ -6,12 +6,12 @@ import {
   CardName,
   getAspectRatioStyle,
 } from "./ContentCard";
-import { useArgs } from "@storybook/client-api";
+import { useArgs } from "@storybook/preview-api";
 import { ChangeEvent, MouseEvent, ReactNode } from "react";
 
 const Component = ContentCard;
 
-type Case = ComponentStoryObj<typeof Component>;
+type Case = StoryObj<typeof Component>;
 
 export default {
   component: Component,
@@ -21,7 +21,7 @@ export default {
     CardDate,
     CardName,
   },
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
 export const Base: Case = {
   args: {

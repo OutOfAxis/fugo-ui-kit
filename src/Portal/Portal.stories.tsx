@@ -1,5 +1,5 @@
 import { usePortal, PortalProvider } from "./usePortal";
-import { ComponentStoryFn, Meta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { ButtonPrimary } from "../ButtonPrimary";
 import { Modal, ModalFooter } from "../Modal";
 import { ButtonSecondary } from "../ButtonSecondary";
@@ -15,7 +15,7 @@ export default {
   ],
 } as Meta;
 
-export const Base: ComponentStoryFn<any> = () => {
+export const Base: StoryFn<any> = () => {
   const showPortal = usePortal();
   return (
     <ButtonPrimary

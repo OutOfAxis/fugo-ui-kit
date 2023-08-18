@@ -1,4 +1,4 @@
-import { ComponentStoryFn, Meta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import {
   NotificationProvider,
   useErrorNotification,
@@ -25,7 +25,7 @@ export default {
   ],
 } as Meta;
 
-export const Base: ComponentStoryFn<any> = () => {
+export const Base: StoryFn<any> = () => {
   const showNotification = useNotification();
   return (
     <ButtonPrimary
@@ -59,7 +59,7 @@ showNotification({
   },
 };
 
-export const Success: ComponentStoryFn<any> = () => {
+export const Success: StoryFn<any> = () => {
   const showNotification = useSuccessNotification();
   return (
     <div className="space-x-3">
@@ -107,7 +107,7 @@ showNotification({
   },
 };
 
-export const Error: ComponentStoryFn<any> = () => {
+export const Error: StoryFn<any> = () => {
   const showNotification = useErrorNotification();
   return (
     <ButtonPrimary

@@ -1,6 +1,6 @@
 import { Combobox, ComboboxList, Option } from "./";
-import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
-import { useArgs } from "@storybook/client-api";
+import { Meta, StoryFn } from "@storybook/react";
+import { useArgs } from "@storybook/preview-api";
 
 const Component = Combobox;
 
@@ -20,9 +20,9 @@ export default {
       type: "function",
     },
   },
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
-export const Base: ComponentStoryFn<typeof Component> = (props) => {
+export const Base: StoryFn<typeof Component> = (props) => {
   const [args, setArgs] = useArgs();
   return (
     <Component

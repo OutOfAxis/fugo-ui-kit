@@ -1,11 +1,11 @@
-import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import { ModalHeader, ModalContent, ModalFooter, Modal } from "./index";
-import { useArgs } from "@storybook/client-api";
+import { useArgs } from "@storybook/preview-api";
 import { ButtonPrimary } from "../ButtonPrimary";
 
 const Component = Modal;
 
-type CaseFn = ComponentStoryFn<typeof Component>;
+type CaseFn = StoryFn<typeof Component>;
 
 export default {
   component: Component,
@@ -23,7 +23,7 @@ export default {
     ModalContent,
     ModalFooter,
   },
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
 export const Base: CaseFn = (props) => {
   const [args, setArgs] = useArgs();

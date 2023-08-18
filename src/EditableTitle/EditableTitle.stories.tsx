@@ -1,15 +1,15 @@
-import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import { EditableTitle } from "./index";
-import { useArgs } from "@storybook/client-api";
+import { useArgs } from "@storybook/preview-api";
 import { Header } from "../Header";
 
 const Component = EditableTitle;
 
-type CaseFn = ComponentStoryFn<typeof Component>;
+type CaseFn = StoryFn<typeof Component>;
 
 export default {
   component: Component,
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
 export const Base: CaseFn = (props) => {
   const [args, setArgs] = useArgs();

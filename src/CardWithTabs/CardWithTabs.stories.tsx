@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import {
   CardWithTabs,
   CardTabList,
@@ -9,7 +9,7 @@ import {
 
 const Component = CardWithTabs;
 
-type CaseFn = ComponentStoryFn<typeof Component>;
+type CaseFn = StoryFn<typeof Component>;
 
 export default {
   component: Component,
@@ -22,7 +22,7 @@ export default {
   },
   args: {},
   argTypes: {},
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
 export const Base: CaseFn = (props) => {
   return (

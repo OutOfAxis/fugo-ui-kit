@@ -1,9 +1,9 @@
-import { ComponentMeta, ComponentStoryObj, StoryFn } from "@storybook/react";
+import { Meta, StoryObj, StoryFn } from "@storybook/react";
 import { ButtonSubmit } from "./";
 
 const Component = ButtonSubmit;
 
-type Case = ComponentStoryObj<typeof Component>;
+type Case = StoryObj<typeof Component>;
 
 export default {
   component: Component,
@@ -15,7 +15,7 @@ export default {
       type: "function",
     },
   },
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
 export const Base: Case = {};
 

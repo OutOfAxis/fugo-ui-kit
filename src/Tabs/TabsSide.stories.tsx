@@ -1,11 +1,11 @@
-import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import { Tab, TabsSide } from "./TabsSide";
-import { useArgs } from "@storybook/client-api";
+import { useArgs } from "@storybook/preview-api";
 import { PremiumIconSvg } from "../Icons/PremiumIcon";
 
 const Component = TabsSide;
 
-type CaseFn = ComponentStoryFn<typeof Component>;
+type CaseFn = StoryFn<typeof Component>;
 
 export default {
   component: Component,
@@ -20,7 +20,7 @@ export default {
   },
   args: {},
   argTypes: {},
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
 export const Base: CaseFn = (props) => {
   const [args, setArgs] = useArgs();

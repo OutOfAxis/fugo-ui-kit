@@ -1,14 +1,10 @@
 import { Checkbox } from "./";
-import {
-  ComponentMeta,
-  ComponentStoryFn,
-  ComponentStoryObj,
-} from "@storybook/react";
-import { useArgs } from "@storybook/client-api";
+import { Meta, StoryFn, StoryObj } from "@storybook/react";
+import { useArgs } from "@storybook/preview-api";
 
 const Component = Checkbox;
 
-type Case = ComponentStoryObj<typeof Component>;
+type Case = StoryObj<typeof Component>;
 
 export default {
   component: Component,
@@ -20,9 +16,9 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
-export const Base: ComponentStoryFn<typeof Component> = () => {
+export const Base: StoryFn<typeof Component> = () => {
   const [args, setArgs] = useArgs();
   return (
     <Checkbox

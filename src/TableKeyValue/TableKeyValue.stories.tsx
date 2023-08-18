@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import {
   TableKeyValue,
   ResponsiveTableRow,
@@ -8,7 +8,7 @@ import {
 
 const Component = TableKeyValue;
 
-type CaseFn = ComponentStoryFn<typeof Component>;
+type CaseFn = StoryFn<typeof Component>;
 
 export default {
   component: Component,
@@ -21,7 +21,7 @@ export default {
   },
   args: {},
   argTypes: {},
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
 export const Base: CaseFn = () => {
   return (

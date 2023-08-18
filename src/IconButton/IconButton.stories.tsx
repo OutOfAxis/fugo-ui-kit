@@ -1,10 +1,10 @@
-import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import { IconButton } from "./index";
 import { ReactComponent as PremiumIcon } from "../Icons/PremiumIcon.svg";
 
 const Component = IconButton;
 
-type CaseFn = ComponentStoryFn<typeof Component>;
+type CaseFn = StoryFn<typeof Component>;
 
 export default {
   component: Component,
@@ -17,7 +17,7 @@ export default {
   },
   args: {},
   argTypes: {},
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
 export const Base: CaseFn = (props) => {
   return <IconButton {...props} />;

@@ -1,16 +1,25 @@
+import { Meta, StoryFn, StoryObj } from "@storybook/react";
 import {
-  ComponentMeta,
-  ComponentStoryFn,
-  ComponentStoryObj,
-} from "@storybook/react";
-import { Input } from "./index";
-import { useArgs } from "@storybook/client-api";
+  Input,
+  InputGroup,
+  InputLabel,
+  InputCleanAdornment,
+  InputBase,
+  InputCopyAdornment,
+  InputEndAdornment,
+  InputContainer,
+  InputMessage,
+  InputDescription,
+  InputShowPasswordAdornment,
+  InputHeader,
+} from "./index";
+import { useArgs } from "@storybook/preview-api";
 import { PremiumIconSvg } from "../Icons/PremiumIcon";
 
 const Component = Input;
 
-type Case = ComponentStoryObj<typeof Component>;
-type CaseFn = ComponentStoryFn<typeof Component>;
+type Case = StoryObj<typeof Component>;
+type CaseFn = StoryFn<typeof Component>;
 
 export default {
   component: Component,
@@ -23,7 +32,7 @@ export default {
       type: "string",
     },
   },
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
 export const Base: CaseFn = (props) => {
   const [args, setArgs] = useArgs();
@@ -36,6 +45,37 @@ export const Base: CaseFn = (props) => {
         setArgs({ ...args, value: newValue });
       }}
     />
+  );
+};
+
+export const Complex: CaseFn = (props) => {
+  const [args, setArgs] = useArgs();
+  return (
+    <InputGroup
+      {...props}
+      value="Some value"
+      onValueChange={(newValue) => {
+        props.onValueChange?.(newValue);
+        setArgs({ ...args, value: newValue });
+      }}
+      type="password"
+      disabled
+      error="Some error text here"
+      success
+    >
+      <InputHeader>Header</InputHeader>
+      <InputDescription>Some description</InputDescription>
+      <InputLabel>Label</InputLabel>
+      <InputContainer>
+        <InputBase />
+        <InputEndAdornment>
+          <InputCopyAdornment />
+          <InputCleanAdornment />
+          <InputShowPasswordAdornment />
+        </InputEndAdornment>
+      </InputContainer>
+      <InputMessage />
+    </InputGroup>
   );
 };
 

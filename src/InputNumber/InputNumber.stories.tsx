@@ -1,10 +1,10 @@
-import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import { NumberInputBase, NumberInput } from "./index";
-import { useArgs } from "@storybook/client-api";
+import { useArgs } from "@storybook/preview-api";
 
 const Component = NumberInputBase;
 
-type CaseFn = ComponentStoryFn<typeof Component>;
+type CaseFn = StoryFn<typeof Component>;
 
 export default {
   component: Component,
@@ -21,7 +21,7 @@ export default {
     min: { control: { type: "number" } },
     max: { control: { type: "number" } },
   },
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
 export const Base: CaseFn = (props) => {
   const [args, setArgs] = useArgs();
@@ -37,7 +37,7 @@ export const Base: CaseFn = (props) => {
 };
 Base.storyName = "InputNumberBase";
 
-export const Styled: ComponentStoryFn<typeof NumberInput> = (props) => {
+export const Styled: StoryFn<typeof NumberInput> = (props) => {
   const [args, setArgs] = useArgs();
   return (
     <NumberInput

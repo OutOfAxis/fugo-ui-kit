@@ -1,10 +1,10 @@
 import { MenuButton, MenuList, MenuItem, Menu } from "./Menu";
-import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import { ButtonPrimary } from "../ButtonPrimary";
 
 const Component = Menu;
 
-type CaseFn = ComponentStoryFn<typeof Component>;
+type CaseFn = StoryFn<typeof Component>;
 
 export default {
   component: Component,
@@ -19,7 +19,7 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
 export const Base: CaseFn = (props) => {
   return (
