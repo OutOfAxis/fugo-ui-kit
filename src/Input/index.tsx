@@ -19,6 +19,7 @@ import { ReactComponent as RemoveIcon } from "./icons/remove.svg";
 import { ReactComponent as CopyIcon } from "./icons/copy.svg";
 import { ReactComponent as ViewOffIcon } from "./icons/view-off.svg";
 import { ReactComponent as ViewOnIcon } from "./icons/view-on.svg";
+import { ReactComponent as ConfirmIcon } from "./icons/confirm.svg";
 import useForkRef from "@material-ui/core/utils/useForkRef";
 import { div, styled } from "../styled";
 import { FieldRenderProps } from "react-final-form";
@@ -27,6 +28,7 @@ import { setInputValue } from "./setInputValue";
 import { useEventCallback } from "../useEventCallback";
 import { InputGroupContext, InputGroupContextType } from "./InputGroupContext";
 import { copyToClipboard } from "../copyToClipboard";
+import { useTemporaryState } from "../useTemporaryState";
 
 const InputLabelStyled = styled("label")`
   block text-xs font-semibold text-gray-600 uppercase tracking-widest mb-2 text-left
@@ -76,6 +78,10 @@ const InputCopyAdornmentStyled = styled(
   CopyIcon,
 )`cursor-pointer text-gray-300 hover:text-gray-500 stroke-current h-5`;
 InputCopyAdornmentStyled.displayName = "InputCopyAdornmentStyled";
+
+const InputConfirmAdornmentStyled = styled(
+  ConfirmIcon,
+)`text-green-600 stroke-current h-5`;
 
 export const InputAdornmentSeparator = div`border-l border-gray-300 mx-2 h-5`;
 InputAdornmentSeparator.displayName = "InputAdornmentSeparator";
@@ -412,8 +418,12 @@ export const InputCopyAdornment = forwardRef<
   const inputGroupContext = useContext(InputGroupContext);
   const inputElem = inputElement ?? inputGroupContext?.inputRef?.current;
   const value = inputElem?.value || inputGroupContext?.input.value;
+  const [copied, setCopied] = useTemporaryState(3000);
   if (!value) {
     return null;
+  }
+  if (copied) {
+    return <InputConfirmAdornmentStyled {...props} />;
   }
   return (
     <InputCopyAdornmentStyled
@@ -423,6 +433,7 @@ export const InputCopyAdornment = forwardRef<
         props.onClick?.(e);
         if (!e.defaultPrevented) {
           copyToClipboard(value);
+          setCopied(true);
         }
       }}
     />
