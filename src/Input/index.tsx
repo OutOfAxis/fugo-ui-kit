@@ -66,7 +66,7 @@ export type ValueChangeEventHandler<T = Element> = (
 ) => void;
 
 export const InputEndAdornment = div`
-  flex items-center pr-2 absolute right-0 h-full top-0 bottom-0
+  flex items-center pr-2 absolute right-0 h-full top-0 bottom-0 space-x-2
 `;
 InputEndAdornment.displayName = "InputEndAdornment";
 
@@ -77,12 +77,12 @@ InputCleanAdornmentStyled.displayName = "InputCleanAdornmentStyled";
 
 const InputCopyAdornmentStyled = styled(
   CopyIcon,
-)`cursor-pointer text-gray-300 hover:text-gray-500 stroke-current h-5`;
+)`cursor-pointer text-gray-300 hover:text-gray-500 fill-current h-6`;
 InputCopyAdornmentStyled.displayName = "InputCopyAdornmentStyled";
 
 const InputConfirmAdornmentStyled = styled(
   ConfirmIcon,
-)`text-green-600 stroke-current h-5`;
+)`text-green-600 fill-current h-6`;
 
 export const InputAdornmentSeparator = div`border-l border-gray-300 mx-2 h-5`;
 InputAdornmentSeparator.displayName = "InputAdornmentSeparator";
