@@ -31,4 +31,4 @@ export const Base: CaseFn = (props) => {
     />
   );
 };
-Base.storyName = "TimePicker";
+Base.name = "TimePicker";

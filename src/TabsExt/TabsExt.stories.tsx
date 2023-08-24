@@ -54,7 +54,7 @@ Base.parameters = {
     },
   },
 };
-Base.storyName = "TabsExt";
+Base.name = "TabsExt";
 Base.args = {
   index: 0,
 };

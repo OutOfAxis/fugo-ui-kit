@@ -18,7 +18,7 @@ export const Base: CaseFn = (props) => {
     </ThreeDotDropDown>
   );
 };
-Base.storyName = "ThreeDotDropDown";
+Base.name = "ThreeDotDropDown";
 
 export const Rotated: CaseFn = (props) => {
   return (

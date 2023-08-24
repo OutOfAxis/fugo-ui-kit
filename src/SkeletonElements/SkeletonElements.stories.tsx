@@ -17,7 +17,7 @@ export const ButtonPlaceholderStory: StoryFn<typeof ButtonPlaceholder> = (
 ) => {
   return <ButtonPlaceholder {...props} />;
 };
-ButtonPlaceholderStory.storyName = "ButtonPlaceholder";
+ButtonPlaceholderStory.name = "ButtonPlaceholder";
 ButtonPlaceholderStory.args = {
   style: { width: 100 },
 };
@@ -33,7 +33,7 @@ export const TextPlaceholderStory: StoryFn<typeof TextPlaceholder> = (
     </div>
   );
 };
-TextPlaceholderStory.storyName = "TextPlaceholder";
+TextPlaceholderStory.name = "TextPlaceholder";
 TextPlaceholderStory.args = {
   min: 40,
   max: 120,

@@ -21,7 +21,7 @@ export default {
 export const Base: CaseFn = (props) => {
   return <IconTooltip {...props} />;
 };
-Base.storyName = Component.displayName;
+Base.name = Component.displayName!;
 Base.args = {
   label: "Tooltip content",
 };

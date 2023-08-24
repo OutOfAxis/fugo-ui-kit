@@ -61,7 +61,7 @@ export const Base: CaseFn = (props) => {
     </div>
   );
 };
-Base.storyName = Component.name;
+Base.name = Component.name;
 Base.args = {
   isOpen: false,
   size: "sm:max-w-screen-md",

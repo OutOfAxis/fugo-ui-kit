@@ -31,7 +31,7 @@ export const Base: CaseFn = (props) => {
     />
   );
 };
-Base.storyName = Component.displayName;
+Base.name = Component.displayName!;
 Base.args = {
   label: "Toggle label",
 };

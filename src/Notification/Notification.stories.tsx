@@ -41,7 +41,7 @@ export const Base: StoryFn<any> = () => {
     </ButtonPrimary>
   );
 };
-Base.storyName = "useNotification";
+Base.name = "useNotification";
 Base.parameters = {
   docs: {
     source: {
@@ -89,7 +89,7 @@ export const Success: StoryFn<any> = () => {
     </div>
   );
 };
-Success.storyName = "useSuccessNotification";
+Success.name = "useSuccessNotification";
 Success.parameters = {
   docs: {
     source: {
@@ -123,7 +123,7 @@ export const Error: StoryFn<any> = () => {
     </ButtonPrimary>
   );
 };
-Error.storyName = "useErrorNotification";
+Error.name = "useErrorNotification";
 Error.parameters = {
   docs: {
     source: {

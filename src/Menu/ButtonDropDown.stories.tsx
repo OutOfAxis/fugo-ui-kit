@@ -29,7 +29,7 @@ export const Base: CaseFn = (props) => {
     </ButtonDropDown>
   );
 };
-Base.storyName = Component.name;
+Base.name = Component.name;
 Base.args = {
   label: "Button drop down",
 };

@@ -21,7 +21,7 @@ export default {
 } as Meta<typeof Component>;
 
 export const Base: Case = {
-  storyName: "Disclosure",
+  name: "Disclosure",
   args: {
     children: (
       <div>

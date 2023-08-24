@@ -44,7 +44,7 @@ export const Base: CaseFn = (props) => {
     />
   );
 };
-Base.storyName = "DatePicker";
+Base.name = "DatePicker";
 Base.args = {
   startDatePlaceholder: "Date input placeholder",
   startDate: new Date("2022-08-10"),

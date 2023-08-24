@@ -100,3 +100,9 @@ export const Disabled: Case = {
     disabled: true,
   },
 };
+
+export const ReadOnly: Case = {
+  args: {
+    readOnly: true,
+  },
+};

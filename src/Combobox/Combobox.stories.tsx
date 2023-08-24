@@ -44,4 +44,4 @@ export const Base: StoryFn<typeof Component> = (props) => {
     </Component>
   );
 };
-Base.storyName = "Combobox";
+Base.name = "Combobox";

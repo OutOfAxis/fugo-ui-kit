@@ -40,7 +40,7 @@ export const Base: CaseFn = (props) => {
     </RadioGroup>
   );
 };
-Base.storyName = "Radio";
+Base.name = "Radio";
 Base.args = {
   value: "a",
 };

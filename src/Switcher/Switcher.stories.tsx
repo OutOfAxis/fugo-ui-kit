@@ -35,4 +35,4 @@ export const Base: CaseFn = (props) => {
     </Switcher>
   );
 };
-Base.storyName = Component.name;
+Base.name = Component.name;

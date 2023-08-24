@@ -19,7 +19,7 @@ export default {
 } as Meta<typeof Component>;
 
 export const Base: Case = {
-  storyName: Component.name,
+  name: Component.name,
   args: {
     children: "Message that warns",
   },

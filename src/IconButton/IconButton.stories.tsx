@@ -22,7 +22,7 @@ export default {
 export const Base: CaseFn = (props) => {
   return <IconButton {...props} />;
 };
-Base.storyName = Component.displayName;
+Base.name = Component.displayName!;
 Base.args = {
   children: <PremiumIcon className="h-5 w-5" />,
 };

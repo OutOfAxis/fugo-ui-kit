@@ -34,4 +34,4 @@ export const Base: CaseFn = () => {
     </div>
   );
 };
-Base.storyName = Component.name;
+Base.name = Component.name;

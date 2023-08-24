@@ -19,7 +19,7 @@ export default {
 } as Meta<typeof Component>;
 
 export const Base: Case = {
-  storyName: Component.displayName,
+  name: Component.displayName,
   args: {
     children: "Card content",
   },

@@ -38,7 +38,7 @@ export const Base: CaseFn = (props) => {
     </Tabs>
   );
 };
-Base.storyName = Component.name;
+Base.name = Component.name;
 Base.args = {
   activeTabId: "tab1",
 };

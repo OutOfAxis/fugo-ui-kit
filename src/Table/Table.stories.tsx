@@ -67,7 +67,7 @@ export const Base: StoryFn<any> = (props) => {
     </Table>
   );
 };
-Base.storyName = Component.name;
+Base.name = Component.name;
 Base.args = {
   isEditable: true,
   isSelectable: true,

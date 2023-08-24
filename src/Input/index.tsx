@@ -54,6 +54,7 @@ const InputContainerStyled = div<{ "data-success"?: boolean }>`
   relative bg-white border rounded h-12
   text-gray-700 border-gray-300 focus-within:border-blue-500
   [&[aria-disabled="true"]]:text-gray-500 [&[aria-disabled="true"]]:border-gray-500 [&[aria-disabled="true"]]:bg-gray-100
+  [&[aria-readonly="true"]]:text-gray-700 [&[aria-readonly="true"]]:border-gray-100 [&[aria-readonly="true"]]:bg-gray-100
   [&[aria-invalid="true"]]:text-gray-700 [&[aria-invalid="true"]]:border-red-500
   [&[data-success="true"]]:text-green-600 [&[data-success="true"]]:border-green-600
 `;
@@ -94,7 +95,7 @@ export const InputGroup = forwardRef<
   HTMLAttributes<HTMLDivElement> &
     Pick<
       InputHTMLAttributes<HTMLInputElement>,
-      "id" | "name" | "type" | "value" | "onChange" | "disabled"
+      "id" | "name" | "type" | "value" | "onChange" | "disabled" | "readOnly"
     > & {
       asChild?: boolean;
       onValueChange?: ValueChangeEventHandler<HTMLInputElement>;
@@ -109,6 +110,7 @@ export const InputGroup = forwardRef<
       name,
       type,
       disabled,
+      readOnly,
       value,
       onChange: onChangeProp,
       onValueChange: onValueChangeProp,
@@ -150,10 +152,22 @@ export const InputGroup = forwardRef<
             override: {
               ...override,
               disabled: disabled || override.disabled,
+              readOnly: readOnly || override.readOnly,
             },
             setOverride,
           }),
-          [id, type, value, name, error, success, override, disabled, onChange],
+          [
+            id,
+            type,
+            value,
+            name,
+            error,
+            success,
+            override,
+            disabled,
+            readOnly,
+            onChange,
+          ],
         )}
       >
         <Component ref={ref} {...restProps} />
@@ -168,10 +182,11 @@ export const InputGroupField = forwardRef<
   FieldRenderProps<string> & {
     children?: ReactNode;
     disabled?: boolean;
+    readOnly?: boolean;
     id?: string;
     asChild?: boolean;
   }
->(({ input, meta, disabled, id, asChild, ...restProps }, ref) => {
+>(({ input, meta, disabled, readOnly, id, asChild, ...restProps }, ref) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [override, setOverride] = useState<
     InputHTMLAttributes<HTMLInputElement>
@@ -189,10 +204,11 @@ export const InputGroupField = forwardRef<
           override: {
             ...override,
             disabled: disabled || override.disabled,
+            readOnly: readOnly || override.readOnly,
           },
           setOverride,
         }),
-        [inputId, input, meta, override, setOverride, disabled],
+        [inputId, input, meta, override, setOverride, disabled, readOnly],
       )}
     >
       <Component ref={ref} {...restProps} />
@@ -233,20 +249,17 @@ export const InputShowPasswordAdornment = forwardRef<
   };
   const ViewIcon = showPassword ? ViewOnIcon : ViewOffIcon;
   return (
-    <>
-      <InputAdornmentSeparator />
-      <ViewIcon
-        ref={ref}
-        role="switch"
-        {...props}
-        onClick={handleClick}
-        className={`${props.className || ""} cursor-pointer stroke-current ${
-          showPassword
-            ? "text-blue-500 hover:text-blue-200"
-            : "text-gray-300 hover:text-gray-500"
-        }`}
-      />
-    </>
+    <ViewIcon
+      ref={ref}
+      role="switch"
+      {...props}
+      onClick={handleClick}
+      className={`${props.className || ""} cursor-pointer stroke-current ${
+        showPassword
+          ? "text-blue-500 hover:text-blue-200"
+          : "text-gray-300 hover:text-gray-500"
+      }`}
+    />
   );
 });
 InputShowPasswordAdornment.displayName = "InputShowPasswordAdornment";
@@ -258,7 +271,7 @@ export const InputComposed = forwardRef<
     success?: boolean;
   }
 >(({ error, success, type: typeProp, ...inputProps }, outerRef) => {
-  const { disabled, value } = inputProps;
+  const { disabled, readOnly, value } = inputProps;
   const innerRef = useRef<HTMLInputElement>(null);
   const ref = useForkRef(innerRef, outerRef);
   const [typeOverride, setTypeOverride] = useState<string>();
@@ -269,6 +282,7 @@ export const InputComposed = forwardRef<
   return (
     <InputContainer
       disabled={disabled}
+      readOnly={readOnly}
       error={Boolean(error)}
       success={success}
     >
@@ -279,10 +293,13 @@ export const InputComposed = forwardRef<
           inputElement={innerRef.current ?? undefined}
         />
         {typeProp === "password" ? (
-          <InputShowPasswordAdornment
-            aria-checked={Boolean(typeOverride)}
-            onClick={handleShowPasswordToggle}
-          />
+          <>
+            <InputAdornmentSeparator />
+            <InputShowPasswordAdornment
+              aria-checked={Boolean(typeOverride)}
+              onClick={handleShowPasswordToggle}
+            />
+          </>
         ) : null}
       </InputEndAdornment>
     </InputContainer>
@@ -327,16 +344,18 @@ export const InputContainer = forwardRef<
   HTMLDivElement,
   HTMLAttributes<HTMLDivElement> & {
     disabled?: boolean;
+    readOnly?: boolean;
     error?: boolean;
     success?: boolean;
   }
->(({ disabled, error, success, ...props }, ref) => {
+>(({ disabled, readOnly, error, success, ...props }, ref) => {
   const inputGroupContext = useContext(InputGroupContext);
   return (
     <InputContainerStyled
       {...props}
       ref={ref}
       aria-disabled={disabled || inputGroupContext?.override.disabled}
+      aria-readonly={readOnly || inputGroupContext?.override.readOnly}
       aria-invalid={
         error ||
         Boolean(
@@ -388,6 +407,7 @@ export const InputCleanAdornment = forwardRef<
   const inputGroupContext = useContext(InputGroupContext);
   if (
     inputGroupContext?.override.disabled ||
+    inputGroupContext?.override.readOnly ||
     !inputGroupContext?.input.value ||
     dirty === false
   ) {
@@ -452,6 +472,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     type = "text",
     value,
     disabled = false,
+    readOnly = false,
     inputContainerClassName = "",
     cleanable = true,
     containerClassName = "",
@@ -472,6 +493,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
       id={id}
       type={type}
       disabled={disabled}
+      readOnly={readOnly}
       error={error}
       success={isSuccess}
     >

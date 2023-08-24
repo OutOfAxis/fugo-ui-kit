@@ -42,7 +42,7 @@ export const Base: StoryFn<any> = () => {
     </ButtonPrimary>
   );
 };
-Base.storyName = "useSnackbar";
+Base.name = "useSnackbar";
 Base.parameters = {
   docs: {
     source: {

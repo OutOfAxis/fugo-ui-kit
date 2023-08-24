@@ -39,4 +39,4 @@ export const Base: CaseFn = () => {
     </TableKeyValue>
   );
 };
-Base.storyName = Component.displayName;
+Base.name = Component.displayName!;

@@ -38,4 +38,4 @@ export const Base: CaseFn = (props) => {
     </CardWithTabs>
   );
 };
-Base.storyName = Component.displayName;
+Base.name = Component.displayName!;

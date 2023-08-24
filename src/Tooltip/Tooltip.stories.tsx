@@ -26,7 +26,7 @@ export const Base: CaseFn = (props) => {
     </Tooltip>
   );
 };
-Base.storyName = Component.name;
+Base.name = Component.name;
 Base.args = {
   hidden: false,
   label: "Tooltip content",

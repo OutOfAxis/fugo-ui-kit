@@ -26,4 +26,4 @@ export const Base: CaseFn = (props) => {
     </Card>
   );
 };
-Base.storyName = Component.displayName;
+Base.name = Component.displayName!;

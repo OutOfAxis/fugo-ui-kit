@@ -35,7 +35,7 @@ export const Base: CaseFn = (props) => {
     />
   );
 };
-Base.storyName = "InputNumberBase";
+Base.name = "InputNumberBase";
 
 export const Styled: StoryFn<typeof NumberInput> = (props) => {
   const [args, setArgs] = useArgs();

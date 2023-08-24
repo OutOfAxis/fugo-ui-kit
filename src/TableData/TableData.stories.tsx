@@ -40,4 +40,4 @@ export const Base: CaseFn = () => {
     </TableData>
   );
 };
-Base.storyName = Component.displayName;
+Base.name = Component.displayName!;

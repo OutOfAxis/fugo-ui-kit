@@ -49,7 +49,7 @@ export const Base: StoryFn<any> = () => {
     </ButtonPrimary>
   );
 };
-Base.storyName = "Portal";
+Base.name = "Portal";
 Base.parameters = {
   docs: {
     source: {

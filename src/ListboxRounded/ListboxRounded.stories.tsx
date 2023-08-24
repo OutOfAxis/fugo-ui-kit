@@ -30,7 +30,7 @@ export const Base: CaseFn = (props) => {
     />
   );
 };
-Base.storyName = Component.name;
+Base.name = Component.name;
 Base.args = {
   selected: "a",
   title: "Property",

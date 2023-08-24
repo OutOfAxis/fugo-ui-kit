@@ -36,4 +36,4 @@ export const Base: CaseFn = (props) => {
   );
 };
 
-Base.storyName = "Confetti";
+Base.name = "Confetti";

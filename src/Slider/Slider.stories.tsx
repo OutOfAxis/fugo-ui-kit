@@ -42,7 +42,7 @@ export const Base: CaseFn = (props) => {
     />
   );
 };
-Base.storyName = Component.name;
+Base.name = Component.name;
 Base.args = {
   className: "w-60",
   value: 0,
@@ -75,7 +75,7 @@ export const SliderThrottledStory: StoryFn<typeof SliderThrottled> = (
     />
   );
 };
-SliderThrottledStory.storyName = "SliderThrottled";
+SliderThrottledStory.name = "SliderThrottled";
 SliderThrottledStory.args = {
   throttle: 150,
   ...Base.args,
@@ -96,7 +96,7 @@ export const SliderSideValueStory: StoryFn<typeof SliderSideValue> = (
     />
   );
 };
-SliderSideValueStory.storyName = "SliderSideValue";
+SliderSideValueStory.name = "SliderSideValue";
 SliderSideValueStory.args = {
   className: "w-60",
   value: 0,
@@ -118,7 +118,7 @@ export const SliderPercentLabeledStory: StoryFn<typeof SliderPercentLabeled> = (
     />
   );
 };
-SliderPercentLabeledStory.storyName = "SliderPercentLabeled";
+SliderPercentLabeledStory.name = "SliderPercentLabeled";
 SliderPercentLabeledStory.args = {
   label: "Slider label",
   className: "w-60",

@@ -67,7 +67,7 @@ export const Base: CaseFn = (props) => {
     </div>
   );
 };
-Base.storyName = "ModalTabs";
+Base.name = "ModalTabs";
 Base.args = {
   isOpen: false,
   size: "sm:max-w-screen-md",
