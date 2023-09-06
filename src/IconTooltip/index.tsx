@@ -4,6 +4,7 @@ import { ReactComponent as InfoIcon } from "../Icons/InfoIcon.svg";
 
 export const IconTooltip = ({
   className = "",
+  tooltipClassName = "",
   hidden,
   label,
   side,
@@ -15,7 +16,9 @@ export const IconTooltip = ({
   ComponentProps<typeof Tooltip>,
   "hidden" | "label" | "align" | "alignOffset" | "side" | "sideOffset"
 > &
-  SVGAttributes<SVGSVGElement>) => {
+  SVGAttributes<SVGSVGElement> & {
+    tooltipClassName?: string;
+  }) => {
   return (
     <Tooltip
       hidden={hidden}
@@ -24,7 +27,7 @@ export const IconTooltip = ({
       sideOffset={sideOffset}
       align={align}
       alignOffset={alignOffset}
-      className="max-w-screen-xs whitespace-normal"
+      className={`${tooltipClassName} max-w-screen-xs whitespace-normal`}
     >
       <InfoIcon
         {...props}
