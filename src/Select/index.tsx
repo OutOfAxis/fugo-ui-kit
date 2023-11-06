@@ -4,6 +4,7 @@ import * as UiSelect from "@radix-ui/react-select";
 import * as UiLabel from "@radix-ui/react-label";
 import { ReactComponent as ArrowDownIcon } from "./arrow-down.svg";
 import skeletonStyles from "../SkeletonElements/thumbnail-skeleton.module.css";
+import { styled } from "../styled";
 
 type SelectProps<T extends string> = {
   className?: string;
@@ -95,6 +96,13 @@ export const SelectList = forwardRef<
 });
 SelectList.displayName = "SelectList";
 
+export const Item = styled(UiSelect.Item)`
+  flex min-h-[3rem] cursor-pointer items-center px-4 py-2
+  outline-none hover:bg-gray-100
+  [&[data-state="checked"]]:font-bold
+`;
+Item.displayName = "Item";
+
 export const Option = forwardRef<
   HTMLDivElement,
   {
@@ -105,19 +113,9 @@ export const Option = forwardRef<
   }
 >(({ value, children, className = "", disabled }, ref) => {
   return (
-    <UiSelect.Item
-      ref={ref}
-      value={value}
-      disabled={disabled}
-      className={`
-        ${className}
-        flex min-h-[3rem] cursor-pointer items-center px-4 py-2
-        outline-none hover:bg-gray-100
-        [&[data-state="checked"]]:font-bold
-      `}
-    >
+    <Item ref={ref} value={value} disabled={disabled} className={className}>
       <UiSelect.ItemText>{children}</UiSelect.ItemText>
-    </UiSelect.Item>
+    </Item>
   );
 });
 Option.displayName = "Option";
