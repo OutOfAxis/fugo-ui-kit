@@ -18,12 +18,12 @@ export const Checkbox = forwardRef<HTMLDivElement, Props>(
       ActiveIcon = CircleActiveIcon,
       InactiveIcon = CircleInactiveIcon,
     },
-    ref
+    ref,
   ) => {
     const classes =
       value === true
         ? "text-blue-500 hover:text-blue-600 fill-current"
-        : "text-gray-400 hover:text-gray-700 stroke-current";
+        : "text-gray-400 hover:text-blue-600 stroke-current";
 
     return (
       <div className={`h-6 w-6 ${className}`} ref={ref}>
@@ -45,7 +45,7 @@ export const Checkbox = forwardRef<HTMLDivElement, Props>(
         </CustomCheckboxContainer>
       </div>
     );
-  }
+  },
 );
 Checkbox.displayName = "Checkbox";
 
