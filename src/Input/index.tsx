@@ -72,7 +72,7 @@ InputEndAdornment.displayName = "InputEndAdornment";
 
 const InputCleanAdornmentStyled = styled(
   RemoveIcon,
-)`cursor-pointer text-gray-300 hover:text-gray-500 stroke-current h-5`;
+)`cursor-pointer text-gray-300 hover:text-gray-500 h-5`;
 InputCleanAdornmentStyled.displayName = "InputCleanAdornmentStyled";
 
 const InputCopyAdornmentStyled = styled(
