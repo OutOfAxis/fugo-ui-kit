@@ -7,6 +7,7 @@ export type TabProps = {
   label: ReactNode;
   disabled?: boolean;
   icon?: ReactNode;
+  hidden?: boolean;
 };
 
 export const Tab = forwardRef<HTMLDivElement, TabProps>(
@@ -14,6 +15,6 @@ export const Tab = forwardRef<HTMLDivElement, TabProps>(
     <div ref={ref} className={`${className} flex-1 bg-gray-100`}>
       {children}
     </div>
-  )
+  ),
 );
 Tab.displayName = "Tab";

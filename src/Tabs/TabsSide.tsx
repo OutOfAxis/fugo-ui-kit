@@ -6,7 +6,12 @@ export const TabsSide = forwardRef<
   HTMLUListElement,
   {
     children: Array<
-      ReactElement<{ id: string; label: string; icon: ReactNode }>
+      ReactElement<{
+        id: string;
+        label: string;
+        icon: ReactNode;
+        hidden?: boolean;
+      }>
     >;
     activeTabId: string;
     onChange: (tabId: string) => void;
@@ -24,7 +29,7 @@ export const TabsSide = forwardRef<
       tabClassName = "",
       isFolded = false,
     },
-    ref
+    ref,
   ) => (
     <div className="flex flex-1">
       <FixedSideBar className="z-10 flex-shrink-0">
@@ -40,6 +45,8 @@ export const TabsSide = forwardRef<
                 activeTabId === child.props.id
                   ? "text-blue-600"
                   : "text-gray-500"
+              } ${
+                child.props.hidden ? "hidden" : ""
               } flex cursor-pointer items-center whitespace-nowrap text-sm font-bold`}
               onClick={() => onChange(child.props.id)}
             >
@@ -52,10 +59,10 @@ export const TabsSide = forwardRef<
         </ul>
       </FixedSideBar>
       {React.Children.toArray(children).find(
-        (child: any) => child.props.id === activeTabId
+        (child: any) => child.props.id === activeTabId,
       )}
     </div>
-  )
+  ),
 );
 TabsSide.displayName = "TabsSide";
 
